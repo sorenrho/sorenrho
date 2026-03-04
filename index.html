@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soren Rho — System Architecture for Creative Teams</title>
+<meta name="description" content="Soren Rho charts the hidden reefs in your creative operations — then builds the lighthouse that keeps your team on course. System architecture for in-house creative teams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  color: #0A2540; background: #F7FAFC; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+   ═══════════════════════════════════════════ */
+:root {
+  --navy: #0A2540;
+  --navy-mid: #0F2D4A;
+  --navy-light: #143356;
+  --navy-deep: #061829;
+  --teal: #00A3BF;
+  --teal-dark: #008A9E;
+  --teal-bright: #00C4E6;
+  --teal-glow: rgba(0,163,191,0.12);
+  --brass: #B89778;
+  --brass-light: #d4b89a;
+  --brass-warm: #C9A882;
+  --brass-glow: rgba(184,151,120,0.15);
+  --white: #ffffff;
+  --off-white: #F7FAFC;
+  --gray-50: #F9FAFB;
+  --gray-100: #EDF2F7;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #A0AEC0;
+  --gray-500: #718096;
+  --gray-600: #4A5568;
+  --gray-700: #374151;
+  --gray-800: #2D3748;
+  --section-pad: 72px;
+  --side-pad: 24px;
+  --max-width: 1200px;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow: 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY — mobile-first
+   ═══════════════════════════════════════════ */
+h1 { font-size: 2.25rem; font-weight: 900; line-height: 1.06; letter-spacing: -0.035em; }
+h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.025em; }
+h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+p, li { font-size: 1rem; line-height: 1.7; }
+.subhead { font-size: 1.05rem; line-height: 1.55; font-weight: 400; color: var(--gray-600); }
+.eyebrow {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--brass);
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+   ═══════════════════════════════════════════ */
+.container { max-width: var(--max-width); margin: 0 auto; padding-left: var(--side-pad); padding-right: var(--side-pad); }
+.section { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.text-center { text-align: center; }
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════ */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--teal); color: var(--white);
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.01em;
+  padding: 0 2rem; height: 56px; border-radius: var(--radius);
+  border: none; cursor: pointer; transition: var(--transition);
+  white-space: nowrap; position: relative; overflow: hidden;
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+  opacity: 0; transition: var(--transition);
+}
+.btn-primary:hover {
+  background: var(--teal-dark); transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,163,191,0.35), 0 0 0 1px rgba(0,163,191,0.1);
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary.btn-brass { background: var(--brass); }
+.btn-primary.btn-brass:hover { background: var(--brass-warm); box-shadow: 0 8px 32px rgba(184,151,120,0.35); }
+.btn-primary.btn-navy { background: var(--navy); }
+.btn-primary.btn-navy:hover { background: var(--navy-light); box-shadow: 0 8px 32px rgba(10,37,64,0.35); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--teal-dark); font-weight: 600; font-size: 0.95rem;
+  border: none; background: none; cursor: pointer; transition: var(--transition);
+}
+.btn-secondary:hover { color: var(--navy); gap: 12px; }
+
+/* ═══════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════ */
+.header {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: rgba(247,250,252,0.88); backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(226,232,240,0.6); height: 72px;
+  transition: var(--transition);
+}
+.header.scrolled { box-shadow: 0 1px 12px rgba(10,37,64,0.06); }
+.header-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 var(--side-pad); height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { font-size: 1.35rem; font-weight: 900; color: var(--navy); letter-spacing: -0.04em; }
+.logo span { color: var(--brass); font-weight: 400; }
+.nav-links { display: none; align-items: center; gap: 2.5rem; }
+.nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--gray-500); transition: var(--transition); }
+.nav-links a:hover { color: var(--navy); }
+.header .btn-primary { height: 44px; font-size: 0.85rem; padding: 0 1.4rem; }
+.mobile-toggle { display: block; background: none; border: none; cursor: pointer; padding: 8px; }
+.mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; transition: var(--transition); border-radius: 2px; }
+
+/* ═══════════════════════════════════════════
+   MOBILE NAV
+   ═══════════════════════════════════════════ */
+.mobile-nav {
+  display: none; position: fixed; top: 72px; left: 0; width: 100%; height: calc(100vh - 72px);
+  background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+  z-index: 999; flex-direction: column; align-items: center;
+  justify-content: flex-start; padding-top: 3rem; gap: 2rem;
+}
+.mobile-nav.active { display: flex; }
+.mobile-nav a { font-size: 1.1rem; font-weight: 600; color: var(--navy); }
+.mobile-nav .btn-primary { width: 80%; max-width: 320px; }
+
+/* ═══════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero {
+  padding-top: calc(72px + var(--section-pad));
+  padding-bottom: var(--section-pad);
+  min-height: 100vh; display: flex; align-items: center;
+  background: var(--off-white);
+  position: relative; overflow: hidden;
+}
+/* Ambient depth layers */
+.hero::before {
+  content: ''; position: absolute; top: -30%; right: -20%;
+  width: 800px; height: 800px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,163,191,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -20%; left: -15%;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,151,120,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+.hero-content { position: relative; z-index: 2; }
+.hero .eyebrow { margin-bottom: 1rem; display: block; }
+.hero h1 { color: var(--navy); margin-bottom: 1.2rem; }
+.hero h1 em { font-style: normal; color: var(--teal-dark); }
+.hero .subhead { margin-bottom: 1.8rem; max-width: 540px; }
+.hero-bullets { list-style: none; margin-bottom: 2.4rem; }
+.hero-bullets li {
+  font-size: 0.88rem; color: var(--gray-600); padding: 0.35rem 0 0.35rem 1.6rem;
+  position: relative;
+}
+.hero-bullets li::before {
+  content: ''; position: absolute; left: 0; top: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--brass); transform: translateY(-50%);
+  box-shadow: 0 0 8px rgba(184,151,120,0.4);
+}
+.hero-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.hero-cta .btn-primary { width: 100%; }
+
+/* ═══════════════════════════════════════════
+   FRESNEL LENS HERO GRAPHIC
+   ═══════════════════════════════════════════ */
+.hero-graphic {
+  position: relative; z-index: 1;
+  background: var(--navy-deep);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-xl); height: 320px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(10,37,64,0.2), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Ambient particles */
+.hero-graphic .particle {
+  position: absolute; width: 2px; height: 2px; border-radius: 50%;
+  background: var(--brass-light); opacity: 0;
+  animation: float-particle 6s ease-in-out infinite;
+}
+.hero-graphic .particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; animation-duration: 7s; }
+.hero-graphic .particle:nth-child(2) { top: 70%; left: 80%; animation-delay: 1.5s; animation-duration: 5s; }
+.hero-graphic .particle:nth-child(3) { top: 40%; left: 90%; animation-delay: 3s; animation-duration: 8s; }
+.hero-graphic .particle:nth-child(4) { top: 80%; left: 25%; animation-delay: 2s; animation-duration: 6s; }
+.hero-graphic .particle:nth-child(5) { top: 10%; left: 60%; animation-delay: 4s; animation-duration: 7s; }
+.hero-graphic .particle:nth-child(6) { top: 55%; left: 45%; animation-delay: 1s; animation-duration: 9s; }
+@keyframes float-particle {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+  20% { opacity: 0.6; }
+  50% { opacity: 0.8; transform: translateY(-20px) scale(1.5); }
+  80% { opacity: 0.3; }
+}
+
+.fresnel-visual {
+  width: 100%; height: 100%; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+/* Outer glow */
+.fresnel-visual::before {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,151,120,0.08) 0%, rgba(0,163,191,0.04) 40%, transparent 70%);
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%,-50%) scale(1.08); opacity: 0.7; }
+}
+.fresnel-rings { position: relative; width: 260px; height: 260px; }
+.fresnel-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(0,163,191,0.15);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  transition: var(--transition-slow);
+}
+.fresnel-ring:nth-child(1) {
+  width: 52px; height: 52px; border: 2px solid var(--brass);
+  background: radial-gradient(circle, rgba(184,151,120,0.35) 0%, rgba(184,151,120,0.1) 50%, transparent 70%);
+  box-shadow: 0 0 30px rgba(184,151,120,0.25), 0 0 60px rgba(184,151,120,0.1);
+  animation: core-pulse 3s ease-in-out infinite;
+}
+@keyframes core-pulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(184,151,120,0.25), 0 0 60px rgba(184,151,120,0.1); }
+  50% { box-shadow: 0 0 40px rgba(184,151,120,0.4), 0 0 80px rgba(184,151,120,0.15); }
+}
+.fresnel-ring:nth-child(2) { width: 100px; height: 100px; border-color: rgba(184,151,120,0.35); }
+.fresnel-ring:nth-child(3) { width: 150px; height: 150px; border-color: rgba(0,163,191,0.2); }
+.fresnel-ring:nth-child(4) { width: 200px; height: 200px; border-color: rgba(0,163,191,0.1); }
+.fresnel-ring:nth-child(5) { width: 260px; height: 260px; border-color: rgba(0,163,191,0.05); }
+
+/* Beam sweep */
+.beam-sweep {
+  position: absolute; top: 50%; left: 50%;
+  width: 180px; height: 2px; transform-origin: 0 0;
+  background: linear-gradient(90deg, rgba(184,151,120,0.7), rgba(184,151,120,0));
+  animation: sweep 10s linear infinite;
+  filter: blur(0.5px);
+}
+.beam-sweep::after {
+  content: ''; position: absolute; top: -12px; left: 0;
+  width: 180px; height: 26px;
+  background: linear-gradient(90deg, rgba(184,151,120,0.06), transparent);
+}
+@keyframes sweep { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Static beam lines */
+.beam-line {
+  position: absolute; top: 50%; left: 50%;
+  width: 180px; height: 1px;
+  background: linear-gradient(90deg, rgba(0,163,191,0.12), transparent);
+  transform-origin: 0 0;
+}
+.beam-line:nth-child(6) { transform: rotate(0deg); }
+.beam-line:nth-child(7) { transform: rotate(45deg); }
+.beam-line:nth-child(8) { transform: rotate(90deg); }
+.beam-line:nth-child(9) { transform: rotate(135deg); }
+.beam-line:nth-child(10) { transform: rotate(180deg); }
+.beam-line:nth-child(11) { transform: rotate(225deg); }
+.beam-line:nth-child(12) { transform: rotate(270deg); }
+.beam-line:nth-child(13) { transform: rotate(315deg); }
+
+/* Corner labels */
+.fresnel-label {
+  position: absolute; font-size: 0.58rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.25);
+}
+.fresnel-label.tl { top: 20px; left: 20px; }
+.fresnel-label.tr { top: 20px; right: 20px; }
+.fresnel-label.bl { bottom: 20px; left: 20px; }
+.fresnel-label.br { bottom: 20px; right: 20px; color: var(--brass); opacity: 0.5; }
+
+/* Center text */
+.fresnel-center-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  text-align: center; z-index: 2;
+}
+.fresnel-center-text .fc-label {
+  font-size: 0.5rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--brass); margin-bottom: 4px;
+}
+.fresnel-center-text .fc-title {
+  font-size: 0.8rem; font-weight: 700; color: var(--white); letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════
+   WAVE DIVIDER
+   ═══════════════════════════════════════════ */
+.wave-divider {
+  width: 100%; overflow: hidden; line-height: 0;
+  position: relative; z-index: 1;
+}
+.wave-divider svg { display: block; width: 100%; height: 48px; }
+.wave-divider.flip { transform: scaleY(-1); }
+.wave-divider.to-navy svg path { fill: var(--navy-deep); }
+.wave-divider.to-white svg path { fill: var(--white); }
+.wave-divider.to-offwhite svg path { fill: var(--off-white); }
+
+/* ═══════════════════════════════════════════
+   PROBLEMS
+   ═══════════════════════════════════════════ */
+.problems {
+  background: var(--navy-deep); color: var(--white);
+  position: relative; overflow: hidden;
+}
+.problems::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(0,163,191,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(184,151,120,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.problems .eyebrow { color: var(--brass-light); margin-bottom: 1rem; display: block; text-align: center; }
+.problems h2 { color: var(--white); margin-bottom: 1.2rem; }
+.problems .section-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 640px;
+  margin: 0 auto 3rem; line-height: 1.7;
+}
+.problems-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 3rem; position: relative; z-index: 1; }
+.problem-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-lg); padding: 24px;
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: var(--transition); position: relative; overflow: hidden;
+}
+.problem-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
+  background: var(--brass); transition: height 0.4s cubic-bezier(0.16,1,0.3,1);
+  border-radius: 0 2px 2px 0;
+}
+.problem-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(184,151,120,0.2); }
+.problem-card:hover::before { height: 100%; }
+.problem-icon {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(184,151,120,0.1); display: flex; align-items: center; justify-content: center;
+}
+.problem-icon svg { width: 20px; height: 20px; stroke: var(--brass-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.problem-card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.65; }
+.problems-closer {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 1.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative; z-index: 1;
+}
+.problems-closer p { font-size: 1.15rem; font-weight: 700; color: var(--white); line-height: 1.5; }
+.problems-closer p em { font-style: italic; color: var(--brass-light); }
+
+/* ═══════════════════════════════════════════
+   OUTCOMES
+   ═══════════════════════════════════════════ */
+.outcomes { background: var(--white); }
+.outcomes .eyebrow { display: block; text-align: center; margin-bottom: 1rem; }
+.outcomes h2 { margin-bottom: 1rem; }
+.outcomes .section-sub {
+  font-size: 1rem; color: var(--gray-500); max-width: 580px;
+  margin: 0 auto 3rem; line-height: 1.7;
+}
+.outcomes-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 3rem; }
+.outcome-card {
+  background: var(--off-white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 32px;
+  transition: var(--transition); position: relative;
+}
+.outcome-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 8px 32px var(--teal-glow);
+  transform: translateY(-2px);
+}
+.outcome-number {
+  font-size: 0.7rem; font-weight: 800; color: var(--brass);
+  text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 12px;
+}
+.outcome-card h3 { color: var(--navy); margin-bottom: 10px; }
+.outcome-card p { font-size: 0.92rem; color: var(--gray-600); }
+
+/* ═══════════════════════════════════════════
+   HOW IT WORKS (METHODOLOGY)
+   ═══════════════════════════════════════════ */
+.how-it-works { background: var(--off-white); position: relative; }
+.how-it-works .eyebrow { display: block; text-align: center; margin-bottom: 1rem; }
+.how-it-works h2 { margin-bottom: 1rem; }
+.how-it-works .section-sub {
+  font-size: 1rem; color: var(--gray-500); max-width: 580px;
+  margin: 0 auto 3rem; line-height: 1.7;
+}
+.phases-wrapper { position: relative; }
+.phases { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 3rem; position: relative; z-index: 1; }
+.phase-card {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 32px;
+  position: relative; transition: var(--transition);
+  overflow: hidden;
+}
+.phase-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: linear-gradient(90deg, var(--brass), var(--teal));
+  opacity: 0; transition: var(--transition);
+}
+.phase-card:hover { border-color: var(--teal); box-shadow: 0 12px 40px var(--teal-glow); transform: translateY(-3px); }
+.phase-card:hover::after { opacity: 1; }
+.phase-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.phase-badge {
+  display: inline-block; background: var(--brass-glow); color: var(--brass);
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 5px 12px; border-radius: 100px;
+}
+.phase-label {
+  font-size: 0.68rem; font-weight: 700; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.phase-card h3 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; }
+.phase-card > p { font-size: 0.92rem; color: var(--gray-600); margin-bottom: 18px; line-height: 1.7; }
+.phase-deliverable-label {
+  font-size: 0.68rem; font-weight: 700; color: var(--teal-dark);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
+}
+.phase-deliverables { list-style: none; }
+.phase-deliverables li {
+  font-size: 0.85rem; color: var(--gray-600); padding: 4px 0 4px 20px; position: relative;
+}
+.phase-deliverables li::before {
+  content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 6px; height: 6px; border-radius: 50%; background: var(--teal);
+}
+
+/* Beam connector between cards on desktop */
+.beam-connector {
+  display: none; position: absolute; top: 0; left: 50%;
+  transform: translateX(-50%); width: 2px; height: 100%;
+  background: linear-gradient(180deg, transparent, var(--brass-light) 20%, var(--brass) 50%, var(--brass-light) 80%, transparent);
+  opacity: 0.25; z-index: 0;
+}
+.beam-connector::before, .beam-connector::after {
+  content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+  width: 8px; height: 8px; border-radius: 50%; background: var(--brass); opacity: 0.5;
+}
+.beam-connector::before { top: 15%; }
+.beam-connector::after { bottom: 15%; }
+
+/* ═══════════════════════════════════════════
+   FIT FILTER
+   ═══════════════════════════════════════════ */
+.fit { background: var(--white); }
+.fit .eyebrow { display: block; text-align: center; margin-bottom: 1rem; }
+.fit h2 { margin-bottom: 3rem; }
+.fit-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 2.5rem; }
+.fit-col { padding: 32px; border-radius: var(--radius-lg); }
+.fit-col.good {
+  background: linear-gradient(135deg, rgba(0,163,191,0.04), rgba(0,163,191,0.08));
+  border: 1px solid rgba(0,163,191,0.2);
+}
+.fit-col.bad { background: var(--gray-50); border: 1px solid var(--gray-200); }
+.fit-col h3 { margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 1.05rem; }
+.fit-col.good h3 { color: var(--teal-dark); }
+.fit-col.bad h3 { color: var(--gray-500); }
+.fit-list { list-style: none; }
+.fit-list li { font-size: 0.92rem; color: var(--gray-600); padding: 8px 0 8px 28px; position: relative; line-height: 1.6; }
+.fit-col.good .fit-list li::before { content: '\2713'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+.fit-col.bad .fit-list li::before { content: '\2014'; position: absolute; left: 0; color: var(--gray-400); font-weight: 700; }
+.fit-closer { font-size: 1.05rem; color: var(--navy); font-weight: 600; line-height: 1.6; }
+
+/* ═══════════════════════════════════════════
+   CREDIBILITY
+   ═══════════════════════════════════════════ */
+.credibility {
+  background: var(--off-white); position: relative; overflow: hidden;
+}
+.credibility::before {
+  content: ''; position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,151,120,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.credibility .eyebrow { display: block; margin-bottom: 1rem; }
+.credibility h2 { margin-bottom: 1.5rem; }
+.cred-intro { font-size: 1rem; color: var(--gray-600); max-width: 700px; margin-bottom: 2.5rem; line-height: 1.7; }
+.cred-strip {
+  background: var(--navy-deep); color: var(--white); border-radius: var(--radius-lg);
+  padding: 32px 36px; font-size: 0.95rem; font-weight: 500;
+  letter-spacing: 0.005em; line-height: 1.75;
+  border-left: 3px solid var(--brass);
+  box-shadow: 0 16px 48px rgba(10,37,64,0.12);
+  position: relative; z-index: 1;
+}
+
+/* ═══════════════════════════════════════════
+   FOUNDER
+   ═══════════════════════════════════════════ */
+.founder { background: var(--white); }
+.founder-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; text-align: center; }
+.founder-photo {
+  width: 200px; height: 200px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+  border: 3px solid var(--gray-200);
+  margin: 0 auto; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(10,37,64,0.08);
+}
+.founder-text .eyebrow { display: block; margin-bottom: 1rem; }
+.founder-text h2 { margin-bottom: 1.5rem; color: var(--navy); }
+.founder-text p { color: var(--gray-600); margin-bottom: 1rem; line-height: 1.75; }
+.founder-text .btn-secondary { margin-top: 0.5rem; }
+
+/* ═══════════════════════════════════════════
+   FINAL CTA BAND
+   ═══════════════════════════════════════════ */
+.final-cta {
+  background: var(--navy-deep); color: var(--white);
+  padding: 64px 0; text-align: center; position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 300px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(184,151,120,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta h2 { color: var(--white); margin-bottom: 0.8rem; font-size: 1.8rem; position: relative; z-index: 1; }
+.final-cta p { color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-size: 1rem; position: relative; z-index: 1; }
+.final-cta .btn-primary { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+.footer { background: var(--navy-deep); color: var(--white); padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-inner {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;
+}
+.footer .logo { color: var(--white); }
+.footer .logo span { color: var(--brass); }
+.footer-links { display: flex; align-items: center; gap: 2rem; }
+.footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.45); transition: var(--transition); }
+.footer-links a:hover { color: var(--white); }
+.footer-right { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.footer-email { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+.footer .btn-primary { height: 44px; font-size: 0.85rem; padding: 0 1.5rem; }
+.footer-legal { font-size: 0.72rem; color: rgba(255,255,255,0.2); margin-top: 1.5rem; text-align: center; }
+
+/* ═══════════════════════════════════════════
+   TABLET — 768px+
+   ═══════════════════════════════════════════ */
+@media (min-width: 768px) {
+  :root { --side-pad: 40px; --section-pad: 96px; }
+  html { font-size: 17px; }
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2rem; }
+  .problems-grid { grid-template-columns: repeat(2,1fr); }
+  .outcomes-grid { grid-template-columns: repeat(2,1fr); }
+  .fit-grid { grid-template-columns: 1fr 1fr; }
+  .hero-cta { flex-direction: row; align-items: center; gap: 1.5rem; }
+  .hero-cta .btn-primary { width: auto; }
+  .problems-closer { flex-direction: row; text-align: left; justify-content: space-between; }
+  .footer-inner { flex-direction: row; text-align: left; }
+  .footer-right { flex-direction: row; align-items: center; gap: 2rem; }
+  .wave-divider svg { height: 64px; }
+}
+
+/* ═══════════════════════════════════════════
+   DESKTOP — 1024px+
+   ═══════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  :root { --side-pad: 80px; --section-pad: 120px; }
+  html { font-size: 18px; }
+  h1 { font-size: 3.5rem; }
+  h2 { font-size: 2.4rem; }
+  h3 { font-size: 1.3rem; }
+  .subhead { font-size: 1.22rem; }
+  .header { height: 80px; }
+  .hero { padding-top: calc(80px + var(--section-pad)); }
+  .mobile-nav { top: 80px; height: calc(100vh - 80px); }
+  .nav-links { display: flex; }
+  .mobile-toggle { display: none; }
+  .hero-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
+  .hero-graphic { height: 460px; }
+  .phases { grid-template-columns: repeat(3,1fr); }
+  .beam-connector { display: block; }
+  .founder-grid { grid-template-columns: 280px 1fr; gap: 60px; text-align: left; }
+  .founder-photo { width: 280px; height: 280px; margin: 0; }
+  .founder-text p { max-width: 560px; }
+  .wave-divider svg { height: 80px; }
+}
+
+/* ═══════════════════════════════════════════
+   LARGE DESKTOP — 1280px+
+   ═══════════════════════════════════════════ */
+@media (min-width: 1280px) {
+  :root { --side-pad: 120px; }
+  h1 { font-size: 3.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════ -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">Soren <span>Rho</span></a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#founder">About</a>
+      <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary">Chart my coastline</a>
+    </nav>
+    <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services">Services</a>
+  <a href="#founder">About</a>
+  <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary">Chart my coastline</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="eyebrow">System Architecture for Creative Teams</span>
+        <h1>Your ops hide hidden reefs. Most teams <em>wreck</em> on&nbsp;them.</h1>
+        <p class="subhead">Soren Rho charts them ruthlessly — then builds the lighthouse that keeps you on course, always.</p>
+        <ul class="hero-bullets">
+          <li>140+ concurrent campaigns managed inside Fortune 500 creative operations.</li>
+          <li>Intake, stage gates, ownership, visibility — architected for your coastline, not a&nbsp;template.</li>
+          <li>The system runs without us. That's how we know it's&nbsp;finished.</li>
+        </ul>
+        <div class="hero-cta">
+          <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary">Chart my coastline</a>
+          <a href="#services" class="btn-secondary">How it works <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-graphic" aria-hidden="true">
+        <!-- Ambient particles -->
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="fresnel-visual">
+          <div class="fresnel-rings">
+            <div class="fresnel-ring"></div>
+            <div class="fresnel-ring"></div>
+            <div class="fresnel-ring"></div>
+            <div class="fresnel-ring"></div>
+            <div class="fresnel-ring"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+            <div class="beam-line"></div>
+          </div>
+          <div class="beam-sweep"></div>
+          <div class="fresnel-center-text">
+            <div class="fc-label">Your Fixed Point</div>
+            <div class="fc-title">Chart. Illuminate. Anchor.</div>
+          </div>
+          <span class="fresnel-label tl">Intake</span>
+          <span class="fresnel-label tr">Visibility</span>
+          <span class="fresnel-label bl">Stage Gates</span>
+          <span class="fresnel-label br">Governance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: off-white to navy -->
+<div class="wave-divider to-navy">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"/></svg>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PROBLEMS
+     ═══════════════════════════════════════════ -->
+<section class="problems section" id="problems">
+  <div class="container">
+    <span class="eyebrow reveal">Navigation Failure</span>
+    <h2 class="text-center reveal">Your team isn't broken. They're lost at sea without a&nbsp;beacon.</h2>
+    <p class="section-sub text-center reveal">Deadlines drag into weeks. Handoffs vanish into black holes. Your PM suite collects dust like an abandoned pier. This isn't talent failing — it's architecture.</p>
+    <div class="problems-grid">
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2h12"/><path d="M6 22h12"/><path d="M7 2v4.2C7 8.4 9 11 12 11s5-2.6 5-4.8V2"/><path d="M7 22v-4.2C7 15.6 9 13 12 13s5 2.6 5 4.8V22"/></svg>
+        </div>
+        <p>A campaign that took two weeks last quarter takes six now. Nobody can explain why.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 10h18"/><path d="M5 14h14"/><path d="M7 18h10"/><circle cx="12" cy="5" r="2"/></svg>
+        </div>
+        <p>Six hours of meetings. You still don't know where the Q3 launch stands.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 8v14"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><path d="M12 8l-4 4"/><path d="M12 8l4 4"/></svg>
+        </div>
+        <p>You bought Monday. Or Asana. Or Wrike. Nobody's using it the way it was set up.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-4">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 18l4-4 4 4 4-4 4 4"/><path d="M7 7l3 3"/><path d="M17 7l-3 3"/><circle cx="7" cy="5" r="2"/><circle cx="17" cy="5" r="2"/></svg>
+        </div>
+        <p>Two teams built the same deliverable. Leadership found out before you did.</p>
+      </div>
+    </div>
+    <div class="problems-closer reveal">
+      <p>They're not sinking. They're sailing blind.<br>The fix isn't more meetings — it's <em>architecture.</em></p>
+      <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary">Map the hazards</a>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: navy to white -->
+<div class="wave-divider to-white flip">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"/></svg>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     OUTCOMES
+     ═══════════════════════════════════════════ -->
+<section class="outcomes section" id="outcomes">
+  <div class="container">
+    <span class="eyebrow reveal">What Changes</span>
+    <h2 class="text-center reveal">What it looks like on the other&nbsp;side.</h2>
+    <p class="section-sub text-center reveal">If you hire Soren Rho, this is what you walk away with.</p>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-number">01 — Charted</div>
+        <h3>You see where time actually goes.</h3>
+        <p>Not where the org chart says it goes. Where it actually goes. Every handoff, every bottleneck, every invisible tax on your team's week — named, mapped, exposed.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <div class="outcome-number">02 — Custom-Built</div>
+        <h3>The system fits your coastline. Not someone else's.</h3>
+        <p>Intake, stage gates, tools, and visibility designed around how your people actually move work — not how a SaaS demo imagined they would.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-3">
+        <div class="outcome-number">03 — Clear Sightlines</div>
+        <h3>Meetings drop. Clarity doesn't.</h3>
+        <p>Status lives on the board. Not in a 45-minute standup. One glance up and they know position, progress, peril. No Slack pings required.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-4">
+        <div class="outcome-number">04 — Lashed Down</div>
+        <h3>It runs without us. That's the point.</h3>
+        <p>Ops playbook. Training library. Named internal captain. If the system can't hold without Soren Rho in the room, it's not finished.</p>
+      </div>
+    </div>
+    <div class="text-center reveal">
+      <a href="#services" class="btn-secondary">See the three phases <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS — Chart. Illuminate. Anchor.
+     ═══════════════════════════════════════════ -->
+<section class="how-it-works section" id="services">
+  <div class="container">
+    <span class="eyebrow reveal">The Methodology</span>
+    <h2 class="text-center reveal">Chart. Illuminate. Anchor.</h2>
+    <p class="section-sub text-center reveal">Three phases. No mystery. No dependency on us when it's done.</p>
+    <div class="phases-wrapper">
+      <div class="beam-connector" aria-hidden="true"></div>
+      <div class="phases">
+        <div class="phase-card reveal reveal-delay-1">
+          <div class="phase-meta">
+            <span class="phase-label">Phase 1</span>
+            <span class="phase-badge">2 weeks</span>
+          </div>
+          <h3>Chart the Reefs</h3>
+          <p>Calm seas hide jagged hazards. We shadow your flow end-to-end: where hours bleed out, where information ghosts away, where pressure fractures the hull. No surveys. No wishful org charts. Real motion mapped raw.</p>
+          <div class="phase-deliverable-label">Deliverable</div>
+          <ul class="phase-deliverables">
+            <li>Structural blueprint of your real workflow</li>
+            <li>Root cause analysis — not symptoms</li>
+            <li>Prioritized design plan</li>
+          </ul>
+        </div>
+        <div class="phase-card reveal reveal-delay-2">
+          <div class="phase-meta">
+            <span class="phase-label">Phase 2</span>
+            <span class="phase-badge">4-6 weeks</span>
+          </div>
+          <h3>Erect the Lighthouse</h3>
+          <p>Generic buoys drift. Lighthouses endure — custom-coded to your coastline's dangers. We forge your signal: ironclad intake, failproof gates, ownership grids, real-time sightlines. Tailored to your crew, your velocity, your specific hazards.</p>
+          <div class="phase-deliverable-label">Deliverable</div>
+          <ul class="phase-deliverables">
+            <li>Complete workflow architecture</li>
+            <li>Tool configuration for your stack</li>
+            <li>Visibility framework</li>
+          </ul>
+        </div>
+        <div class="phase-card reveal reveal-delay-3">
+          <div class="phase-meta">
+            <span class="phase-label">Phase 3</span>
+            <span class="phase-badge">2-4 weeks</span>
+          </div>
+          <h3>Lash It Down</h3>
+          <p>Reorgs strike. GPS glitches. Key player jumps ship. What survives? This. Simple. Structural. Line-of-sight resilient. Zero single points of failure. We embed, wire it live, train to instinct, hand off keys.</p>
+          <div class="phase-deliverable-label">Deliverable</div>
+          <ul class="phase-deliverables">
+            <li>Configured, live system</li>
+            <li>Ops playbook your team can follow</li>
+            <li>Training library + named internal captain</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="text-center reveal">
+      <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary">Talk through your situation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FIT FILTER
+     ═══════════════════════════════════════════ -->
+<section class="fit section" id="fit">
+  <div class="container">
+    <span class="eyebrow reveal">Qualification</span>
+    <h2 class="text-center reveal">This isn't for everyone. That's by&nbsp;design.</h2>
+    <div class="fit-grid">
+      <div class="fit-col good reveal reveal-delay-1">
+        <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> This is for you if:</h3>
+        <ul class="fit-list">
+          <li>Your creative team is 10+ and the old system stopped working two growth spurts ago.</li>
+          <li>You've bought the tools. They didn't solve the problem.</li>
+          <li>You're ready to change how work actually moves — not just how it's tracked.</li>
+        </ul>
+      </div>
+      <div class="fit-col bad reveal reveal-delay-2">
+        <h3><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Not the right fit if:</h3>
+        <ul class="fit-list">
+          <li>You need a project manager. This isn't that.</li>
+          <li>Your team is under 10 and the volume isn't there yet.</li>
+          <li>You want someone to manage tasks. Soren Rho designs systems.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fit-closer text-center reveal">If the left column is your Tuesday, let's talk.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CREDIBILITY
+     ═══════════════════════════════════════════ -->
+<section class="credibility section" id="credibility">
+  <div class="container">
+    <span class="eyebrow reveal">Proof</span>
+    <h2 class="reveal">Forged on Fortune 500 tempests — not theory.</h2>
+    <p class="cred-intro reveal">140+ campaigns running simultaneously. Teams of 5 to 50+. Global brands where a fumbled handoff doesn't just cost time — it costs quarters. The methodology behind Soren Rho was built there, not in a workshop.</p>
+    <div class="cred-strip reveal">
+      Soren Rho is a system architecture practice. Not project management. Not fractional leadership. Not a slide deck with a retainer attached. It's the architecture that keeps the light on when everything else goes dark.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOUNDER
+     ═══════════════════════════════════════════ -->
+<section class="founder section" id="founder">
+  <div class="container">
+    <div class="founder-grid">
+      <div class="founder-photo reveal"></div>
+      <div class="founder-text">
+        <span class="eyebrow reveal">The Navigator</span>
+        <h2 class="reveal">Logistics first. Then a decade charting Fortune 500 creative&nbsp;ops.</h2>
+        <p class="reveal">Some people study systems in theory. Others learn them by standing inside the machine while it runs. A decade inside Fortune 500 creative teams — building operational infrastructure for organizations where a missed handoff doesn't just cost time, it costs campaigns, revenue, and trust.</p>
+        <p class="reveal">The founding principle: if your team can't look up from the work and know exactly where they are, you don't have a system. You have open water.</p>
+        <a href="#" class="btn-secondary reveal">Read the full story <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: white to navy -->
+<div class="wave-divider to-navy">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"/></svg>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">Your crew's run aground long enough.</h2>
+    <p class="reveal">Book the call. We'll chart the coastline together.</p>
+    <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary btn-brass reveal">Chart my coastline</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="logo">Soren <span>Rho</span></a>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#founder">About</a>
+        <a href="#">Privacy</a>
+      </div>
+      <div class="footer-right">
+        <a href="https://calendly.com/pixiquebrand/discovery-call" target="_blank" rel="noopener" class="btn-primary">Book discovery call</a>
+        <span class="footer-email">hello@sorenrho.com</span>
+      </div>
+    </div>
+    <p class="footer-legal">&copy; 2026 Pixique LLC d/b/a Soren Rho. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════ -->
+<script>
+// Mobile nav toggle
+const toggle = document.querySelector('.mobile-toggle');
+const mobileNav = document.getElementById('mobileNav');
+toggle.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('active');
+  toggle.setAttribute('aria-expanded', open);
+});
+// Close mobile nav on link click
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileNav.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Header scroll effect
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Scroll reveal (Intersection Observer)
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
