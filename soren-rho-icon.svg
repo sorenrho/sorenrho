@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="bg-glow" cx="50%" cy="28%" r="65%">
+      <stop offset="0%" stop-color="#122240"/>
+      <stop offset="100%" stop-color="#0A1628"/>
+    </radialGradient>
+    <radialGradient id="beacon-glow" cx="150" cy="66" r="55" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E0AD7A" stop-opacity="0.85"/>
+      <stop offset="35%" stop-color="#D4935A" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#D4935A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ambient" cx="150" cy="90" r="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4935A" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#D4935A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="url(#bg-glow)"/>
+
+  <!-- Ambient light wash -->
+  <circle cx="150" cy="90" r="100" fill="url(#ambient)"/>
+
+  <!-- Sandy base -->
+  <ellipse cx="150" cy="240" rx="52" ry="11" fill="#D4935A" opacity="0.2"/>
+
+  <!-- === LIGHTHOUSE === -->
+
+  <!-- Tower body (tapered) -->
+  <path d="M132,110 L122,236 L178,236 L168,110 Z" fill="#2B6CB0"/>
+
+  <!-- White stripe band -->
+  <path d="M128,155 L125,198 L175,198 L172,155 Z" fill="#DFE5EB"/>
+
+  <!-- Tower top cap line -->
+  <rect x="132" y="108" width="36" height="2" rx="1" fill="#1E4F82"/>
+
+  <!-- Gallery rail platform -->
+  <rect x="126" y="100" width="48" height="10" rx="3" fill="#1E4F82"/>
+  <!-- Gallery rail posts -->
+  <line x1="134" y1="100" x2="134" y2="104" stroke="#4A8DD4" stroke-width="1.2" opacity="0.5"/>
+  <line x1="142" y1="100" x2="142" y2="104" stroke="#4A8DD4" stroke-width="1.2" opacity="0.5"/>
+  <line x1="150" y1="100" x2="150" y2="104" stroke="#4A8DD4" stroke-width="1.2" opacity="0.5"/>
+  <line x1="158" y1="100" x2="158" y2="104" stroke="#4A8DD4" stroke-width="1.2" opacity="0.5"/>
+  <line x1="166" y1="100" x2="166" y2="104" stroke="#4A8DD4" stroke-width="1.2" opacity="0.5"/>
+  <!-- Gallery top rail -->
+  <rect x="130" y="100" width="40" height="1.2" rx="0.5" fill="#4A8DD4" opacity="0.3"/>
+
+  <!-- Lantern room -->
+  <rect x="134" y="76" width="32" height="24" rx="2.5" fill="#DFE5EB"/>
+  <rect x="134" y="76" width="32" height="24" rx="2.5" fill="none" stroke="#2B6CB0" stroke-width="1.5"/>
+  <!-- Lantern warm interior -->
+  <rect x="136" y="78" width="28" height="20" rx="1.5" fill="#E0AD7A" opacity="0.12"/>
+  <!-- Lantern pane divisions -->
+  <line x1="142.5" y1="78" x2="142.5" y2="98" stroke="#2B6CB0" stroke-width="0.8" opacity="0.3"/>
+  <line x1="150" y1="78" x2="150" y2="98" stroke="#2B6CB0" stroke-width="0.8" opacity="0.3"/>
+  <line x1="157.5" y1="78" x2="157.5" y2="98" stroke="#2B6CB0" stroke-width="0.8" opacity="0.3"/>
+  <!-- Horizontal pane bar -->
+  <line x1="136" y1="88" x2="164" y2="88" stroke="#2B6CB0" stroke-width="0.6" opacity="0.2"/>
+
+  <!-- Dome -->
+  <path d="M135,76 Q135,68 150,58 Q165,68 165,76 Z" fill="#1E4F82"/>
+
+  <!-- Spire -->
+  <line x1="150" y1="58" x2="150" y2="48" stroke="#1E4F82" stroke-width="3" stroke-linecap="round"/>
+  <!-- Finial ball -->
+  <circle cx="150" cy="46" r="3" fill="#1E4F82"/>
+
+  <!-- Beacon glow halo -->
+  <circle cx="150" cy="66" r="55" fill="url(#beacon-glow)"/>
+
+  <!-- Beacon light -->
+  <circle cx="150" cy="66" r="9" fill="#E0AD7A"/>
+  <circle cx="150" cy="66" r="4.5" fill="#FFF8F0" opacity="0.95"/>
+  <circle cx="150" cy="65" r="2" fill="#fff" opacity="0.6"/>
+
+  <!-- Subtle border ring -->
+  <circle cx="150" cy="150" r="146" fill="none" stroke="#2B6CB0" stroke-width="1.5" opacity="0.12"/>
+</svg>
