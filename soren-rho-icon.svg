@@ -16,7 +16,7 @@
   </defs>
 
   <!-- Background -->
-  <circle cx="150" cy="150" r="150" fill="url(#bg-glow)"/>
+  <rect width="300" height="300" rx="16" fill="url(#bg-glow)"/>
 
   <!-- Ambient light wash -->
   <circle cx="150" cy="90" r="100" fill="url(#ambient)"/>
@@ -74,6 +74,6 @@
   <circle cx="150" cy="66" r="4.5" fill="#FFF8F0" opacity="0.95"/>
   <circle cx="150" cy="65" r="2" fill="#fff" opacity="0.6"/>
 
-  <!-- Subtle border ring -->
-  <circle cx="150" cy="150" r="146" fill="none" stroke="#2B6CB0" stroke-width="1.5" opacity="0.12"/>
+  <!-- Subtle border -->
+  <rect x="2" y="2" width="296" height="296" rx="14" fill="none" stroke="#2B6CB0" stroke-width="1.5" opacity="0.12"/>
 </svg>
