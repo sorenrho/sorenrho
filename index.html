@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soren Rho — Operations Strategy for Teams That Have Lost the Plot</title>
-<meta name="description" content="Soren Rho is an operations consulting studio that audits, designs, and installs the systems your creative and enterprise teams were supposed to have from day one.">
-<meta property="og:title" content="Soren Rho — Your Operations Need a Captain">
-<meta property="og:description" content="We audit broken systems, design what should replace them, and install it. Fully async. Fixed scope. No fluff.">
+<title>Soren Rho — Operational Infrastructure for Founder-Led Teams</title>
+<meta name="description" content="We design and install the operational infrastructure that removes you as the bottleneck. For founders scaling at $3M+ in wellness, pleasure-tech, and longevity.">
+<meta property="og:title" content="Soren Rho — Your team is running. You're still the system.">
+<meta property="og:description" content="We install production infrastructure — CCP, SPOC, stage gates, async visibility — so you stop being the bottleneck.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sorenrho.com">
 <link rel="canonical" href="https://sorenrho.com">
@@ -44,7 +44,7 @@ a { text-decoration: none; color: inherit; }
   --navy: #162A42;
   --section-pad: 72px;
   --side-pad: 24px;
-  --max-w: 1200px;
+  --max-w: 1080px;
   --r: 8px;
   --r-lg: 16px;
   --r-xl: 24px;
@@ -90,14 +90,14 @@ p, li { font-size: 1rem; line-height: 1.75; }
   background: transparent; color: var(--sea); border: 1.5px solid var(--sand);
 }
 .btn-ghost:hover { border-color: var(--sea); transform: translateY(-1px); }
-.btn-text {
-  display: inline-flex; align-items: center; gap: 8px;
-  color: var(--sea); font-weight: 600; font-size: 0.9rem;
-  background: none; border: none; cursor: pointer; padding: 0;
-  transition: all 0.3s var(--ease);
+.btn-arrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem;
+  color: var(--sea); background: none; border: none; cursor: pointer;
+  padding: 0; transition: all 0.3s var(--ease); letter-spacing: 0.02em;
 }
-.btn-text:hover { gap: 12px; color: var(--sea-dark); }
-.btn-text svg { transition: transform 0.3s var(--ease); }
+.btn-arrow:hover { gap: 16px; color: var(--sea-dark); }
+.btn-arrow svg { transition: transform 0.3s var(--ease); }
 
 /* ═══════════════════════════════════════════
    HEADER
@@ -111,7 +111,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
 }
 .header.scrolled { box-shadow: 0 1px 12px rgba(26,26,26,0.06); }
 .header-inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 var(--side-pad);
+  max-width: 1200px; margin: 0 auto; padding: 0 var(--side-pad);
   height: 100%; display: flex; align-items: center; justify-content: space-between;
 }
 .logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
@@ -137,8 +137,8 @@ p, li { font-size: 1rem; line-height: 1.75; }
 .hero {
   padding-top: calc(64px + var(--section-pad));
   padding-bottom: var(--section-pad);
-  min-height: 100vh; display: flex; align-items: center;
-  background: var(--white); position: relative; overflow: hidden;
+  min-height: 85vh; display: flex; align-items: center;
+  background: var(--white); position: relative;
 }
 .hero::before {
   content: ''; position: absolute; top: -40%; right: -20%;
@@ -147,21 +147,10 @@ p, li { font-size: 1rem; line-height: 1.75; }
   pointer-events: none;
 }
 .hero-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
-.hero-content { position: relative; z-index: 2; }
-.hero .eyebrow { display: block; margin-bottom: 1.2rem; }
-.hero h1 { color: var(--ink); margin-bottom: 1.2rem; }
+.hero-content { position: relative; z-index: 2; max-width: 720px; width: 100%; }
+.hero h1 { color: var(--ink); margin-bottom: 1.5rem; }
 .hero h1 .accent { color: var(--sea); }
-.hero h1 .italic { font-style: italic; }
-.hero-sub { font-size: 1.05rem; line-height: 1.7; color: var(--stone); margin-bottom: 2rem; max-width: 520px; }
-.hero-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
-.hero-cta .btn { width: 100%; }
-.hero-signal {
-  margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--shore);
-  display: flex; flex-wrap: wrap; gap: 1.5rem;
-}
-.hero-signal-item { font-size: 0.78rem; color: var(--drift); font-weight: 500; display: flex; align-items: center; gap: 6px; }
-.hero-signal-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sea); flex-shrink: 0; }
-
+.hero-sub { font-size: 1.05rem; line-height: 1.7; color: var(--stone); margin-bottom: 2.5rem; max-width: 520px; }
 /* Lighthouse graphic */
 .hero-graphic {
   position: relative; z-index: 1;
@@ -175,38 +164,47 @@ p, li { font-size: 1rem; line-height: 1.75; }
 #lighthouse-svg { width: 100%; height: 100%; display: block; }
 
 /* ═══════════════════════════════════════════
-   NARRATIVE SECTION — "The Problem"
+   PROBLEM
    ═══════════════════════════════════════════ */
-.narrative {
+.problem {
   background: var(--ink); color: #fff; position: relative; overflow: hidden;
 }
-.narrative::before {
+.problem::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(ellipse at 20% 80%, rgba(43,108,176,0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(22,34,50,0.4) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 80% 20%, rgba(22,34,50,0.4) 0%, transparent 50%);
   pointer-events: none;
 }
-.narrative-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
-.narrative .eyebrow { color: var(--sea-light); display: block; margin-bottom: 1.2rem; }
-.narrative h2 { color: #fff; margin-bottom: 1.5rem; font-size: 1.8rem; }
-.narrative p { color: rgba(255,255,255,0.7); line-height: 1.85; margin-bottom: 1.2rem; font-size: 0.95rem; }
-.narrative p:last-of-type { margin-bottom: 0; }
-.narrative strong { color: var(--sea-light); font-weight: 600; }
-.narrative-rule { width: 48px; height: 2px; background: var(--sea); border-radius: 2px; margin: 2rem 0; }
-.wheel-divider {
-  display: flex; align-items: center; justify-content: center; gap: 16px;
-  margin: 2rem 0;
+.problem-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+.problem p {
+  color: rgba(255,255,255,0.65); line-height: 1.85; margin-bottom: 1rem; font-size: 1rem;
 }
-.wheel-divider::before, .wheel-divider::after {
-  content: ''; flex: 1; max-width: 60px; height: 1px;
-  background: linear-gradient(to right, transparent, var(--sea-light), transparent);
-  opacity: 0.4;
+.problem p:last-of-type { margin-bottom: 0; }
+.problem p.punch {
+  color: #fff; font-weight: 600; font-size: 1.1rem; margin-top: 2rem;
 }
-.wheel-divider svg { width: 28px; height: 28px; opacity: 0.25; }
 
 /* ═══════════════════════════════════════════
-   METHOD — The Three Phases
+   OUTCOME
+   ═══════════════════════════════════════════ */
+.outcome {
+  background: var(--white); position: relative;
+}
+.outcome-inner { max-width: 640px; margin: 0 auto; }
+.outcome h2 { margin-bottom: 2rem; color: var(--ink); }
+.outcome-list { list-style: none; }
+.outcome-list li {
+  font-size: 1rem; color: var(--stone); padding: 12px 0;
+  border-bottom: 1px solid var(--shore);
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.outcome-list li:last-child { border-bottom: none; }
+.outcome-list li::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--sea); flex-shrink: 0; margin-top: 10px;
+}
+
+/* ═══════════════════════════════════════════
+   METHOD
    ═══════════════════════════════════════════ */
 .method {
   background:
@@ -215,302 +213,134 @@ p, li { font-size: 1rem; line-height: 1.75; }
     linear-gradient(160deg, #F4F1EB 0%, #EFECE5 50%, #EAE7E0 100%);
   position: relative; overflow: hidden;
 }
-.method .eyebrow { display: block; margin-bottom: 1rem; position: relative; z-index: 1; }
-.method h2 { margin-bottom: 0.8rem; position: relative; z-index: 1; }
-.method-sub { font-size: 1rem; color: var(--drift); max-width: 600px; margin-bottom: 3rem; line-height: 1.7; position: relative; z-index: 1; }
 /* Compass rose decoration */
 .compass-rose {
   position: absolute; width: 280px; height: 280px;
   right: 20px; top: 50%; transform: translateY(-50%);
   color: var(--sea); pointer-events: none; z-index: 0; opacity: 0.8;
 }
-/* Route line & grid */
-.method-grid { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; z-index: 1; }
-.method-card {
-  background: rgba(251,249,244,0.85); border: 1px solid rgba(43,108,176,0.08);
-  border-radius: var(--r-lg); padding: 32px; position: relative;
-  transition: all 0.3s var(--ease); backdrop-filter: blur(6px);
+.method-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 1; }
+.method h2 { margin-bottom: 0.8rem; }
+.method-sub { font-size: 1rem; color: var(--drift); margin-bottom: 2.5rem; line-height: 1.7; }
+.method-items { list-style: none; }
+.method-items li {
+  font-size: 1rem; color: var(--stone); padding: 14px 0;
+  border-bottom: 1px solid rgba(43,108,176,0.08);
+  display: flex; align-items: flex-start; gap: 12px;
 }
-.method-card:hover { border-color: var(--sea); box-shadow: 0 8px 32px var(--sea-glow); transform: translateY(-2px); }
-.method-number {
-  font-family: 'DM Serif Display', serif; font-size: 1.5rem;
-  width: 48px; height: 48px; line-height: 48px; text-align: center;
-  border-radius: 50%; border: 2px solid rgba(43,108,176,0.15);
-  color: var(--sea); margin-bottom: 16px;
-  background: rgba(43,108,176,0.03);
-}
-.method-card h3 { color: var(--ink); margin-bottom: 8px; }
-.method-card p { font-size: 0.9rem; color: var(--drift); line-height: 1.7; }
-.method-card .tag {
-  display: inline-block; margin-top: 16px;
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--sea); background: rgba(43,108,176,0.06);
-  padding: 5px 12px; border-radius: 100px;
-}
-/* Route connector line (desktop only via media query) */
-.method-route { display: none; }
-.method-card::before {
-  content: ''; display: none; position: absolute;
-  top: -14px; left: 50%; transform: translateX(-50%);
-  width: 10px; height: 10px; border-radius: 50%;
-  border: 2px solid rgba(43,108,176,0.2);
-  background: #F0EDE6; z-index: 2;
-}
-.method-card::after {
-  content: ''; display: none; position: absolute;
-  top: -10px; right: -22px; width: 20px; height: 0;
-  border-top: 2px dashed rgba(43,108,176,0.18);
-  z-index: 1;
-}
-.method-card:last-child::after { display: none !important; }
-
-/* ═══════════════════════════════════════════
-   PROOF
-   ═══════════════════════════════════════════ */
-.proof { background: var(--white); }
-.proof .eyebrow { display: block; margin-bottom: 1rem; }
-.proof h2 { margin-bottom: 0.8rem; }
-.proof-sub { font-size: 1rem; color: var(--drift); max-width: 560px; margin-bottom: 3rem; line-height: 1.7; }
-.proof-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-.proof-card {
-  background: var(--foam); border: 1px solid var(--shore);
-  border-radius: var(--r-lg); padding: 32px;
-  transition: all 0.3s var(--ease); position: relative;
-}
-.proof-card:hover { border-color: var(--sea); box-shadow: 0 8px 28px var(--sea-glow); transform: translateY(-2px); }
-.proof-label {
-  font-size: 0.68rem; font-weight: 700; color: var(--sea);
-  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
-}
-.proof-card h3 { color: var(--ink); margin-bottom: 14px; }
-.proof-metrics {
-  display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center;
-  margin-bottom: 16px;
-}
-.proof-metric { text-align: center; }
-.proof-metric-label {
-  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: 4px;
-}
-.proof-metric-label.before { color: var(--sand); }
-.proof-metric-label.after { color: var(--sea); }
-.proof-metric-value { font-family: 'DM Serif Display', serif; font-size: 1.6rem; line-height: 1.2; }
-.proof-metric-value.before { color: var(--sand); }
-.proof-metric-value.after { color: var(--sea); }
-.proof-arrow { color: var(--sand); font-size: 1.2rem; }
-.proof-card p.proof-desc { font-size: 0.88rem; color: var(--drift); line-height: 1.65; }
-.proof-card .cs-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.85rem; font-weight: 600; color: var(--sea);
-  margin-top: 14px; transition: all 0.3s var(--ease);
-}
-.proof-card .cs-link:hover { gap: 10px; color: var(--sea-dark); }
-.proof-card.featured-cs {
-  background: var(--white); border-color: var(--sea);
-  box-shadow: 0 4px 20px var(--sea-glow);
-  grid-column: 1 / -1;
-  display: grid; grid-template-columns: 1fr; gap: 24px;
-}
-.proof-card.featured-cs .proof-metrics {
-  max-width: 320px;
-}
-.featured-cs-content { min-width: 0; }
-.featured-cs-img {
-  border-radius: var(--r-md); overflow: hidden;
-  border: 1px solid var(--shore);
-  max-height: 340px;
-}
-.featured-cs-img img {
-  width: 100%; height: 100%; object-fit: cover; object-position: top;
-  display: block;
+.method-items li:last-child { border-bottom: none; }
+.method-items li strong { color: var(--ink); }
+.method-note {
+  margin-top: 2rem; font-size: 0.95rem; color: var(--drift); font-style: italic;
 }
 
 /* ═══════════════════════════════════════════
-   CAPTAIN — About
-   ═══════════════════════════════════════════ */
-.captain {
-  background: var(--ink); position: relative; overflow: hidden;
-}
-.captain::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(ellipse at 25% 80%, rgba(43,108,176,0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 20%, rgba(22,34,50,0.3) 0%, transparent 50%);
-  pointer-events: none;
-}
-.captain-inner {
-  max-width: 760px; margin: 0 auto; position: relative; z-index: 1;
-  background:
-    linear-gradient(to right,
-      #4A5A6A 0px, #4A5A6A 6px,
-      #CEC7BC 6px, #D8D1C6 8px,
-      #E8E2D6 8px, #EDE7DD 36px,
-      transparent 36px
-    ),
-    linear-gradient(160deg, #FBF8F2 0%, #F5F1E9 100%);
-  border-radius: 2px 8px 8px 2px;
-  padding: 40px 32px 36px 56px;
-  box-shadow:
-    0 16px 56px rgba(0,0,0,0.3),
-    0 2px 8px rgba(0,0,0,0.12);
-}
-/* Binding crease */
-.captain-inner::before {
-  content: ''; position: absolute;
-  left: 36px; top: 0; bottom: 0; width: 1px;
-  background: rgba(0,0,0,0.04);
-}
-/* Red margin line */
-.captain-inner::after {
-  content: ''; position: absolute;
-  left: 44px; top: 28px; bottom: 28px; width: 1px;
-  background: rgba(175,68,68,0.14);
-}
-.captain .eyebrow { display: block; margin-bottom: 1rem; color: var(--sea); }
-.captain h2 { margin-bottom: 1.5rem; color: var(--ink); }
-.captain-text { margin-bottom: 2rem; }
-.captain-text p { color: #4A5560; line-height: 1.85; margin-bottom: 1rem; font-size: 0.95rem; }
-.captain-creds {
-  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem;
-}
-.captain-cred {
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; color: #6B7580;
-  background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.07);
-  padding: 6px 14px; border-radius: 100px;
-}
-
-/* ═══════════════════════════════════════════
-   OFFER — Pricing
+   OFFER
    ═══════════════════════════════════════════ */
 .offer {
   background: var(--deep); color: #fff; position: relative; overflow: hidden;
 }
 .offer::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(ellipse at 30% 90%, rgba(43,108,176,0.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 10%, rgba(22,34,50,0.5) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 70% 10%, rgba(22,34,50,0.5) 0%, transparent 50%);
   pointer-events: none;
 }
-.offer .eyebrow { color: var(--sea-light); display: block; margin-bottom: 1rem; }
-.offer h2 { color: #fff; margin-bottom: 0.8rem; }
-.offer-sub { font-size: 1rem; color: rgba(255,255,255,0.5); max-width: 560px; margin-bottom: 3rem; line-height: 1.7; }
-.pricing-grid { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; z-index: 1; }
-.pricing-card {
+.offer h2 { color: #fff; margin-bottom: 2.5rem; }
+.offer-grid { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; z-index: 1; }
+.offer-card {
   background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--r-lg); padding: 32px;
-  transition: all 0.3s var(--ease); position: relative;
+  transition: all 0.3s var(--ease);
 }
-.pricing-card:hover {
+.offer-card:hover {
   background: rgba(255,255,255,0.07);
   border-color: rgba(43,108,176,0.3);
-  transform: translateY(-2px);
 }
-.pricing-card.featured {
-  border-color: var(--sea); background: rgba(43,108,176,0.06);
+.offer-card h3 { color: #fff; margin-bottom: 4px; font-size: 1.1rem; }
+.offer-price {
+  font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: #fff; margin-bottom: 12px;
 }
-.pricing-card.featured::before {
-  content: 'Recommended'; position: absolute; top: -1px; right: 24px;
-  background: var(--sea); color: #fff;
-  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; padding: 6px 14px;
-  border-radius: 0 0 var(--r) var(--r);
-}
-.pricing-tier {
-  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--sea-light); margin-bottom: 8px;
-}
-.pricing-card h3 { color: #fff; margin-bottom: 6px; font-size: 1.2rem; }
-.pricing-price { font-family: 'DM Serif Display', serif; font-size: 2rem; color: #fff; margin-bottom: 4px; }
-.pricing-duration { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
-.pricing-card > p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 18px; }
-.pricing-includes { list-style: none; margin-bottom: 24px; }
-.pricing-includes li {
-  font-size: 0.85rem; color: rgba(255,255,255,0.7);
-  padding: 5px 0 5px 22px; position: relative;
-}
-.pricing-includes li::before {
-  content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-  width: 6px; height: 6px; border-radius: 50%; background: var(--sea-light);
-}
-.pricing-card .btn { width: 100%; }
-
-/* How We Work strip */
-.how-strip {
-  position: relative; z-index: 1; margin-top: 2.5rem;
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-  border-radius: var(--r-lg); padding: 28px 32px;
-}
-.how-strip h3 { color: #fff; margin-bottom: 12px; font-size: 1rem; }
-.how-list {
-  list-style: none; display: flex; flex-wrap: wrap; gap: 10px 20px;
-}
-.how-list li {
-  font-size: 0.82rem; color: rgba(255,255,255,0.5); font-weight: 500;
-  display: flex; align-items: center; gap: 6px;
-}
-.how-list li .check { width: 14px; height: 14px; stroke: var(--sea-light); fill: none; stroke-width: 2; flex-shrink: 0; }
+.offer-card p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
 
 /* ═══════════════════════════════════════════
-   FINAL CTA
+   PROOF
    ═══════════════════════════════════════════ */
-.final-cta {
+.proof { background: var(--white); }
+.proof-inner { max-width: 640px; margin: 0 auto; }
+.proof h2 { margin-bottom: 2rem; }
+.proof-lines { list-style: none; }
+.proof-lines li {
+  font-size: 1rem; color: var(--stone); padding: 14px 0;
+  border-bottom: 1px solid var(--shore);
+}
+.proof-lines li:last-child { border-bottom: none; }
+.proof-lines li strong { color: var(--ink); }
+.proof-note {
+  margin-top: 2rem; font-size: 0.95rem; color: var(--drift); font-style: italic;
+}
+
+/* ═══════════════════════════════════════════
+   CLOSE / CTA
+   ═══════════════════════════════════════════ */
+.close-cta {
   background: var(--ink); color: #fff; padding: 80px 0; text-align: center;
-  position: relative; overflow: hidden;
 }
-.final-cta::before {
-  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 600px; height: 300px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(43,108,176,0.06) 0%, transparent 70%);
-  pointer-events: none;
+.close-cta-inner { max-width: 540px; margin: 0 auto; }
+.close-cta p { color: rgba(255,255,255,0.45); margin-bottom: 2rem; font-size: 0.95rem; }
+.close-cta .btn-sea { font-size: 1rem; height: 56px; padding: 0 2.5rem; }
+.close-cta .capacity {
+  display: block; margin-top: 1.2rem;
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: rgba(255,255,255,0.25);
 }
-.final-cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
-.final-cta h2 { color: #fff; margin-bottom: 1rem; font-size: 1.8rem; }
-.final-cta p { color: rgba(255,255,255,0.5); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.7; }
+
+/* ═══════════════════════════════════════════
+   APPLICATION
+   ═══════════════════════════════════════════ */
+.application {
+  background: var(--white); position: relative;
+}
+.application-inner { max-width: 540px; margin: 0 auto; }
+.application h2 { margin-bottom: 0.6rem; }
+.application-sub { font-size: 0.95rem; color: var(--drift); margin-bottom: 2.5rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label {
+  display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink);
+  margin-bottom: 6px; letter-spacing: 0.02em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: 14px 16px;
+  font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+  background: var(--foam); border: 1px solid var(--shore);
+  border-radius: var(--r); color: var(--ink);
+  transition: border-color 0.3s var(--ease);
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--sea);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select { cursor: pointer; -webkit-appearance: none; appearance: none; }
 
 /* ═══════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════ */
 .footer {
   background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); color: #fff;
-  padding: 40px 0;
-}
-.footer-lighthouse-mini { width: 48px; height: 56px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;
+  padding: 32px 0;
 }
 .footer-inner {
-  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
 }
-.footer-links { display: flex; align-items: center; gap: 2rem; }
-.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); transition: color 0.3s var(--ease); }
-.footer-links a:hover { color: #fff; }
 .footer .logo { color: #fff; }
 .footer .logo em { color: var(--sea); }
 .footer-email { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
-.footer-legal { font-size: 0.7rem; color: rgba(255,255,255,0.15); margin-top: 1.5rem; text-align: center; }
-
-/* ═══════════════════════════════════════════
-   LOGO BAR
-   ═══════════════════════════════════════════ */
-.logo-bar {
-  background: var(--foam); border-top: 1px solid var(--shore); border-bottom: 1px solid var(--shore);
-  padding: 28px 0;
-}
-.logo-bar-label {
-  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.14em; color: var(--sand); text-align: center;
-  margin-bottom: 20px;
-}
-.logo-bar-logos {
-  display: flex; align-items: center; justify-content: center;
-  flex-wrap: wrap; gap: 28px 40px;
-}
-.logo-bar-logos img {
-  height: 22px; width: auto; opacity: 0.35;
-  filter: grayscale(100%);
-  transition: all 0.3s var(--ease);
-}
-.logo-bar-logos img:hover { opacity: 0.6; filter: grayscale(50%); }
+.footer-lighthouse-mini { text-align: center; margin-bottom: 16px; }
+.footer-legal { font-size: 0.7rem; color: rgba(255,255,255,0.15); margin-top: 1rem; text-align: center; }
 
 /* ═══════════════════════════════════════════
    RESPONSIVE
@@ -520,46 +350,22 @@ p, li { font-size: 1rem; line-height: 1.75; }
   html { font-size: 17px; }
   h1 { font-size: 2.8rem; }
   h2 { font-size: 2rem; }
-  .method-grid { grid-template-columns: repeat(3, 1fr); position: relative; }
-  .method-card { overflow: visible; }
-  .method-card::before { display: block; }
-  .method-card::after { display: block; }
-  .method-card:last-child::after { display: none; }
-  .compass-rose { width: 320px; height: 320px; right: -30px; }
-  .proof-grid { grid-template-columns: repeat(3, 1fr); }
-  .proof-card.featured-cs { grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
-  .pricing-grid { grid-template-columns: repeat(3, 1fr); }
-  .hero-cta { flex-direction: row; align-items: center; gap: 1.2rem; }
-  .hero-cta .btn { width: auto; }
+  .hero-grid { grid-template-columns: 1fr 1fr; }
+  .hero-graphic { height: 360px; }
+  .offer-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-inner { flex-direction: row; text-align: left; justify-content: space-between; }
-  .captain-inner {
-    padding: 52px 56px 48px 80px;
-    background:
-      linear-gradient(to right,
-        #4A5A6A 0px, #4A5A6A 6px,
-        #CEC7BC 6px, #D8D1C6 8px,
-        #E8E2D6 8px, #EDE7DD 42px,
-        transparent 42px
-      ),
-      linear-gradient(160deg, #FBF8F2 0%, #F5F1E9 100%);
-  }
-  .captain-inner::before { left: 42px; }
-  .captain-inner::after { left: 54px; top: 36px; bottom: 36px; }
 }
 @media (min-width: 1024px) {
   :root { --side-pad: 60px; --section-pad: 112px; }
-  html { font-size: 18px; }
-  h1 { font-size: 3.2rem; }
+  html { font-size: 17px; }
+  h1 { font-size: 2.8rem; }
   h2 { font-size: 2.2rem; }
   .nav-links { display: flex; }
   .mobile-toggle { display: none; }
-  .hero-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
-  .hero-graphic { height: 420px; }
-  .hero { padding-top: calc(64px + var(--section-pad)); }
 }
 @media (min-width: 1280px) {
-  :root { --side-pad: 100px; }
-  h1 { font-size: 3.5rem; }
+  :root { --side-pad: 80px; }
+  h1 { font-size: 3.2rem; }
 }
 </style>
 </head>
@@ -571,9 +377,9 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <a href="#" class="logo">Soren <em>Rho</em></a>
     <nav class="nav-links">
       <a href="#method">Method</a>
-      <a href="#proof">Results</a>
-      <a href="#captain">About</a>
-      <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea">Discovery Call</a>
+      <a href="#offer">Pricing</a>
+      <a href="#proof">Proof</a>
+      <a href="#apply" class="btn btn-sea">Enter &rarr;</a>
     </nav>
     <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -583,31 +389,21 @@ p, li { font-size: 1rem; line-height: 1.75; }
 
 <div class="mobile-nav" id="mobileNav">
   <a href="#method">Method</a>
-  <a href="#proof">Results</a>
-  <a href="#captain">About</a>
-  <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea">Discovery Call</a>
+  <a href="#offer">Pricing</a>
+  <a href="#proof">Proof</a>
+  <a href="#apply" class="btn btn-sea">Enter &rarr;</a>
 </div>
 
 <!-- ═══════════════════════════════════════════
-     HERO
+     1. HERO — Recognition + Authority
      ═══════════════════════════════════════════ -->
-<section class="hero" id="hero">
+<section class="hero section" id="hero">
   <div class="container">
     <div class="hero-grid">
-      <div class="hero-content">
-        <span class="eyebrow reveal">Operations Strategy & Systems Design</span>
-        <h1 class="reveal">Your team is in <span class="accent">open water.</span> <span class="italic">We steer them home.</span></h1>
-        <p class="hero-sub reveal">Soren Rho is an operations consulting studio. We audit broken systems, design what should replace them, and install it — so your team stops drifting and starts delivering.</p>
-        <div class="hero-cta reveal">
-          <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea">Book a Discovery Call</a>
-          <a href="#proof" class="btn-text">See the results <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-        <div class="hero-signal reveal">
-          <div class="hero-signal-item"><span class="dot"></span> Fully async</div>
-          <div class="hero-signal-item"><span class="dot"></span> Fixed scope</div>
-          <div class="hero-signal-item"><span class="dot"></span> 2–4 week sprints</div>
-          <div class="hero-signal-item"><span class="dot"></span> Enterprise-tested</div>
-        </div>
+      <div class="hero-content reveal">
+        <h1>Your team is running. <span class="accent">You're still the system.</span></h1>
+        <p class="hero-sub">We design and install the operational infrastructure that removes you as the bottleneck.</p>
+        <a href="#apply" class="btn-arrow">Enter &rarr;</a>
       </div>
       <div class="hero-graphic reveal" aria-hidden="true">
         <svg id="lighthouse-svg" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet">
@@ -637,173 +433,70 @@ p, li { font-size: 1rem; line-height: 1.75; }
               <stop offset="100%" stop-color="#D8DFE6"/>
             </linearGradient>
             <linearGradient id="domeG" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#2468A5"/>
-              <stop offset="100%" stop-color="#1A4F82"/>
+              <stop offset="0%" stop-color="#1E4F82"/>
+              <stop offset="100%" stop-color="#163B63"/>
             </linearGradient>
-            <linearGradient id="beamLG" x1="1" y1="0" x2="0" y2="0">
-              <stop offset="0%" stop-color="rgba(212,147,90,0.12)"/>
-              <stop offset="100%" stop-color="rgba(212,147,90,0)"/>
-            </linearGradient>
-            <linearGradient id="beamRG" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="rgba(212,147,90,0.12)"/>
-              <stop offset="100%" stop-color="rgba(212,147,90,0)"/>
-            </linearGradient>
-            <clipPath id="tClip">
-              <path d="M228,162 L216,332 L292,332 L280,162 Z"/>
-            </clipPath>
           </defs>
-
           <!-- Sky -->
           <rect width="500" height="400" fill="url(#skyG)"/>
-
           <!-- Stars -->
+          <g fill="#fff" opacity="0.15">
+            <circle cx="80" cy="40" r="1"/><circle cx="150" cy="80" r="0.8"/>
+            <circle cx="320" cy="50" r="1.2"/><circle cx="420" cy="90" r="0.7"/>
+            <circle cx="60" cy="120" r="0.6"/><circle cx="380" cy="30" r="0.9"/>
+            <circle cx="200" cy="60" r="0.8"/><circle cx="450" cy="140" r="0.6"/>
+          </g>
+          <!-- Water -->
+          <path d="M0,310 Q60,300 125,310 T250,310 T375,310 T500,310 L500,400 L0,400 Z" fill="rgba(43,108,176,0.08)"/>
+          <path d="M0,330 Q60,320 125,330 T250,330 T375,330 T500,330 L500,400 L0,400 Z" fill="rgba(43,108,176,0.06)"/>
+          <!-- Island -->
+          <ellipse cx="250" cy="310" rx="120" ry="18" fill="url(#sandG)" opacity="0.35"/>
+          <!-- Rocky base -->
+          <ellipse cx="220" cy="315" rx="25" ry="8" fill="rgba(255,255,255,0.03)"/>
+          <ellipse cx="285" cy="312" rx="18" ry="6" fill="rgba(255,255,255,0.02)"/>
+          <!-- Tower -->
           <g>
-            <circle cx="50" cy="25" r="0.7" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle>
-            <circle cx="115" cy="52" r="0.5" fill="#B8C4CE" opacity="0.4"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.5s" repeatCount="indefinite" begin="0.5s"/></circle>
-            <circle cx="395" cy="20" r="0.8" fill="#fff" opacity="0.25"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="5s" repeatCount="indefinite" begin="1s"/></circle>
-            <circle cx="445" cy="65" r="0.5" fill="#B8C4CE" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.8s" repeatCount="indefinite" begin="0.3s"/></circle>
-            <circle cx="80" cy="85" r="0.6" fill="#fff" opacity="0.35"><animate attributeName="opacity" values="0.2;0.55;0.2" dur="4.5s" repeatCount="indefinite" begin="1.5s"/></circle>
-            <circle cx="315" cy="35" r="0.6" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.2s" repeatCount="indefinite" begin="0.8s"/></circle>
-            <circle cx="195" cy="15" r="0.4" fill="#B8C4CE" opacity="0.4"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="4.8s" repeatCount="indefinite" begin="2s"/></circle>
-            <circle cx="475" cy="100" r="0.5" fill="#fff" opacity="0.2"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="5.5s" repeatCount="indefinite" begin="0.7s"/></circle>
-            <circle cx="30" cy="130" r="0.5" fill="#B8C4CE" opacity="0.35"><animate attributeName="opacity" values="0.25;0.55;0.25" dur="4s" repeatCount="indefinite" begin="1.2s"/></circle>
-            <circle cx="160" cy="70" r="0.6" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.6s" repeatCount="indefinite" begin="0.4s"/></circle>
-            <circle cx="355" cy="85" r="0.4" fill="#B8C4CE" opacity="0.3"><animate attributeName="opacity" values="0.2;0.55;0.2" dur="4.3s" repeatCount="indefinite" begin="1.8s"/></circle>
-            <circle cx="265" cy="28" r="0.5" fill="#fff" opacity="0.25"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="5.2s" repeatCount="indefinite" begin="0.9s"/></circle>
-            <circle cx="425" cy="130" r="0.5" fill="#B8C4CE" opacity="0.2"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="3.9s" repeatCount="indefinite" begin="1.4s"/></circle>
-            <circle cx="90" cy="42" r="0.4" fill="#fff" opacity="0.35"><animate attributeName="opacity" values="0.25;0.6;0.25" dur="4.7s" repeatCount="indefinite" begin="0.6s"/></circle>
+            <defs><clipPath id="tClip"><path d="M232,170 L226,305 L274,305 L268,170 Z"/></clipPath></defs>
+            <g clip-path="url(#tClip)">
+              <rect x="220" y="170" width="60" height="19.3" fill="url(#blueG)" opacity="0.7"/>
+              <rect x="220" y="189.3" width="60" height="19.3" fill="url(#whiteG)" opacity="0.12"/>
+              <rect x="220" y="208.6" width="60" height="19.3" fill="url(#blueG)" opacity="0.7"/>
+              <rect x="220" y="227.9" width="60" height="19.3" fill="url(#whiteG)" opacity="0.12"/>
+              <rect x="220" y="247.2" width="60" height="19.3" fill="url(#blueG)" opacity="0.7"/>
+              <rect x="220" y="266.5" width="60" height="19.3" fill="url(#whiteG)" opacity="0.12"/>
+              <rect x="220" y="285.8" width="60" height="19.2" fill="url(#blueG)" opacity="0.7"/>
+            </g>
           </g>
-
-          <!-- Light Beams -->
-          <path d="M254,138 L90,50 L140,152 Z" fill="url(#beamLG)" opacity="0.6">
-            <animate attributeName="opacity" values="0.6;0.3;0.6" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
-          </path>
-          <path d="M254,138 L420,50 L370,152 Z" fill="url(#beamRG)" opacity="0.3">
-            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
-          </path>
-          <!-- Wider ambient beams -->
-          <path d="M254,140 L40,30 L100,165 Z" fill="rgba(212,147,90,0.03)"/>
-          <path d="M254,140 L470,30 L410,165 Z" fill="rgba(212,147,90,0.03)"/>
-
-          <!-- Beacon glow halo -->
-          <circle cx="254" cy="136" r="50" fill="url(#glowG)" opacity="0.6">
-            <animate attributeName="r" values="50;62;50" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
-          </circle>
-
-          <!-- Sandy Island -->
-          <ellipse cx="254" cy="340" rx="142" ry="32" fill="url(#sandG)"/>
-          <ellipse cx="242" cy="336" rx="95" ry="18" fill="rgba(232,189,138,0.12)"/>
-
-          <!-- Rocks -->
-          <ellipse cx="142" cy="334" rx="20" ry="13" fill="#4E6070" opacity="0.85"/>
-          <ellipse cx="125" cy="340" rx="14" ry="9" fill="#5A6E7E" opacity="0.7"/>
-          <ellipse cx="355" cy="330" rx="17" ry="11" fill="#4E6070" opacity="0.8"/>
-          <ellipse cx="372" cy="337" rx="11" ry="7" fill="#5A6E7E" opacity="0.65"/>
-          <ellipse cx="178" cy="346" rx="11" ry="7" fill="#5A6E7E" opacity="0.6"/>
-          <ellipse cx="325" cy="345" rx="13" ry="8" fill="#4E6070" opacity="0.7"/>
-          <ellipse cx="205" cy="351" rx="8" ry="5" fill="#5A6E7E" opacity="0.5"/>
-          <ellipse cx="295" cy="350" rx="9" ry="6" fill="#5A6E7E" opacity="0.45"/>
-
-          <!-- Tower shadow on sand -->
-          <ellipse cx="260" cy="336" rx="40" ry="8" fill="rgba(0,0,0,0.12)"/>
-
-          <!-- Keeper's House -->
-          <rect x="155" y="297" width="65" height="35" rx="4" fill="#DFE5EB"/>
-          <rect x="200" y="297" width="20" height="35" fill="rgba(0,0,0,0.05)"/>
-          <!-- Roof -->
-          <path d="M150,297 L187,268 L224,297 Z" fill="#2B6CB0"/>
-          <path d="M187,268 L224,297 L206,297 Z" fill="#1E5A95" opacity="0.6"/>
-          <!-- House window -->
-          <rect x="163" y="304" width="14" height="16" rx="3" fill="#0A1628"/>
-          <rect x="164" y="305" width="12" height="14" rx="2" fill="rgba(212,147,90,0.06)"/>
-          <line x1="170" y1="304" x2="170" y2="320" stroke="#4A8DD4" stroke-width="1.5" opacity="0.5"/>
-          <line x1="163" y1="312" x2="177" y2="312" stroke="#4A8DD4" stroke-width="1.5" opacity="0.5"/>
-          <!-- House door -->
-          <rect x="196" y="313" width="14" height="19" rx="7" fill="#1A4F82"/>
-          <circle cx="207" cy="323" r="1.2" fill="#4A8DD4" opacity="0.5"/>
-
-          <!-- Lighthouse Tower (striped, clipped to tapered shape) -->
-          <g clip-path="url(#tClip)">
-            <rect x="210" y="162" width="88" height="34" fill="url(#blueG)"/>
-            <rect x="210" y="196" width="88" height="34" fill="url(#whiteG)"/>
-            <rect x="210" y="230" width="88" height="34" fill="url(#blueG)"/>
-            <rect x="210" y="264" width="88" height="34" fill="url(#whiteG)"/>
-            <rect x="210" y="298" width="88" height="34" fill="url(#blueG)"/>
-          </g>
-
-          <!-- Tower window -->
-          <ellipse cx="254" cy="247" rx="16" ry="20" fill="rgba(212,147,90,0.05)"/>
-          <ellipse cx="254" cy="247" rx="12" ry="16" fill="#0A1628"/>
-          <ellipse cx="254" cy="247" rx="12" ry="16" fill="none" stroke="#4A8DD4" stroke-width="2.5"/>
-          <line x1="254" y1="231" x2="254" y2="263" stroke="#4A8DD4" stroke-width="1.5"/>
-          <line x1="242" y1="247" x2="266" y2="247" stroke="#4A8DD4" stroke-width="1.5"/>
-
-          <!-- Gallery Platform -->
-          <rect x="212" y="158" width="84" height="8" rx="3" fill="#2B6CB0"/>
-          <rect x="212" y="158" width="84" height="3" rx="1.5" fill="#3478C0" opacity="0.6"/>
-          <!-- Railing top bar -->
-          <rect x="210" y="149" width="88" height="2.5" rx="1.25" fill="#4A8DD4"/>
-          <!-- Railing posts -->
-          <g stroke="#4A8DD4" stroke-width="1.8" stroke-linecap="round">
-            <line x1="215" y1="149" x2="215" y2="158"/>
-            <line x1="225" y1="149" x2="225" y2="158"/>
-            <line x1="235" y1="149" x2="235" y2="158"/>
-            <line x1="245" y1="149" x2="245" y2="158"/>
-            <line x1="254" y1="149" x2="254" y2="158"/>
-            <line x1="263" y1="149" x2="263" y2="158"/>
-            <line x1="273" y1="149" x2="273" y2="158"/>
-            <line x1="283" y1="149" x2="283" y2="158"/>
-            <line x1="293" y1="149" x2="293" y2="158"/>
-          </g>
-
-          <!-- Lantern Room -->
-          <rect x="231" y="114" width="46" height="38" rx="5" fill="#E8EDF2"/>
-          <!-- Glass panes -->
-          <rect x="236" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.55"/>
-          <rect x="249" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.45"/>
-          <rect x="262" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.55"/>
-          <!-- Frame lines -->
-          <rect x="231" y="114" width="46" height="38" rx="5" fill="none" stroke="#2B6CB0" stroke-width="2"/>
-          <line x1="248" y1="114" x2="248" y2="152" stroke="#2B6CB0" stroke-width="1.5"/>
-          <line x1="261" y1="114" x2="261" y2="152" stroke="#2B6CB0" stroke-width="1.5"/>
-
+          <!-- Gallery railing -->
+          <rect x="225" y="165" width="50" height="8" rx="2" fill="rgba(255,255,255,0.08)"/>
+          <rect x="224" y="160" width="52" height="5" rx="2" fill="#4A8DD4" opacity="0.35"/>
+          <!-- Lantern room -->
+          <rect x="234" y="128" width="32" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="#2B6CB0" stroke-width="1.2" opacity="0.7"/>
           <!-- Dome -->
-          <path d="M229,114 C229,105 240,90 254,88 C268,90 279,105 279,114 Z" fill="url(#domeG)"/>
-          <path d="M229,114 C229,105 240,90 254,88 C268,90 279,105 279,114 Z" fill="none" stroke="#2B6CB0" stroke-width="1.5"/>
-          <path d="M238,112 C240,104 247,94 254,92 C258,93 264,100 268,110" fill="none" stroke="rgba(74,141,212,0.2)" stroke-width="2"/>
-
+          <path d="M234,128 C234,118 241,107 250,105 C259,107 266,118 266,128 Z" fill="url(#domeG)" opacity="0.7"/>
           <!-- Spire -->
-          <line x1="254" y1="88" x2="254" y2="72" stroke="#1A4F82" stroke-width="3.5" stroke-linecap="round"/>
-          <circle cx="254" cy="68" r="5" fill="#2B6CB0"/>
-          <circle cx="254" cy="68" r="2.5" fill="#4A8DD4"/>
-
-          <!-- Light core -->
-          <circle cx="254" cy="134" r="10" fill="rgba(224,173,122,0.35)">
-            <animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          <line x1="250" y1="105" x2="250" y2="90" stroke="#1E4F82" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="250" cy="88" r="3" fill="#2B6CB0" opacity="0.5"/>
+          <!-- Beacon glow -->
+          <circle cx="250" cy="144" r="40" fill="rgba(212,147,90,0.06)">
+            <animate attributeName="r" values="35;50;35" dur="4s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="254" cy="134" r="6" fill="#E0AD7A" opacity="0.9">
-            <animate attributeName="r" values="6;8;6" dur="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          <circle cx="250" cy="144" r="18" fill="rgba(212,147,90,0.12)">
+            <animate attributeName="r" values="16;22;16" dur="4s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="254" cy="134" r="3" fill="#fff" opacity="0.8">
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+          <circle cx="250" cy="144" r="6" fill="#D4935A" opacity="0.8">
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
           </circle>
-
-          <!-- Water reflections -->
-          <g opacity="0.5">
-            <line x1="250" y1="355" x2="250" y2="368" stroke="#D4935A" stroke-width="0.5" opacity="0.1" stroke-linecap="round">
-              <animate attributeName="opacity" values="0.05;0.12;0.05" dur="3s" repeatCount="indefinite"/>
-            </line>
-            <line x1="258" y1="358" x2="258" y2="372" stroke="#D4935A" stroke-width="0.4" opacity="0.08" stroke-linecap="round">
-              <animate attributeName="opacity" values="0.04;0.1;0.04" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
-            </line>
-            <line x1="246" y1="360" x2="246" y2="370" stroke="#D4935A" stroke-width="0.4" opacity="0.06" stroke-linecap="round">
-              <animate attributeName="opacity" values="0.03;0.08;0.03" dur="2.8s" repeatCount="indefinite" begin="1s"/>
-            </line>
+          <!-- Light beams -->
+          <g opacity="0.06">
+            <polygon points="256,140 420,80 420,100" fill="#D4935A">
+              <animate attributeName="opacity" values="0.06;0.12;0.06" dur="4s" repeatCount="indefinite"/>
+            </polygon>
+            <polygon points="244,140 80,80 80,100" fill="#D4935A">
+              <animate attributeName="opacity" values="0.06;0.12;0.06" dur="4s" repeatCount="indefinite"/>
+            </polygon>
           </g>
-
-          <!-- Subtle water -->
-          <path d="M0,368 Q65,362 130,366 Q195,370 260,364 Q325,358 390,365 Q455,370 500,366 L500,400 L0,400 Z" fill="rgba(43,108,176,0.06)"/>
-          <path d="M0,378 Q80,373 160,376 Q240,380 320,374 Q400,370 500,376 L500,400 L0,400 Z" fill="rgba(43,108,176,0.04)"/>
         </svg>
       </div>
     </div>
@@ -811,50 +504,40 @@ p, li { font-size: 1rem; line-height: 1.75; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     LOGO BAR
+     2. PROBLEM — Mirror them
      ═══════════════════════════════════════════ -->
-<div class="logo-bar">
+<section class="problem section" id="problem">
   <div class="container">
-    <div class="logo-bar-label">Experience forged at</div>
-    <div class="logo-bar-logos">
-      <img src="logos/google-logo.png" alt="Google" loading="lazy">
-      <img src="logos/airbnb-logo.png" alt="Airbnb" loading="lazy">
-      <img src="logos/walmart-logo.png" alt="Walmart" loading="lazy">
-      <img src="logos/mccann-logo.png" alt="McCann Worldgroup" loading="lazy">
-      <img src="logos/salesforce-logo.png" alt="Salesforce" loading="lazy">
-      <img src="logos/pbs-logo.png" alt="PBS" loading="lazy">
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     NARRATIVE — The Problem
-     ═══════════════════════════════════════════ -->
-<section class="narrative section" id="narrative">
-  <div class="container">
-    <div class="narrative-inner">
-      <span class="eyebrow reveal">The Real Problem</span>
-      <h2 class="reveal">It's not a people problem.<br>It's a systems problem.</h2>
-      <div class="wheel-divider reveal">
-        <svg viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="50" cy="50" r="35"/>
-          <circle cx="50" cy="50" r="22"/>
-          <circle cx="50" cy="50" r="6"/>
-          <line x1="50" y1="8" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="92"/>
-          <line x1="8" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="92" y2="50"/>
-          <line x1="20.3" y1="20.3" x2="33.4" y2="33.4"/><line x1="66.6" y1="66.6" x2="79.7" y2="79.7"/>
-          <line x1="79.7" y1="20.3" x2="66.6" y2="33.4"/><line x1="33.4" y1="66.6" x2="20.3" y2="79.7"/>
-        </svg>
-      </div>
-      <p class="reveal">Your team isn't broken. Your pipeline is. Somewhere between "approved" and "launched," things fall apart — handoffs vanish, timelines stretch, and everyone's in meetings about why nothing shipped.</p>
-      <p class="reveal">You've hired good people. You've bought good tools. But nobody built the <strong>operating system</strong> that connects them. That's where Soren Rho comes in.</p>
-      <p class="reveal">Think of us as the captain your operation has been missing. We don't join the crew — we <strong>read the water, chart the course, and install the navigation</strong> so your team can sail without us.</p>
+    <div class="problem-inner reveal">
+      <p>You're approving everything.</p>
+      <p>Your team moves — but only when you're involved.</p>
+      <p>Vendors are in different time zones. Nothing connects cleanly.</p>
+      <p>Launches slip. Assets get reworked. Decisions happen twice.</p>
+      <p class="punch">You're not the CEO.<br>You're the system.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     METHOD — Three Phases
+     3. OUTCOME — Future state
+     ═══════════════════════════════════════════ -->
+<section class="outcome section" id="outcome">
+  <div class="container">
+    <div class="outcome-inner reveal">
+      <h2>After we install:</h2>
+      <ul class="outcome-list">
+        <li>The business runs without constant intervention.</li>
+        <li>Work moves without Slack chasing.</li>
+        <li>Decisions are made once.</li>
+        <li>Visibility is immediate.</li>
+        <li>You step out of execution without losing control.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     4. METHOD — The edge
      ═══════════════════════════════════════════ -->
 <section class="method section" id="method">
   <!-- Compass Rose -->
@@ -862,253 +545,151 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <circle cx="100" cy="100" r="92" stroke="currentColor" stroke-width="0.4" opacity="0.1"/>
     <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="0.3" opacity="0.07"/>
     <circle cx="100" cy="100" r="68" stroke="currentColor" stroke-width="0.3" opacity="0.05"/>
-    <!-- Cardinal & intercardinal lines -->
     <line x1="100" y1="8" x2="100" y2="192" stroke="currentColor" stroke-width="0.4" opacity="0.06"/>
     <line x1="8" y1="100" x2="192" y2="100" stroke="currentColor" stroke-width="0.4" opacity="0.06"/>
     <line x1="35" y1="35" x2="165" y2="165" stroke="currentColor" stroke-width="0.3" opacity="0.04"/>
     <line x1="165" y1="35" x2="35" y2="165" stroke="currentColor" stroke-width="0.3" opacity="0.04"/>
-    <!-- North diamond -->
     <polygon points="100,8 105,100 100,88 95,100" fill="currentColor" opacity="0.09"/>
     <polygon points="100,192 95,100 100,112 105,100" fill="currentColor" opacity="0.05"/>
-    <!-- East-West diamonds -->
     <polygon points="192,100 100,95 112,100 100,105" fill="currentColor" opacity="0.05"/>
     <polygon points="8,100 100,105 88,100 100,95" fill="currentColor" opacity="0.05"/>
-    <!-- Tick marks (every 30°) -->
     <g stroke="currentColor" stroke-width="0.6" opacity="0.08">
-      <line x1="100" y1="8" x2="100" y2="16"/>
-      <line x1="100" y1="184" x2="100" y2="192"/>
-      <line x1="8" y1="100" x2="16" y2="100"/>
-      <line x1="184" y1="100" x2="192" y2="100"/>
-      <line x1="146" y1="20" x2="143" y2="27"/>
-      <line x1="180" y1="54" x2="173" y2="57"/>
-      <line x1="54" y1="20" x2="57" y2="27"/>
-      <line x1="20" y1="54" x2="27" y2="57"/>
-      <line x1="146" y1="180" x2="143" y2="173"/>
-      <line x1="180" y1="146" x2="173" y2="143"/>
-      <line x1="54" y1="180" x2="57" y2="173"/>
-      <line x1="20" y1="146" x2="27" y2="143"/>
+      <line x1="100" y1="8" x2="100" y2="16"/><line x1="100" y1="184" x2="100" y2="192"/>
+      <line x1="8" y1="100" x2="16" y2="100"/><line x1="184" y1="100" x2="192" y2="100"/>
+      <line x1="146" y1="20" x2="143" y2="27"/><line x1="180" y1="54" x2="173" y2="57"/>
+      <line x1="54" y1="20" x2="57" y2="27"/><line x1="20" y1="54" x2="27" y2="57"/>
+      <line x1="146" y1="180" x2="143" y2="173"/><line x1="180" y1="146" x2="173" y2="143"/>
+      <line x1="54" y1="180" x2="57" y2="173"/><line x1="20" y1="146" x2="27" y2="143"/>
     </g>
-    <!-- Center dot -->
     <circle cx="100" cy="100" r="3" fill="currentColor" opacity="0.08"/>
     <circle cx="100" cy="100" r="1.5" fill="currentColor" opacity="0.12"/>
-    <!-- N label -->
     <text x="100" y="6" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7" font-weight="700" letter-spacing="0.1em" fill="currentColor" opacity="0.12">N</text>
   </svg>
   <div class="container">
-    <span class="eyebrow reveal">How We Navigate</span>
-    <h2 class="reveal">Three phases. One clear heading.</h2>
-    <p class="method-sub reveal">Every engagement follows the same disciplined arc — from diagnosis to installation. No fluff, no scope creep, no endless discovery loops.</p>
-    <div class="method-grid">
-      <div class="method-card reveal reveal-d1">
-        <div class="method-number">01</div>
-        <h3>System Audit</h3>
-        <p>We map the current state — every workflow, handoff, bottleneck, and buried assumption. You get a clear-eyed diagnosis, not a vague assessment.</p>
-        <span class="tag">2-week sprint</span>
-      </div>
-      <div class="method-card reveal reveal-d2">
-        <div class="method-number">02</div>
-        <h3>System Design</h3>
-        <p>We architect the operating system your team should have had from day one — ownership maps, stage gates, async visibility frameworks, decision flows.</p>
-        <span class="tag">Custom blueprint</span>
-      </div>
-      <div class="method-card reveal reveal-d3">
-        <div class="method-number">03</div>
-        <h3>System Install</h3>
-        <p>We build it, configure it, and hand it over with a playbook your team can actually run. No ghost systems. No shelf-ware.</p>
-        <span class="tag">Fully deployed</span>
-      </div>
+    <div class="method-inner reveal">
+      <h2>We don't advise. We install.</h2>
+      <p class="method-sub">We implement production infrastructure used inside Fortune 500 creative systems:</p>
+      <ul class="method-items">
+        <li><strong>Creative Certification Program (CCP)</strong> — nothing ships without structured approval</li>
+        <li><strong>Single Point of Contact (SPOC)</strong> — one source of truth, one person to call</li>
+        <li><strong>Stage-gated execution</strong> — from brief to launch, nothing falls through</li>
+        <li><strong>Async visibility systems</strong> — kill the status meeting, keep the accountability</li>
+      </ul>
+      <p class="method-note">So work moves without you holding it together.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     PROOF
-     ═══════════════════════════════════════════ -->
-<section class="proof section" id="proof">
-  <div class="container">
-    <span class="eyebrow reveal">Course Corrections</span>
-    <h2 class="reveal">Ships we've steered back on course.</h2>
-    <p class="proof-sub reveal">Real outcomes from enterprise engagements. The numbers are the proof — everything else is just a story.</p>
-    <div class="proof-grid">
-      <!-- Featured: Castrol -->
-      <div class="proof-card featured-cs reveal">
-        <div class="featured-cs-content">
-          <div class="proof-label">Walmart Connect × Castrol &nbsp;·&nbsp; MMA Smarties Gold</div>
-          <h3>Built a first-of-its-kind $7.5M shoppable retail media experience</h3>
-          <div class="proof-metrics">
-            <div class="proof-metric">
-              <div class="proof-metric-label after">Sales</div>
-              <div class="proof-metric-value after">$7.5M</div>
-            </div>
-            <div class="proof-arrow">·</div>
-            <div class="proof-metric">
-              <div class="proof-metric-label after">New Buyers</div>
-              <div class="proof-metric-value after">51%</div>
-            </div>
-            <div class="proof-arrow">·</div>
-            <div class="proof-metric">
-              <div class="proof-metric-label after">ROAS</div>
-              <div class="proof-metric-value after">7×</div>
-            </div>
-          </div>
-          <p class="proof-desc">Program-managed a 360° interactive shoppable hub on Walmart.com — coordinating cross-category strategy, celebrity talent, multi-channel media, and Walmart's platform team.</p>
-          <a href="case-study-castrol.html" class="cs-link">Read the full case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-        <div class="featured-cs-img">
-          <img src="Castrol.png" alt="Castrol shoppable retail media experience on Walmart.com" loading="lazy">
-        </div>
-      </div>
-      <div class="proof-card reveal reveal-d1">
-        <div class="proof-label">Enterprise Retail</div>
-        <h3>Campaign launch pipeline rebuilt async</h3>
-        <div class="proof-metrics">
-          <div class="proof-metric">
-            <div class="proof-metric-label before">Before</div>
-            <div class="proof-metric-value before">6 mo</div>
-          </div>
-          <div class="proof-arrow">→</div>
-          <div class="proof-metric">
-            <div class="proof-metric-label after">After</div>
-            <div class="proof-metric-value after">3.5 mo</div>
-          </div>
-        </div>
-        <p class="proof-desc">Launch cycles cut 42%. Intake redesigned. Stage gates automated. Zero meetings added.</p>
-      </div>
-      <div class="proof-card reveal reveal-d2">
-        <div class="proof-label">Fortune 500 Tech</div>
-        <h3>Creative ops from chaos to 97% on-time</h3>
-        <div class="proof-metrics">
-          <div class="proof-metric">
-            <div class="proof-metric-label before">Before</div>
-            <div class="proof-metric-value before">58%</div>
-          </div>
-          <div class="proof-arrow">→</div>
-          <div class="proof-metric">
-            <div class="proof-metric-label after">After</div>
-            <div class="proof-metric-value after">97%</div>
-          </div>
-        </div>
-        <p class="proof-desc">On-time delivery jumped nearly 40 points in one sprint. Ownership mapped. Handoff friction eliminated.</p>
-      </div>
-      <div class="proof-card reveal reveal-d3">
-        <div class="proof-label">Global Media</div>
-        <h3>Meeting load slashed, velocity doubled</h3>
-        <div class="proof-metrics">
-          <div class="proof-metric">
-            <div class="proof-metric-label before">Before</div>
-            <div class="proof-metric-value before">12 hrs/wk</div>
-          </div>
-          <div class="proof-arrow">→</div>
-          <div class="proof-metric">
-            <div class="proof-metric-label after">After</div>
-            <div class="proof-metric-value after">2 hrs/wk</div>
-          </div>
-        </div>
-        <p class="proof-desc">Status meetings replaced with async boards. Team velocity doubled. No one missed the standups.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     CAPTAIN — About
-     ═══════════════════════════════════════════ -->
-<section class="captain section" id="captain">
-  <div class="container">
-    <div class="captain-inner">
-      <span class="eyebrow reveal">The Captain's Log</span>
-      <h2 class="reveal">We didn't learn ops from a textbook. We learned it inside the buildings you're sitting in.</h2>
-      <div class="captain-text reveal">
-        <p>Soren Rho was founded by operators who've managed 200+ concurrent campaigns, redesigned workflows for teams of 5 to 50+, and been the person in the room when the system fails and everyone looks around.</p>
-        <p>We've sat inside Walmart Connect, Airbnb, McCann, and Fortune 500 creative teams where a fumbled handoff doesn't cost hours — it costs quarters. That's why we don't sell advice. We build infrastructure.</p>
-        <p>The lighthouse isn't just our logo — it's our operating principle. We exist to be a fixed point in the chaos: a signal that says <em>this is the way through.</em></p>
-      </div>
-      <div class="captain-creds reveal">
-        <span class="captain-cred">Google</span>
-        <span class="captain-cred">Airbnb</span>
-        <span class="captain-cred">Walmart Connect</span>
-        <span class="captain-cred">McCann Worldgroup</span>
-        <span class="captain-cred">UC Berkeley</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     OFFER — Pricing
+     5. OFFER — Clean + decisive
      ═══════════════════════════════════════════ -->
 <section class="offer section" id="offer">
   <div class="container">
-    <span class="eyebrow reveal">Engagements</span>
     <h2 class="reveal">Choose your entry point.</h2>
-    <p class="offer-sub reveal">Every engagement is fully async, fixed-scope, and delivered in 2–4 weeks. Start with an audit, or go straight to the build.</p>
-    <div class="pricing-grid">
-      <div class="pricing-card reveal reveal-d1">
-        <div class="pricing-tier">Phase 1</div>
-        <h3>System Audit</h3>
-        <div class="pricing-price">$3,000</div>
-        <div class="pricing-duration">2-week sprint</div>
-        <p>We map your ops bottlenecks, identify the structural failures, and deliver an actionable blueprint.</p>
-        <ul class="pricing-includes">
-          <li>Full workflow audit</li>
-          <li>Bottleneck &amp; friction map</li>
-          <li>Prioritized action plan</li>
-          <li>Async delivery</li>
-        </ul>
-        <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-ghost" style="color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2);">Start Here</a>
+    <div class="offer-grid">
+      <div class="offer-card reveal reveal-d1">
+        <h3>Audit</h3>
+        <div class="offer-price">$3,000</div>
+        <p>Identify where time, money, and clarity are leaking. You get an Operational Debt Report — not a slide deck.</p>
       </div>
-      <div class="pricing-card featured reveal reveal-d2">
-        <div class="pricing-tier">Phase 1–3</div>
-        <h3>Full Build Sprint</h3>
-        <div class="pricing-price">$10,000</div>
-        <div class="pricing-duration">3–4 week sprint</div>
-        <p>Audit, design, and install. We build the operating system your team should have had from day one.</p>
-        <ul class="pricing-includes">
-          <li>Everything in Audit</li>
-          <li>Custom workflow architecture</li>
-          <li>Tool configuration &amp; setup</li>
-          <li>Async visibility framework</li>
-          <li>Team playbook &amp; training</li>
-        </ul>
-        <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea">Book the Sprint</a>
+      <div class="offer-card reveal reveal-d2">
+        <h3>Install</h3>
+        <div class="offer-price">$10,000</div>
+        <p>Design and implement the full system. CCP, SPOC, stage gates, async dashboards, SOPs, and a playbook your team runs without you.</p>
       </div>
-      <div class="pricing-card reveal reveal-d3">
-        <div class="pricing-tier">Ongoing</div>
-        <h3>Retained Partnership</h3>
-        <div class="pricing-price">$20,000</div>
-        <div class="pricing-duration">Per month</div>
-        <p>We embed as your ops architect. Continuous optimization, quarterly reviews, priority async access.</p>
-        <ul class="pricing-includes">
-          <li>Everything in Full Build</li>
-          <li>Dedicated ops lead</li>
-          <li>Continuous system tuning</li>
-          <li>Quarterly strategy reviews</li>
-          <li>Priority response (24hr async)</li>
-        </ul>
-        <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-ghost" style="color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2);">Inquire</a>
+      <div class="offer-card reveal reveal-d3">
+        <h3>Embed</h3>
+        <div class="offer-price">$20,000<span style="font-family:'Outfit',sans-serif; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.35); margin-left:4px;">/mo</span></div>
+        <p>Ongoing operational architecture and control. We stay embedded as your ops architect with quarterly reviews and priority async access.</p>
       </div>
-    </div>
-    <div class="how-strip reveal">
-      <h3>How we operate.</h3>
-      <ul class="how-list">
-        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fully async</li>
-        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fixed scope, fixed price</li>
-        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Selective intake</li>
-        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Enterprise-tested methodology</li>
-      </ul>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     FINAL CTA
+     6. PROOF — Credibility
      ═══════════════════════════════════════════ -->
-<section class="final-cta">
+<section class="proof section" id="proof">
   <div class="container">
-    <div class="final-cta-inner">
-      <h2 class="reveal">Your team's been in open water long enough.</h2>
-      <p class="reveal">Let's chart the course. Start with a 30-minute discovery call — no pressure, no pitch deck, just a conversation about what's broken and how we'd fix it.</p>
-      <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea reveal">Book a Discovery Call</a>
+    <div class="proof-inner reveal">
+      <h2>These systems already exist. You just don't have them installed.</h2>
+      <ul class="proof-lines">
+        <li>Built inside <strong>Walmart Connect</strong> — 140+ concurrent campaigns, 97.6% on-time delivery</li>
+        <li>Repeated across <strong>AT&amp;T</strong> and <strong>McCann Worldgroup</strong></li>
+        <li>Tested at <strong>Google</strong>, <strong>Airbnb</strong>, <strong>PBS</strong>, <strong>Salesforce</strong></li>
+        <li>Now applied inside founder-led companies in <strong>wellness</strong>, <strong>pleasure-tech</strong>, and <strong>longevity</strong></li>
+      </ul>
+      <p class="proof-note">Same infrastructure. Different scale. Same results.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     7. CLOSE — CTA
+     ═══════════════════════════════════════════ -->
+<section class="close-cta" id="close">
+  <div class="container">
+    <div class="close-cta-inner reveal">
+      <p>This is for companies doing $3M+ where operational mistakes are expensive.</p>
+      <a href="#apply" class="btn btn-sea">Enter &rarr;</a>
+      <span class="capacity">Limited capacity</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     APPLICATION
+     ═══════════════════════════════════════════ -->
+<section class="application section" id="apply">
+  <div class="container">
+    <div class="application-inner reveal">
+      <h2>This is not a discovery call.</h2>
+      <p class="application-sub">Tell us what's breaking. We'll tell you if we can fix it.</p>
+      <form action="https://formspree.io/f/hello@sorenrho.com" method="POST">
+        <div class="form-group">
+          <label for="revenue">Revenue range</label>
+          <select id="revenue" name="revenue" required>
+            <option value="" disabled selected>Select</option>
+            <option value="$1M-$3M">$1M – $3M</option>
+            <option value="$3M-$10M">$3M – $10M</option>
+            <option value="$10M-$50M">$10M – $50M</option>
+            <option value="$50M+">$50M+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="team">Team size</label>
+          <select id="team" name="team" required>
+            <option value="" disabled selected>Select</option>
+            <option value="1-5">1 – 5</option>
+            <option value="6-15">6 – 15</option>
+            <option value="16-50">16 – 50</option>
+            <option value="50+">50+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="breaking">What's breaking?</label>
+          <textarea id="breaking" name="breaking" placeholder="Where are you the bottleneck? What's slipping?" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="tried">What have you tried?</label>
+          <textarea id="tried" name="tried" placeholder="Tools, hires, consultants — what hasn't worked?"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="timeline">Timeline</label>
+          <select id="timeline" name="timeline" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Immediately">Immediately</option>
+            <option value="Next 30 days">Next 30 days</option>
+            <option value="Next quarter">Next quarter</option>
+            <option value="Exploring">Just exploring</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <button type="submit" class="btn btn-ink" style="width:100%; margin-top:0.5rem;">Request access</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1118,9 +699,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <div class="container">
     <div class="footer-lighthouse-mini" aria-hidden="true">
       <svg viewBox="0 0 48 56" width="48" height="56" fill="none">
-        <!-- Sandy base -->
         <ellipse cx="24" cy="52" rx="20" ry="4" fill="#D4935A" opacity="0.3"/>
-        <!-- Tower (clipped stripes) -->
         <defs><clipPath id="ftClip"><path d="M19,22 L17,48 L31,48 L29,22 Z"/></clipPath></defs>
         <g clip-path="url(#ftClip)">
           <rect x="15" y="22" width="18" height="5.2" fill="#2B6CB0" opacity="0.55"/>
@@ -1129,47 +708,38 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <rect x="15" y="37.6" width="18" height="5.2" fill="rgba(255,255,255,0.1)"/>
           <rect x="15" y="42.8" width="18" height="5.2" fill="#2B6CB0" opacity="0.55"/>
         </g>
-        <!-- Gallery -->
         <rect x="16" y="20.5" width="16" height="2.5" rx="1" fill="rgba(255,255,255,0.08)"/>
         <rect x="15.5" y="19" width="17" height="1.5" rx="0.75" fill="#4A8DD4" opacity="0.35"/>
-        <!-- Lantern room -->
         <rect x="19.5" y="11" width="9" height="9" rx="2" fill="rgba(255,255,255,0.1)" stroke="#2B6CB0" stroke-width="0.8" opacity="0.7"/>
-        <!-- Dome -->
         <path d="M19,11 C19,8 21.5,5 24,4.5 C26.5,5 29,8 29,11 Z" fill="#1E4F82" opacity="0.6"/>
-        <!-- Spire -->
         <line x1="24" y1="4.5" x2="24" y2="1.5" stroke="#1E4F82" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
         <circle cx="24" cy="1" r="1.3" fill="#2B6CB0" opacity="0.45"/>
-        <!-- Beacon glow -->
         <circle cx="24" cy="15" r="6" fill="rgba(212,147,90,0.12)">
           <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
         </circle>
         <circle cx="24" cy="15" r="2.5" fill="#D4935A" opacity="0.7">
           <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
         </circle>
-        <!-- Rocks -->
         <ellipse cx="10" cy="50.5" rx="3.5" ry="2" fill="rgba(255,255,255,0.04)"/>
         <ellipse cx="37" cy="49.5" rx="3" ry="1.8" fill="rgba(255,255,255,0.03)"/>
       </svg>
     </div>
     <div class="footer-inner">
       <a href="#" class="logo">Soren <em>Rho</em></a>
-      <div class="footer-links">
-        <a href="#method">Method</a>
-        <a href="#proof">Results</a>
-        <a href="#captain">About</a>
-        <a href="mailto:hello@sorenrho.com">Contact</a>
-      </div>
       <span class="footer-email">hello@sorenrho.com</span>
     </div>
     <p class="footer-legal">&copy; 2026 Pixique LLC d/b/a Soren Rho. All rights reserved.</p>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════
-     SCRIPTS
-     ═══════════════════════════════════════════ -->
 <script>
-// Mobile nav
+// Header scroll
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+// Mobile nav toggle
 const toggle = document.querySelector('.mobile-toggle');
 const mobileNav = document.getElementById('mobileNav');
 toggle.addEventListener('click', () => {
@@ -1183,245 +753,12 @@ mobileNav.querySelectorAll('a').forEach(a => {
   });
 });
 
-// Header scroll
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('vis');
-      obs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => obs.observe(el));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-</script>
-
-<!-- Cartoon lighthouse is now inline SVG — JS generator disabled -->
-<script>
-(function() {
-  // Lighthouse rendered as inline SVG; skip JS generation.
-  return;
-  var ns = 'http://www.w3.org/2000/svg';
-
-  var deep = '#0F1923';
-  var mid = '#162232';
-  var charcoal = '#1C2D3F';
-  var rust = '#2B6CB0';
-  var rustLight = '#D4935A';
-  var rustGlow = 'rgba(212,147,90,';
-  var warmGray = '#A8A39C';
-
-  function el(tag, attrs) {
-    var e = document.createElementNS(ns, tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    return e;
-  }
-
-  // Defs
-  var defs = el('defs', {});
-
-  var skyGrad = el('linearGradient', { id: 'skyGrad', x1: '0', y1: '0', x2: '0', y2: '1' });
-  skyGrad.appendChild(el('stop', { offset: '0%', 'stop-color': '#0A0F16' }));
-  skyGrad.appendChild(el('stop', { offset: '100%', 'stop-color': deep }));
-
-  var beamGradL = el('linearGradient', { id: 'beamGL', x1: '0', y1: '0', x2: '1', y2: '0' });
-  beamGradL.appendChild(el('stop', { offset: '0%', 'stop-color': rustGlow + '0)' }));
-  beamGradL.appendChild(el('stop', { offset: '50%', 'stop-color': rustGlow + '0.25)' }));
-  beamGradL.appendChild(el('stop', { offset: '100%', 'stop-color': rustGlow + '0)' }));
-
-  var beamGradR = el('linearGradient', { id: 'beamGR', x1: '1', y1: '0', x2: '0', y2: '0' });
-  beamGradR.appendChild(el('stop', { offset: '0%', 'stop-color': rustGlow + '0)' }));
-  beamGradR.appendChild(el('stop', { offset: '50%', 'stop-color': rustGlow + '0.25)' }));
-  beamGradR.appendChild(el('stop', { offset: '100%', 'stop-color': rustGlow + '0)' }));
-
-  var glowGrad = el('radialGradient', { id: 'glowG', cx: '50%', cy: '50%', r: '50%' });
-  glowGrad.appendChild(el('stop', { offset: '0%', 'stop-color': rustGlow + '0.5)' }));
-  glowGrad.appendChild(el('stop', { offset: '60%', 'stop-color': rustGlow + '0.15)' }));
-  glowGrad.appendChild(el('stop', { offset: '100%', 'stop-color': rustGlow + '0)' }));
-
-  defs.appendChild(skyGrad);
-  defs.appendChild(beamGradL);
-  defs.appendChild(beamGradR);
-  defs.appendChild(glowGrad);
-  svg.appendChild(defs);
-
-  // Sky
-  svg.appendChild(el('rect', { x: '0', y: '0', width: '500', height: '400', fill: 'url(#skyGrad)' }));
-
-  // Stars
-  var starPositions = [
-    [45,30],[120,55],[390,25],[440,70],[80,90],[310,40],[200,20],
-    [470,110],[30,140],[160,80],[350,95],[260,35],[420,140],[95,45],[330,120],
-    [175,110],[285,75],[60,60],[410,45],[340,130]
-  ];
-  starPositions.forEach(function(pos) {
-    var r = 0.4 + Math.random() * 0.8;
-    var star = el('circle', {
-      cx: pos[0], cy: pos[1], r: r,
-      fill: Math.random() > 0.5 ? warmGray : 'rgba(255,255,255,0.5)',
-      opacity: 0.2 + Math.random() * 0.4
-    });
-    svg.appendChild(star);
-    var anim = el('animate', {
-      attributeName: 'opacity',
-      values: (0.2 + Math.random() * 0.3) + ';' + (0.5 + Math.random() * 0.4) + ';' + (0.2 + Math.random() * 0.3),
-      dur: (3 + Math.random() * 4) + 's',
-      repeatCount: 'indefinite',
-      begin: (Math.random() * 3) + 's'
-    });
-    star.appendChild(anim);
-  });
-
-  // Beam left
-  var beamL = el('path', { d: 'M250,155 L60,80 L100,170 Z', fill: 'url(#beamGL)', opacity: '0.6' });
-  var beamLAnim = el('animate', {
-    attributeName: 'opacity', values: '0.6;0.3;0.6', dur: '4s',
-    repeatCount: 'indefinite', calcMode: 'spline', keySplines: '0.4 0 0.2 1;0.4 0 0.2 1'
-  });
-  beamL.appendChild(beamLAnim);
-  svg.appendChild(beamL);
-
-  // Beam right
-  var beamR = el('path', { d: 'M250,155 L440,80 L400,170 Z', fill: 'url(#beamGR)', opacity: '0.3' });
-  var beamRAnim = el('animate', {
-    attributeName: 'opacity', values: '0.3;0.6;0.3', dur: '4s',
-    repeatCount: 'indefinite', calcMode: 'spline', keySplines: '0.4 0 0.2 1;0.4 0 0.2 1'
-  });
-  beamR.appendChild(beamRAnim);
-  svg.appendChild(beamR);
-
-  // Wide ambient beams
-  svg.appendChild(el('path', { d: 'M250,158 L20,60 L40,190 Z', fill: rustGlow + '0.04)', opacity: '1' }));
-  svg.appendChild(el('path', { d: 'M250,158 L480,60 L460,190 Z', fill: rustGlow + '0.04)', opacity: '1' }));
-
-  // Lantern glow
-  var glow = el('circle', { cx: '250', cy: '158', r: '40', fill: 'url(#glowG)', opacity: '0.8' });
-  var glowAnim = el('animate', {
-    attributeName: 'r', values: '40;50;40', dur: '3s',
-    repeatCount: 'indefinite', calcMode: 'spline', keySplines: '0.4 0 0.2 1;0.4 0 0.2 1'
-  });
-  glow.appendChild(glowAnim);
-  svg.appendChild(glow);
-
-  // Tower body
-  svg.appendChild(el('path', {
-    d: 'M238,170 L230,310 L270,310 L262,170 Z',
-    fill: '#1C2D3F', stroke: 'rgba(255,255,255,0.06)', 'stroke-width': '1'
-  }));
-
-  // Tower stripes
-  svg.appendChild(el('rect', { x: '232', y: '210', width: '36', height: '3', rx: '1', fill: rust, opacity: '0.5' }));
-  svg.appendChild(el('rect', { x: '231', y: '250', width: '38', height: '3', rx: '1', fill: rust, opacity: '0.4' }));
-  svg.appendChild(el('rect', { x: '230', y: '290', width: '40', height: '3', rx: '1', fill: rust, opacity: '0.3' }));
-
-  // Door
-  svg.appendChild(el('rect', { x: '243', y: '295', width: '14', height: '18', rx: '7', ry: '7',
-    fill: mid, stroke: rust, 'stroke-width': '1', opacity: '0.7' }));
-
-  // Lantern room
-  svg.appendChild(el('rect', { x: '235', y: '148', width: '30', height: '26', rx: '3', ry: '3',
-    fill: rustGlow + '0.12)', stroke: rust, 'stroke-width': '1.5' }));
-
-  // Cap dome
-  svg.appendChild(el('path', { d: 'M234,148 Q250,135 266,148', fill: charcoal, stroke: rust, 'stroke-width': '1' }));
-
-  // Gallery
-  svg.appendChild(el('rect', { x: '230', y: '170', width: '40', height: '5', rx: '1',
-    fill: mid, stroke: rustGlow + '0.2)', 'stroke-width': '0.5' }));
-  svg.appendChild(el('line', { x1: '232', y1: '174', x2: '268', y2: '174',
-    stroke: rust, 'stroke-width': '1.5', opacity: '0.6' }));
-
-  // Light core
-  var core = el('circle', { cx: '250', cy: '160', r: '5', fill: rustLight, opacity: '0.9' });
-  var coreAnim = el('animate', {
-    attributeName: 'r', values: '5;7;5', dur: '2.4s',
-    repeatCount: 'indefinite', calcMode: 'spline', keySplines: '0.4 0 0.2 1;0.4 0 0.2 1'
-  });
-  core.appendChild(coreAnim);
-  svg.appendChild(core);
-
-  var coreOuter = el('circle', { cx: '250', cy: '160', r: '8', fill: rustGlow + '0.25)', opacity: '0.7' });
-  var coreOuterAnim = el('animate', {
-    attributeName: 'r', values: '8;12;8', dur: '2.4s',
-    repeatCount: 'indefinite', calcMode: 'spline', keySplines: '0.4 0 0.2 1;0.4 0 0.2 1'
-  });
-  coreOuter.appendChild(coreOuterAnim);
-  svg.appendChild(coreOuter);
-
-  // Spire
-  svg.appendChild(el('line', { x1: '250', y1: '148', x2: '250', y2: '132',
-    stroke: rust, 'stroke-width': '1.5', 'stroke-linecap': 'round' }));
-
-  // Rocky base
-  svg.appendChild(el('path', {
-    d: 'M180,310 L175,325 L165,330 L155,328 L150,340 L170,345 L200,335 L230,340 L250,330 L270,340 L300,335 L330,345 L350,340 L345,328 L335,330 L325,325 L320,310 Z',
-    fill: '#1C2D3F', stroke: 'rgba(168,163,156,0.08)', 'stroke-width': '0.5'
-  }));
-
-  // Waves
-  function wavePath(y, amp, freq, phase) {
-    var d = 'M-50,' + y;
-    for (var x = -50; x <= 550; x += 5) {
-      var wy = y + Math.sin((x + phase) * freq * Math.PI / 180) * amp;
-      d += ' L' + x + ',' + wy.toFixed(1);
-    }
-    d += ' L550,400 L-50,400 Z';
-    return d;
-  }
-
-  var wave1 = el('path', { d: wavePath(345, 5, 1.2, 0), fill: 'rgba(168,163,156,0.08)', opacity: '0.8' });
-  var wave2 = el('path', { d: wavePath(355, 4, 1.5, 60), fill: 'rgba(168,163,156,0.06)', opacity: '0.7' });
-  var wave3 = el('path', { d: wavePath(365, 3, 1.8, 120), fill: 'rgba(168,163,156,0.04)', opacity: '0.6' });
-  svg.appendChild(wave1);
-  svg.appendChild(wave2);
-  svg.appendChild(wave3);
-  svg.appendChild(el('rect', { x: '0', y: '370', width: '500', height: '30', fill: 'rgba(168,163,156,0.03)' }));
-
-  var wp1 = 0, wp2 = 60, wp3 = 120;
-  function animateWaves() {
-    wp1 += 0.3; wp2 += 0.2; wp3 += 0.15;
-    wave1.setAttribute('d', wavePath(345, 5, 1.2, wp1));
-    wave2.setAttribute('d', wavePath(355, 4, 1.5, wp2));
-    wave3.setAttribute('d', wavePath(365, 3, 1.8, wp3));
-    requestAnimationFrame(animateWaves);
-  }
-  animateWaves();
-
-  // Water reflections
-  for (var i = 0; i < 5; i++) {
-    var rx = 240 + (i - 2) * 8 + Math.random() * 4;
-    var ry = 350 + Math.random() * 20;
-    var rh = 8 + Math.random() * 12;
-    var refl = el('line', {
-      x1: rx, y1: ry, x2: rx, y2: ry + rh,
-      stroke: rustLight, 'stroke-width': 0.5 + Math.random() * 0.5,
-      opacity: 0.08 + Math.random() * 0.1, 'stroke-linecap': 'round'
-    });
-    var reflAnim = el('animate', {
-      attributeName: 'opacity',
-      values: (0.05 + Math.random() * 0.1) + ';' + (0.1 + Math.random() * 0.12) + ';' + (0.05 + Math.random() * 0.1),
-      dur: (2 + Math.random() * 2) + 's',
-      repeatCount: 'indefinite',
-      begin: (Math.random() * 2) + 's'
-    });
-    refl.appendChild(reflAnim);
-    svg.appendChild(refl);
-  }
-})();
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
 </script>
 </body>
 </html>
