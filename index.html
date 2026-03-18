@@ -195,8 +195,50 @@ p, li { font-size: 1rem; line-height: 1.75; }
   overflow: hidden;
   box-shadow: 0 32px 64px rgba(15,25,35,0.2);
   border: 1px solid rgba(255,255,255,0.04);
+  perspective: 800px;
 }
-#lighthouse-svg { width: 100%; height: 100%; display: block; }
+#lighthouse-svg {
+  width: 100%; height: 100%; display: block;
+  transform: rotateY(var(--lh-rx, 0deg)) rotateX(var(--lh-ry, 0deg));
+  transition: transform 0.15s var(--ease);
+  will-change: transform;
+}
+/* Hero wind trail (mouse follower) */
+.wind-trail {
+  position: fixed; pointer-events: none; z-index: 9999;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(43,108,176,0.12) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.hero:hover ~ .wind-trail, .hero .wind-trail { opacity: 1; }
+.wind-particle {
+  position: fixed; pointer-events: none; z-index: 9998;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(43,108,176,0.2);
+  transform: translate(-50%, -50%);
+  animation: particle-fade 0.8s var(--ease) forwards;
+}
+@keyframes particle-fade {
+  0% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(0.2); }
+}
+/* Timeline preview tooltip */
+.form-group { position: relative; }
+.timeline-preview {
+  position: absolute; right: 0; top: 0;
+  font-size: 0.72rem; font-weight: 600; color: var(--sea);
+  background: rgba(43,108,176,0.06); border: 1px solid rgba(43,108,176,0.1);
+  padding: 4px 10px; border-radius: 100px;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.timeline-preview.show { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  #lighthouse-svg { transform: none !important; transition: none !important; }
+  .wind-trail, .wind-particle { display: none !important; }
+}
 
 /* ═══════════════════════════════════════════
    LOGO BAR
@@ -1366,7 +1408,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <textarea id="tried" name="tried" placeholder="Tools, hires, consultants... what have you already thrown at this?"></textarea>
         </div>
         <div class="form-group">
-          <label for="timeline">Timeline</label>
+          <label for="timeline">Timeline <span class="timeline-preview" id="timelinePreview"></span></label>
           <select id="timeline" name="timeline" required>
             <option value="" disabled selected>Select</option>
             <option value="Immediately">Immediately</option>
@@ -1555,6 +1597,75 @@ document.querySelectorAll('.btn').forEach(btn => {
     r.addEventListener('animationend', () => r.remove());
   });
 });
+
+// Lighthouse spotlight: tilt SVG toward cursor
+const heroGraphic = document.querySelector('.hero-graphic');
+if (heroGraphic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  let lhTicking = false;
+  heroGraphic.addEventListener('mousemove', (e) => {
+    if (lhTicking) return;
+    lhTicking = true;
+    requestAnimationFrame(() => {
+      const rect = heroGraphic.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
+      heroGraphic.style.setProperty('--lh-rx', x.toFixed(1) + 'deg');
+      heroGraphic.style.setProperty('--lh-ry', y.toFixed(1) + 'deg');
+      lhTicking = false;
+    });
+  });
+  heroGraphic.addEventListener('mouseleave', () => {
+    heroGraphic.style.setProperty('--lh-rx', '0deg');
+    heroGraphic.style.setProperty('--lh-ry', '0deg');
+  });
+}
+
+// Hero wind trail cursor (desktop only)
+if (window.innerWidth >= 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const trail = document.createElement('div');
+  trail.classList.add('wind-trail');
+  document.body.appendChild(trail);
+  const heroEl = document.querySelector('.hero');
+  let lastParticle = 0;
+  heroEl.addEventListener('mousemove', (e) => {
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    trail.style.opacity = '1';
+    // Spawn particle every 80ms
+    const now = Date.now();
+    if (now - lastParticle > 80) {
+      lastParticle = now;
+      const p = document.createElement('div');
+      p.classList.add('wind-particle');
+      p.style.left = (e.clientX + (Math.random() - 0.5) * 16) + 'px';
+      p.style.top = (e.clientY + (Math.random() - 0.5) * 16) + 'px';
+      document.body.appendChild(p);
+      p.addEventListener('animationend', () => p.remove());
+    }
+  });
+  heroEl.addEventListener('mouseleave', () => { trail.style.opacity = '0'; });
+}
+
+// Timeline selector preview tooltip
+const timelineSel = document.getElementById('timeline');
+const timelinePrev = document.getElementById('timelinePreview');
+if (timelineSel && timelinePrev) {
+  const msgs = {
+    'Immediately': 'Ships in 2 weeks',
+    'Next 30 days': 'Ships in 3 to 4 weeks',
+    'Next quarter': 'We\u2019ll reserve your slot',
+    'Exploring': 'No rush, let\u2019s talk'
+  };
+  timelineSel.addEventListener('change', () => {
+    const msg = msgs[timelineSel.value];
+    if (msg) {
+      timelinePrev.textContent = msg;
+      timelinePrev.classList.add('show');
+    } else {
+      timelinePrev.classList.remove('show');
+    }
+  });
+}
 </script>
 </body>
 </html>
