@@ -296,7 +296,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
   border-radius: 50%; border: 1px solid rgba(43,108,176,0.04);
   pointer-events: none; transform: translateY(-50%);
 }
-.outcome-inner { max-width: 720px; margin: 0 auto; }
+.outcome-inner { max-width: var(--max-w); margin: 0 auto; }
 .outcome h2 { margin-bottom: 0.6rem; color: var(--ink); }
 .outcome h2 .accent { color: var(--sea); }
 .outcome-sub { font-size: 0.95rem; color: var(--drift); margin-bottom: 2.5rem; }
@@ -618,6 +618,118 @@ p, li { font-size: 1rem; line-height: 1.75; }
 .footer-legal { font-size: 0.7rem; color: rgba(255,255,255,0.15); margin-top: 1rem; text-align: center; }
 
 /* ═══════════════════════════════════════════
+   SHIP'S WHEEL DIVIDER
+   ═══════════════════════════════════════════ */
+.wheel-divider {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  margin: 2rem 0;
+}
+.wheel-divider::before, .wheel-divider::after {
+  content: ''; flex: 1; max-width: 60px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--sea-light), transparent);
+  opacity: 0.4;
+}
+.wheel-divider svg { width: 28px; height: 28px; opacity: 0.25; }
+
+/* Hero signal items */
+.hero-signal {
+  margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--shore);
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+}
+.hero-signal-item { font-size: 0.78rem; color: var(--drift); font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.hero-signal-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sea); flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   CAPTAIN'S LOG — About
+   ═══════════════════════════════════════════ */
+.captain {
+  background: var(--ink); position: relative; overflow: hidden;
+}
+.captain::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 25% 80%, rgba(43,108,176,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 20%, rgba(22,34,50,0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+.captain-inner {
+  max-width: 760px; margin: 0 auto; position: relative; z-index: 1;
+  background:
+    linear-gradient(to right,
+      #4A5A6A 0px, #4A5A6A 6px,
+      #CEC7BC 6px, #D8D1C6 8px,
+      #E8E2D6 8px, #EDE7DD 36px,
+      transparent 36px
+    ),
+    linear-gradient(160deg, #FBF8F2 0%, #F5F1E9 100%);
+  border-radius: 2px 8px 8px 2px;
+  padding: 40px 32px 36px 56px;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.12);
+}
+.captain-inner::before {
+  content: ''; position: absolute;
+  left: 36px; top: 0; bottom: 0; width: 1px;
+  background: rgba(0,0,0,0.04);
+}
+.captain-inner::after {
+  content: ''; position: absolute;
+  left: 44px; top: 28px; bottom: 28px; width: 1px;
+  background: rgba(175,68,68,0.14);
+}
+.captain .eyebrow { display: block; margin-bottom: 1rem; color: var(--sea); }
+.captain h2 { margin-bottom: 1.5rem; color: var(--ink); }
+.captain-text p { color: #4A5560; line-height: 1.85; margin-bottom: 1rem; font-size: 0.95rem; }
+.captain-creds {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem;
+}
+.captain-cred {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: #6B7580;
+  background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.07);
+  padding: 6px 14px; border-radius: 100px;
+}
+
+/* How We Work strip */
+.how-strip {
+  position: relative; z-index: 1; margin-top: 2.5rem;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r-lg); padding: 28px 32px;
+}
+.how-strip h3 { color: #fff; margin-bottom: 12px; font-size: 1rem; }
+.how-list {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 10px 20px;
+}
+.how-list li {
+  font-size: 0.82rem; color: rgba(255,255,255,0.5); font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+}
+.how-list li .check { width: 14px; height: 14px; stroke: var(--sea-light); fill: none; stroke-width: 2; flex-shrink: 0; }
+
+/* Method cards (from plot version) */
+.method-grid { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; z-index: 1; }
+.method-card {
+  background: rgba(251,249,244,0.85); border: 1px solid rgba(43,108,176,0.08);
+  border-radius: var(--r-lg); padding: 32px; position: relative;
+  transition: all 0.3s var(--ease); backdrop-filter: blur(6px);
+}
+.method-card:hover { border-color: var(--sea); box-shadow: 0 8px 32px var(--sea-glow); transform: translateY(-2px); }
+.method-number {
+  font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+  width: 48px; height: 48px; line-height: 48px; text-align: center;
+  border-radius: 50%; border: 2px solid rgba(43,108,176,0.15);
+  color: var(--sea); margin-bottom: 16px;
+  background: rgba(43,108,176,0.03);
+}
+.method-card h3 { color: var(--ink); margin-bottom: 8px; }
+.method-card p { font-size: 0.9rem; color: var(--drift); line-height: 1.7; }
+.method-card .tag {
+  display: inline-block; margin-top: 16px;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--sea); background: rgba(43,108,176,0.06);
+  padding: 5px 12px; border-radius: 100px;
+}
+
+/* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
 @media (min-width: 768px) {
@@ -628,7 +740,21 @@ p, li { font-size: 1rem; line-height: 1.75; }
   .hero-grid { grid-template-columns: 1fr 1fr; }
   .hero-graphic { height: 360px; }
   .outcome-grid { grid-template-columns: 1fr 1fr; }
+  .method-grid { grid-template-columns: repeat(3, 1fr); }
   .proof-grid { grid-template-columns: repeat(3, 1fr); }
+  .captain-inner {
+    padding: 52px 56px 48px 80px;
+    background:
+      linear-gradient(to right,
+        #4A5A6A 0px, #4A5A6A 6px,
+        #CEC7BC 6px, #D8D1C6 8px,
+        #E8E2D6 8px, #EDE7DD 42px,
+        transparent 42px
+      ),
+      linear-gradient(160deg, #FBF8F2 0%, #F5F1E9 100%);
+  }
+  .captain-inner::before { left: 42px; }
+  .captain-inner::after { left: 54px; top: 36px; bottom: 36px; }
   .featured-cs { grid-column: 1 / -1; }
   .featured-cs .featured-cs-img { display: block; }
   .featured-cs { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
@@ -659,7 +785,8 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <nav class="nav-links">
       <a href="#method">Method</a>
       <a href="#offer">Pricing</a>
-      <a href="#proof">Proof</a>
+      <a href="#proof">Results</a>
+      <a href="#captain">About</a>
       <a href="#apply" class="btn btn-sea">Enter &rarr;</a>
     </nav>
     <button class="mobile-toggle" aria-label="Menu" aria-expanded="false">
@@ -671,7 +798,8 @@ p, li { font-size: 1rem; line-height: 1.75; }
 <div class="mobile-nav" id="mobileNav">
   <a href="#method">Method</a>
   <a href="#offer">Pricing</a>
-  <a href="#proof">Proof</a>
+  <a href="#proof">Results</a>
+  <a href="#captain">About</a>
   <a href="#apply" class="btn btn-sea">Enter &rarr;</a>
 </div>
 
@@ -688,6 +816,12 @@ p, li { font-size: 1rem; line-height: 1.75; }
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
           <a href="#apply" class="btn btn-sea">Start the Audit &rarr;</a>
           <a href="#method" class="btn btn-ghost">See the method</a>
+        </div>
+        <div class="hero-signal">
+          <div class="hero-signal-item"><span class="dot"></span> Fully async</div>
+          <div class="hero-signal-item"><span class="dot"></span> Fixed scope</div>
+          <div class="hero-signal-item"><span class="dot"></span> 2&ndash;4 week sprints</div>
+          <div class="hero-signal-item"><span class="dot"></span> Enterprise-tested</div>
         </div>
       </div>
       <div class="hero-graphic reveal" aria-hidden="true">
@@ -718,70 +852,142 @@ p, li { font-size: 1rem; line-height: 1.75; }
               <stop offset="100%" stop-color="#D8DFE6"/>
             </linearGradient>
             <linearGradient id="domeG" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#1E4F82"/>
-              <stop offset="100%" stop-color="#163B63"/>
+              <stop offset="0%" stop-color="#2468A5"/>
+              <stop offset="100%" stop-color="#1A4F82"/>
             </linearGradient>
+            <linearGradient id="beamLG" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="rgba(212,147,90,0.12)"/>
+              <stop offset="100%" stop-color="rgba(212,147,90,0)"/>
+            </linearGradient>
+            <linearGradient id="beamRG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(212,147,90,0.12)"/>
+              <stop offset="100%" stop-color="rgba(212,147,90,0)"/>
+            </linearGradient>
+            <clipPath id="tClip">
+              <path d="M228,162 L216,332 L292,332 L280,162 Z"/>
+            </clipPath>
           </defs>
           <!-- Sky -->
           <rect width="500" height="400" fill="url(#skyG)"/>
-          <!-- Stars -->
-          <g fill="#fff" opacity="0.15">
-            <circle cx="80" cy="40" r="1"/><circle cx="150" cy="80" r="0.8"/>
-            <circle cx="320" cy="50" r="1.2"/><circle cx="420" cy="90" r="0.7"/>
-            <circle cx="60" cy="120" r="0.6"/><circle cx="380" cy="30" r="0.9"/>
-            <circle cx="200" cy="60" r="0.8"/><circle cx="450" cy="140" r="0.6"/>
-          </g>
-          <!-- Water -->
-          <path d="M0,310 Q60,300 125,310 T250,310 T375,310 T500,310 L500,400 L0,400 Z" fill="rgba(43,108,176,0.08)"/>
-          <path d="M0,330 Q60,320 125,330 T250,330 T375,330 T500,330 L500,400 L0,400 Z" fill="rgba(43,108,176,0.06)"/>
-          <!-- Island -->
-          <ellipse cx="250" cy="310" rx="120" ry="18" fill="url(#sandG)" opacity="0.35"/>
-          <!-- Rocky base -->
-          <ellipse cx="220" cy="315" rx="25" ry="8" fill="rgba(255,255,255,0.03)"/>
-          <ellipse cx="285" cy="312" rx="18" ry="6" fill="rgba(255,255,255,0.02)"/>
-          <!-- Tower -->
+          <!-- Stars (twinkling) -->
           <g>
-            <defs><clipPath id="tClip"><path d="M232,170 L226,305 L274,305 L268,170 Z"/></clipPath></defs>
-            <g clip-path="url(#tClip)">
-              <rect x="220" y="170" width="60" height="19.3" fill="url(#blueG)" opacity="0.7"/>
-              <rect x="220" y="189.3" width="60" height="19.3" fill="url(#whiteG)" opacity="0.12"/>
-              <rect x="220" y="208.6" width="60" height="19.3" fill="url(#blueG)" opacity="0.7"/>
-              <rect x="220" y="227.9" width="60" height="19.3" fill="url(#whiteG)" opacity="0.12"/>
-              <rect x="220" y="247.2" width="60" height="19.3" fill="url(#blueG)" opacity="0.7"/>
-              <rect x="220" y="266.5" width="60" height="19.3" fill="url(#whiteG)" opacity="0.12"/>
-              <rect x="220" y="285.8" width="60" height="19.2" fill="url(#blueG)" opacity="0.7"/>
-            </g>
+            <circle cx="50" cy="25" r="0.7" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle>
+            <circle cx="115" cy="52" r="0.5" fill="#B8C4CE" opacity="0.4"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.5s" repeatCount="indefinite" begin="0.5s"/></circle>
+            <circle cx="395" cy="20" r="0.8" fill="#fff" opacity="0.25"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="5s" repeatCount="indefinite" begin="1s"/></circle>
+            <circle cx="445" cy="65" r="0.5" fill="#B8C4CE" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.8s" repeatCount="indefinite" begin="0.3s"/></circle>
+            <circle cx="80" cy="85" r="0.6" fill="#fff" opacity="0.35"><animate attributeName="opacity" values="0.2;0.55;0.2" dur="4.5s" repeatCount="indefinite" begin="1.5s"/></circle>
+            <circle cx="315" cy="35" r="0.6" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.2s" repeatCount="indefinite" begin="0.8s"/></circle>
+            <circle cx="195" cy="15" r="0.4" fill="#B8C4CE" opacity="0.4"><animate attributeName="opacity" values="0.3;0.7;0.3" dur="4.8s" repeatCount="indefinite" begin="2s"/></circle>
+            <circle cx="475" cy="100" r="0.5" fill="#fff" opacity="0.2"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="5.5s" repeatCount="indefinite" begin="0.7s"/></circle>
+            <circle cx="30" cy="130" r="0.5" fill="#B8C4CE" opacity="0.35"><animate attributeName="opacity" values="0.25;0.55;0.25" dur="4s" repeatCount="indefinite" begin="1.2s"/></circle>
+            <circle cx="160" cy="70" r="0.6" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.6s" repeatCount="indefinite" begin="0.4s"/></circle>
+            <circle cx="355" cy="85" r="0.4" fill="#B8C4CE" opacity="0.3"><animate attributeName="opacity" values="0.2;0.55;0.2" dur="4.3s" repeatCount="indefinite" begin="1.8s"/></circle>
+            <circle cx="265" cy="28" r="0.5" fill="#fff" opacity="0.25"><animate attributeName="opacity" values="0.15;0.5;0.15" dur="5.2s" repeatCount="indefinite" begin="0.9s"/></circle>
           </g>
-          <!-- Gallery railing -->
-          <rect x="225" y="165" width="50" height="8" rx="2" fill="rgba(255,255,255,0.08)"/>
-          <rect x="224" y="160" width="52" height="5" rx="2" fill="#4A8DD4" opacity="0.35"/>
-          <!-- Lantern room -->
-          <rect x="234" y="128" width="32" height="34" rx="4" fill="rgba(255,255,255,0.1)" stroke="#2B6CB0" stroke-width="1.2" opacity="0.7"/>
+          <!-- Light Beams (alternating) -->
+          <path d="M254,138 L90,50 L140,152 Z" fill="url(#beamLG)" opacity="0.6">
+            <animate attributeName="opacity" values="0.6;0.3;0.6" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          </path>
+          <path d="M254,138 L420,50 L370,152 Z" fill="url(#beamRG)" opacity="0.3">
+            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          </path>
+          <!-- Wider ambient beams -->
+          <path d="M254,140 L40,30 L100,165 Z" fill="rgba(212,147,90,0.03)"/>
+          <path d="M254,140 L470,30 L410,165 Z" fill="rgba(212,147,90,0.03)"/>
+          <!-- Beacon glow halo -->
+          <circle cx="254" cy="136" r="50" fill="url(#glowG)" opacity="0.6">
+            <animate attributeName="r" values="50;62;50" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+          </circle>
+          <!-- Sandy Island -->
+          <ellipse cx="254" cy="340" rx="142" ry="32" fill="url(#sandG)"/>
+          <ellipse cx="242" cy="336" rx="95" ry="18" fill="rgba(232,189,138,0.12)"/>
+          <!-- Rocks -->
+          <ellipse cx="142" cy="334" rx="20" ry="13" fill="#4E6070" opacity="0.85"/>
+          <ellipse cx="125" cy="340" rx="14" ry="9" fill="#5A6E7E" opacity="0.7"/>
+          <ellipse cx="355" cy="330" rx="17" ry="11" fill="#4E6070" opacity="0.8"/>
+          <ellipse cx="372" cy="337" rx="11" ry="7" fill="#5A6E7E" opacity="0.65"/>
+          <ellipse cx="178" cy="346" rx="11" ry="7" fill="#5A6E7E" opacity="0.6"/>
+          <ellipse cx="325" cy="345" rx="13" ry="8" fill="#4E6070" opacity="0.7"/>
+          <!-- Tower shadow -->
+          <ellipse cx="260" cy="336" rx="40" ry="8" fill="rgba(0,0,0,0.12)"/>
+          <!-- Keeper's House -->
+          <rect x="155" y="297" width="65" height="35" rx="4" fill="#DFE5EB"/>
+          <rect x="200" y="297" width="20" height="35" fill="rgba(0,0,0,0.05)"/>
+          <path d="M150,297 L187,268 L224,297 Z" fill="#2B6CB0"/>
+          <path d="M187,268 L224,297 L206,297 Z" fill="#1E5A95" opacity="0.6"/>
+          <rect x="163" y="304" width="14" height="16" rx="3" fill="#0A1628"/>
+          <rect x="164" y="305" width="12" height="14" rx="2" fill="rgba(212,147,90,0.06)"/>
+          <line x1="170" y1="304" x2="170" y2="320" stroke="#4A8DD4" stroke-width="1.5" opacity="0.5"/>
+          <line x1="163" y1="312" x2="177" y2="312" stroke="#4A8DD4" stroke-width="1.5" opacity="0.5"/>
+          <rect x="196" y="313" width="14" height="19" rx="7" fill="#1A4F82"/>
+          <circle cx="207" cy="323" r="1.2" fill="#4A8DD4" opacity="0.5"/>
+          <!-- Lighthouse Tower (striped, clipped to tapered shape) -->
+          <g clip-path="url(#tClip)">
+            <rect x="210" y="162" width="88" height="34" fill="url(#blueG)"/>
+            <rect x="210" y="196" width="88" height="34" fill="url(#whiteG)"/>
+            <rect x="210" y="230" width="88" height="34" fill="url(#blueG)"/>
+            <rect x="210" y="264" width="88" height="34" fill="url(#whiteG)"/>
+            <rect x="210" y="298" width="88" height="34" fill="url(#blueG)"/>
+          </g>
+          <!-- Tower window -->
+          <ellipse cx="254" cy="247" rx="16" ry="20" fill="rgba(212,147,90,0.05)"/>
+          <ellipse cx="254" cy="247" rx="12" ry="16" fill="#0A1628"/>
+          <ellipse cx="254" cy="247" rx="12" ry="16" fill="none" stroke="#4A8DD4" stroke-width="2.5"/>
+          <line x1="254" y1="231" x2="254" y2="263" stroke="#4A8DD4" stroke-width="1.5"/>
+          <line x1="242" y1="247" x2="266" y2="247" stroke="#4A8DD4" stroke-width="1.5"/>
+          <!-- Gallery Platform -->
+          <rect x="212" y="158" width="84" height="8" rx="3" fill="#2B6CB0"/>
+          <rect x="212" y="158" width="84" height="3" rx="1.5" fill="#3478C0" opacity="0.6"/>
+          <rect x="210" y="149" width="88" height="2.5" rx="1.25" fill="#4A8DD4"/>
+          <!-- Railing posts -->
+          <g stroke="#4A8DD4" stroke-width="1.8" stroke-linecap="round">
+            <line x1="215" y1="149" x2="215" y2="158"/><line x1="225" y1="149" x2="225" y2="158"/>
+            <line x1="235" y1="149" x2="235" y2="158"/><line x1="245" y1="149" x2="245" y2="158"/>
+            <line x1="254" y1="149" x2="254" y2="158"/><line x1="263" y1="149" x2="263" y2="158"/>
+            <line x1="273" y1="149" x2="273" y2="158"/><line x1="283" y1="149" x2="283" y2="158"/>
+            <line x1="293" y1="149" x2="293" y2="158"/>
+          </g>
+          <!-- Lantern Room with glass panes -->
+          <rect x="231" y="114" width="46" height="38" rx="5" fill="#E8EDF2"/>
+          <rect x="236" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.55"/>
+          <rect x="249" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.45"/>
+          <rect x="262" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.55"/>
+          <rect x="231" y="114" width="46" height="38" rx="5" fill="none" stroke="#2B6CB0" stroke-width="2"/>
+          <line x1="248" y1="114" x2="248" y2="152" stroke="#2B6CB0" stroke-width="1.5"/>
+          <line x1="261" y1="114" x2="261" y2="152" stroke="#2B6CB0" stroke-width="1.5"/>
           <!-- Dome -->
-          <path d="M234,128 C234,118 241,107 250,105 C259,107 266,118 266,128 Z" fill="url(#domeG)" opacity="0.7"/>
+          <path d="M229,114 C229,105 240,90 254,88 C268,90 279,105 279,114 Z" fill="url(#domeG)"/>
+          <path d="M229,114 C229,105 240,90 254,88 C268,90 279,105 279,114 Z" fill="none" stroke="#2B6CB0" stroke-width="1.5"/>
+          <path d="M238,112 C240,104 247,94 254,92 C258,93 264,100 268,110" fill="none" stroke="rgba(74,141,212,0.2)" stroke-width="2"/>
           <!-- Spire -->
-          <line x1="250" y1="105" x2="250" y2="90" stroke="#1E4F82" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-          <circle cx="250" cy="88" r="3" fill="#2B6CB0" opacity="0.5"/>
-          <!-- Beacon glow -->
-          <circle cx="250" cy="144" r="40" fill="rgba(212,147,90,0.06)">
-            <animate attributeName="r" values="35;50;35" dur="4s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite"/>
+          <line x1="254" y1="88" x2="254" y2="72" stroke="#1A4F82" stroke-width="3.5" stroke-linecap="round"/>
+          <circle cx="254" cy="68" r="5" fill="#2B6CB0"/>
+          <circle cx="254" cy="68" r="2.5" fill="#4A8DD4"/>
+          <!-- Light core -->
+          <circle cx="254" cy="134" r="10" fill="rgba(224,173,122,0.35)">
+            <animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
           </circle>
-          <circle cx="250" cy="144" r="18" fill="rgba(212,147,90,0.12)">
-            <animate attributeName="r" values="16;22;16" dur="4s" repeatCount="indefinite"/>
+          <circle cx="254" cy="134" r="6" fill="#E0AD7A" opacity="0.9">
+            <animate attributeName="r" values="6;8;6" dur="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
           </circle>
-          <circle cx="250" cy="144" r="6" fill="#D4935A" opacity="0.8">
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="4s" repeatCount="indefinite"/>
+          <circle cx="254" cy="134" r="3" fill="#fff" opacity="0.8">
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
           </circle>
-          <!-- Light beams -->
-          <g opacity="0.06">
-            <polygon points="256,140 420,80 420,100" fill="#D4935A">
-              <animate attributeName="opacity" values="0.06;0.12;0.06" dur="4s" repeatCount="indefinite"/>
-            </polygon>
-            <polygon points="244,140 80,80 80,100" fill="#D4935A">
-              <animate attributeName="opacity" values="0.06;0.12;0.06" dur="4s" repeatCount="indefinite"/>
-            </polygon>
+          <!-- Water reflections -->
+          <g opacity="0.5">
+            <line x1="250" y1="355" x2="250" y2="368" stroke="#D4935A" stroke-width="0.5" opacity="0.1" stroke-linecap="round">
+              <animate attributeName="opacity" values="0.05;0.12;0.05" dur="3s" repeatCount="indefinite"/>
+            </line>
+            <line x1="258" y1="358" x2="258" y2="372" stroke="#D4935A" stroke-width="0.4" opacity="0.08" stroke-linecap="round">
+              <animate attributeName="opacity" values="0.04;0.1;0.04" dur="3.5s" repeatCount="indefinite" begin="0.5s"/>
+            </line>
+            <line x1="246" y1="360" x2="246" y2="370" stroke="#D4935A" stroke-width="0.4" opacity="0.06" stroke-linecap="round">
+              <animate attributeName="opacity" values="0.03;0.08;0.03" dur="2.8s" repeatCount="indefinite" begin="1s"/>
+            </line>
           </g>
+          <!-- Subtle water -->
+          <path d="M0,368 Q65,362 130,366 Q195,370 260,364 Q325,358 390,365 Q455,370 500,366 L500,400 L0,400 Z" fill="rgba(43,108,176,0.06)"/>
+          <path d="M0,378 Q80,373 160,376 Q240,380 320,374 Q400,370 500,376 L500,400 L0,400 Z" fill="rgba(43,108,176,0.04)"/>
         </svg>
       </div>
     </div>
@@ -809,6 +1015,15 @@ p, li { font-size: 1rem; line-height: 1.75; }
 <section class="problem section" id="problem">
   <div class="container">
     <div class="problem-inner reveal">
+      <div class="wheel-divider">
+        <svg viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="50" cy="50" r="35"/><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="6"/>
+          <line x1="50" y1="8" x2="50" y2="28"/><line x1="50" y1="72" x2="50" y2="92"/>
+          <line x1="8" y1="50" x2="28" y2="50"/><line x1="72" y1="50" x2="92" y2="50"/>
+          <line x1="20.3" y1="20.3" x2="33.4" y2="33.4"/><line x1="66.6" y1="66.6" x2="79.7" y2="79.7"/>
+          <line x1="79.7" y1="20.3" x2="66.6" y2="33.4"/><line x1="33.4" y1="66.6" x2="20.3" y2="79.7"/>
+        </svg>
+      </div>
       <p>You're approving everything.</p>
       <p>Your team moves — but only when you're involved.</p>
       <p>Vendors are in different time zones. Nothing connects cleanly.</p>
@@ -887,16 +1102,28 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <text x="100" y="6" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7" font-weight="700" letter-spacing="0.1em" fill="currentColor" opacity="0.12">N</text>
   </svg>
   <div class="container">
-    <div class="method-inner reveal">
-      <h2>We don't advise. We install.</h2>
-      <p class="method-sub">We implement production infrastructure battle-tested inside Fortune 500 creative systems:</p>
-      <ul class="method-items">
-        <li><strong>Creative Certification Program (CCP)</strong> — nothing ships without structured approval</li>
-        <li><strong>Single Point of Contact (SPOC)</strong> — one source of truth, one person to call</li>
-        <li><strong>Stage-gated execution</strong> — from brief to launch, nothing falls through</li>
-        <li><strong>Async visibility systems</strong> — kill the status meeting, keep the accountability</li>
-      </ul>
-      <p class="method-note">So work moves without you holding it together.</p>
+    <span class="eyebrow reveal">How We Navigate</span>
+    <h2 class="reveal" style="position:relative;z-index:1;">Three phases. One clear heading.</h2>
+    <p class="method-sub reveal" style="position:relative;z-index:1;">Every engagement follows the same disciplined arc &mdash; from diagnosis to installation. No fluff, no scope creep, no endless discovery loops.</p>
+    <div class="method-grid">
+      <div class="method-card reveal reveal-d1">
+        <div class="method-number">01</div>
+        <h3>System Audit</h3>
+        <p>We map the current state &mdash; every workflow, handoff, bottleneck, and buried assumption. You get a clear-eyed diagnosis, not a vague assessment.</p>
+        <span class="tag">2-week sprint</span>
+      </div>
+      <div class="method-card reveal reveal-d2">
+        <div class="method-number">02</div>
+        <h3>System Design</h3>
+        <p>We architect the operating system your team should have had from day one &mdash; ownership maps, stage gates, async visibility frameworks, decision flows.</p>
+        <span class="tag">Custom blueprint</span>
+      </div>
+      <div class="method-card reveal reveal-d3">
+        <div class="method-number">03</div>
+        <h3>System Install</h3>
+        <p>We build it, configure it, and hand it over with a playbook your team can actually run. No ghost systems. No shelf-ware.</p>
+        <span class="tag">Fully deployed</span>
+      </div>
     </div>
   </div>
 </section>
@@ -955,6 +1182,15 @@ p, li { font-size: 1rem; line-height: 1.75; }
         <a href="#apply" class="btn btn-ghost" style="color:rgba(255,255,255,0.7); border-color:rgba(255,255,255,0.2);">Inquire</a>
       </div>
     </div>
+    <div class="how-strip reveal">
+      <h3>How we operate.</h3>
+      <ul class="how-list">
+        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fully async</li>
+        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fixed scope, fixed price</li>
+        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Selective intake</li>
+        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Enterprise-tested methodology</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -963,8 +1199,8 @@ p, li { font-size: 1rem; line-height: 1.75; }
      ═══════════════════════════════════════════ -->
 <section class="proof section" id="proof">
   <div class="container">
-    <span class="eyebrow reveal">Results</span>
-    <h2 class="reveal">These systems already exist. You just don't have them installed.</h2>
+    <span class="eyebrow reveal">Course Corrections</span>
+    <h2 class="reveal">Ships we've steered back on course.</h2>
     <p class="proof-sub reveal">Real outcomes from enterprise engagements. Now applied inside founder-led companies in wellness, pleasure-tech, and longevity.</p>
     <div class="proof-grid">
       <!-- Featured: Castrol -->
@@ -1043,12 +1279,36 @@ p, li { font-size: 1rem; line-height: 1.75; }
 </section>
 
 <!-- ═══════════════════════════════════════════
+     CAPTAIN'S LOG — About
+     ═══════════════════════════════════════════ -->
+<section class="captain section" id="captain">
+  <div class="container">
+    <div class="captain-inner">
+      <span class="eyebrow reveal">The Captain's Log</span>
+      <h2 class="reveal">We didn't learn ops from a textbook. We learned it inside the buildings you're sitting in.</h2>
+      <div class="captain-text reveal">
+        <p>Soren Rho was founded by operators who've managed 200+ concurrent campaigns, redesigned workflows for teams of 5 to 50+, and been the person in the room when the system fails and everyone looks around.</p>
+        <p>We've sat inside Walmart Connect, Airbnb, McCann, and Fortune 500 creative teams where a fumbled handoff doesn't cost hours &mdash; it costs quarters. That's why we don't sell advice. We build infrastructure.</p>
+        <p>The lighthouse isn't just our logo &mdash; it's our operating principle. We exist to be a fixed point in the chaos: a signal that says <em>this is the way through.</em></p>
+      </div>
+      <div class="captain-creds reveal">
+        <span class="captain-cred">Google</span>
+        <span class="captain-cred">Airbnb</span>
+        <span class="captain-cred">Walmart Connect</span>
+        <span class="captain-cred">McCann Worldgroup</span>
+        <span class="captain-cred">UC Berkeley</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
      7. CLOSE — CTA
      ═══════════════════════════════════════════ -->
 <section class="close-cta" id="close">
   <div class="container">
     <div class="close-cta-inner reveal">
-      <h2>Ready to stop being the bottleneck?</h2>
+      <h2>Your team's been in open water long enough.</h2>
       <p>This is for companies doing $3M+ where operational mistakes are expensive.</p>
       <a href="#apply" class="btn btn-sea">Start the Conversation &rarr;</a>
       <span class="capacity">Limited capacity &mdash; 3 spots per quarter</span>
