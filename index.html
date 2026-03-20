@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soren Rho — Operational Infrastructure for Founder-Led Teams</title>
-<meta name="description" content="Your team is in open water. We steer them home. Soren Rho installs the operational infrastructure that lets founder-led teams sail without you at the wheel.">
+<meta name="description" content="Your team is in open water. We steer them home. Soren Rho installs the workflows, ownership models, and decision systems that let founder-led teams scale past $3M/year without the founder holding everything together.">
 <meta property="og:title" content="Soren Rho — Your team is in open water. We steer them home.">
-<meta property="og:description" content="We install the operating system that lets your team run without you holding everything together. For founders scaling past $3M.">
+<meta property="og:description" content="We install the workflows, ownership models, and decision systems that let your team run without you holding everything together. Fortune 500 methodology for founders scaling past $3M/year.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sorenrho.com">
 <link rel="canonical" href="https://sorenrho.com">
@@ -23,7 +23,6 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; }
-
 :root {
   --ink: #0F1923;
   --charcoal: #1A2636;
@@ -52,7 +51,6 @@ a { text-decoration: none; color: inherit; }
   --ease: cubic-bezier(0.4,0,0.2,1);
   --ease-spring: cubic-bezier(0.16,1,0.3,1);
 }
-
 /* Typography */
 .serif { font-family: 'DM Serif Display', Georgia, serif; }
 h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 2.4rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.01em; }
@@ -63,25 +61,21 @@ p, li { font-size: 1rem; line-height: 1.75; }
   font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.16em; color: var(--sea);
 }
-
 /* Layout */
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--side-pad); }
 .section { padding: var(--section-pad) 0; }
-
 /* Reveal */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-spring), transform 0.7s var(--ease-spring); }
 .reveal.vis { opacity: 1; transform: translateY(0); }
 .reveal-d1 { transition-delay: 0.08s; }
 .reveal-d2 { transition-delay: 0.16s; }
 .reveal-d3 { transition-delay: 0.24s; }
-
 /* Glow dot */
 .glow-dot {
   width: 6px; height: 6px; border-radius: 50%; background: var(--beam);
   box-shadow: 0 0 12px var(--beam), 0 0 24px var(--beam-glow);
   display: inline-block;
 }
-
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -115,7 +109,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 }
 .btn-text:hover { gap: 12px; color: var(--sea-dark); }
 .btn-text svg { transition: transform 0.3s var(--ease); }
-
 /* ═══════════════════════════════════════════
    HEADER
    ═══════════════════════════════════════════ */
@@ -147,7 +140,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 .mobile-nav.active { display: flex; }
 .mobile-nav a { font-size: 1.1rem; font-weight: 600; color: var(--ink); }
 .mobile-nav .btn { width: 80%; max-width: 320px; }
-
 /* ═══════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════ */
@@ -185,7 +177,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 }
 .hero-signal-item { font-size: 0.78rem; color: var(--drift); font-weight: 500; display: flex; align-items: center; gap: 6px; }
 .hero-signal-item .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sea); flex-shrink: 0; }
-
 /* Lighthouse graphic */
 .hero-graphic {
   position: relative; z-index: 1;
@@ -239,7 +230,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   #lighthouse-svg { transform: none !important; transition: none !important; }
   .wind-trail, .wind-particle { display: none !important; }
 }
-
 /* ═══════════════════════════════════════════
    LOGO BAR
    ═══════════════════════════════════════════ */
@@ -262,7 +252,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   transition: all 0.3s var(--ease);
 }
 .logo-bar-logos img:hover { opacity: 0.6; filter: grayscale(50%); }
-
 /* ═══════════════════════════════════════════
    NARRATIVE — The Problem
    ═══════════════════════════════════════════ */
@@ -293,7 +282,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   opacity: 0.4;
 }
 .wheel-divider svg { width: 28px; height: 28px; opacity: 0.25; }
-
 /* ═══════════════════════════════════════════
    OUTCOME
    ═══════════════════════════════════════════ */
@@ -330,7 +318,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 }
 .outcome-item p { font-size: 0.95rem; color: var(--stone); line-height: 1.6; margin: 0; }
 .outcome-item strong { color: var(--ink); }
-
 /* ═══════════════════════════════════════════
    METHOD — The Three Phases
    ═══════════════════════════════════════════ */
@@ -404,7 +391,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   transition: stroke-dashoffset 1s var(--ease-spring), stroke 0.6s var(--ease);
 }
 .method-route-svg.drawn line { stroke-dashoffset: 0; stroke: rgba(43,108,176,0.35); }
-
 /* ═══════════════════════════════════════════
    PROOF
    ═══════════════════════════════════════════ */
@@ -479,7 +465,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   width: 100%; height: 100%; object-fit: cover; object-position: top;
   display: block;
 }
-
 /* ═══════════════════════════════════════════
    CAPTAIN — About
    ═══════════════════════════════════════════ */
@@ -534,7 +519,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.07);
   padding: 6px 14px; border-radius: 100px;
 }
-
 /* ═══════════════════════════════════════════
    OFFER — Pricing
    ═══════════════════════════════════════════ */
@@ -601,7 +585,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   width: 6px; height: 6px; border-radius: 50%; background: var(--sea-light);
 }
 .pricing-card .btn { width: 100%; }
-
 /* ═══════════════════════════════════════════
    CATEGORIES WE NAVIGATE
    ═══════════════════════════════════════════ */
@@ -638,7 +621,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 }
 .cat-name { font-size: 0.88rem; font-weight: 600; color: #fff; display: block; }
 .cat-detail { font-size: 0.72rem; color: rgba(255,255,255,0.35); display: block; margin-top: 2px; }
-
 /* How We Work strip */
 .how-strip {
   position: relative; z-index: 1; margin-top: 2.5rem;
@@ -654,7 +636,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   display: flex; align-items: center; gap: 6px;
 }
 .how-list li .check { width: 14px; height: 14px; stroke: var(--sea-light); fill: none; stroke-width: 2; flex-shrink: 0; }
-
 /* ═══════════════════════════════════════════
    FINAL CTA
    ═══════════════════════════════════════════ */
@@ -680,7 +661,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   content: ''; width: 6px; height: 6px; border-radius: 50%;
   background: var(--beam); box-shadow: 0 0 8px var(--beam);
 }
-
 /* ═══════════════════════════════════════════
    APPLICATION
    ═══════════════════════════════════════════ */
@@ -723,7 +703,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 }
 .form-group textarea { resize: vertical; min-height: 100px; }
 .form-group select { cursor: pointer; -webkit-appearance: none; appearance: none; }
-
 /* ═══════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════ */
@@ -742,7 +721,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 .footer .logo em { color: var(--sea); }
 .footer-email { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
 .footer-legal { font-size: 0.7rem; color: rgba(255,255,255,0.15); margin-top: 1.5rem; text-align: center; }
-
 /* ═══════════════════════════════════════════
    SECTION GLOW — pulse on scroll-enter
    ═══════════════════════════════════════════ */
@@ -769,7 +747,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 .section-glow-beam::after {
   background: radial-gradient(ellipse, rgba(212,147,90,0.05) 0%, transparent 70%);
 }
-
 /* Metric counter glow trail */
 @keyframes metric-glow {
   0% { text-shadow: none; }
@@ -779,7 +756,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 .proof-metric-value.counted {
   animation: metric-glow 1.5s var(--ease) 1;
 }
-
 /* ═══════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════ */
@@ -839,7 +815,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
 </style>
 </head>
 <body>
-
 <!-- HEADER -->
 <header class="header" id="header">
   <div class="header-inner">
@@ -856,7 +831,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </button>
   </div>
 </header>
-
 <div class="mobile-nav" id="mobileNav">
   <a href="#method">Method</a>
   <a href="#offer">Pricing</a>
@@ -864,7 +838,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <a href="#captain">About</a>
   <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea">Discovery Call</a>
 </div>
-
 <!-- ═══════════════════════════════════════════
      HERO
      ═══════════════════════════════════════════ -->
@@ -872,9 +845,9 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <div class="container">
     <div class="hero-grid">
       <div class="hero-content">
-        <div class="hero-badge reveal"><span class="glow-dot"></span> For founders scaling past $3M</div>
+        <div class="hero-badge reveal"><span class="glow-dot"></span> For founders scaling past $3M/year</div>
         <h1 class="reveal">Your team is in <span class="accent">open water.</span> <span class="italic">We steer them home.</span></h1>
-        <p class="hero-sub reveal">You built something real. But right now, nothing moves without you touching it. We install the operating system that lets your team sail without you at the wheel.</p>
+        <p class="hero-sub reveal">You built something real. But right now, nothing moves without you touching it. We install the operational infrastructure &mdash; the workflows, ownership models, and decision systems &mdash; that lets your team sail without you at the wheel.</p>
         <div class="hero-cta reveal">
           <a href="#apply" class="btn btn-sea">Chart Your Course &rarr;</a>
           <a href="#proof" class="btn-text">See the results <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -883,7 +856,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <div class="hero-signal-item"><span class="dot"></span> Fully async</div>
           <div class="hero-signal-item"><span class="dot"></span> Fixed scope</div>
           <div class="hero-signal-item"><span class="dot"></span> 2 to 4 week sprints</div>
-          <div class="hero-signal-item"><span class="dot"></span> Enterprise tested</div>
+          <div class="hero-signal-item"><span class="dot"></span> Fortune 500 proven</div>
         </div>
       </div>
       <div class="hero-graphic reveal" aria-hidden="true">
@@ -929,10 +902,8 @@ p, li { font-size: 1rem; line-height: 1.75; }
               <path d="M228,162 L216,332 L292,332 L280,162 Z"/>
             </clipPath>
           </defs>
-
           <!-- Sky -->
           <rect width="500" height="400" fill="url(#skyG)"/>
-
           <!-- Stars -->
           <g>
             <circle cx="50" cy="25" r="0.7" fill="#fff" opacity="0.3"><animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/></circle>
@@ -950,7 +921,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <circle cx="425" cy="130" r="0.5" fill="#B8C4CE" opacity="0.2"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="3.9s" repeatCount="indefinite" begin="1.4s"/></circle>
             <circle cx="90" cy="42" r="0.4" fill="#fff" opacity="0.35"><animate attributeName="opacity" values="0.25;0.6;0.25" dur="4.7s" repeatCount="indefinite" begin="0.6s"/></circle>
           </g>
-
           <!-- Light Beams -->
           <path d="M254,138 L90,50 L140,152 Z" fill="url(#beamLG)" opacity="0.6">
             <animate attributeName="opacity" values="0.6;0.3;0.6" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
@@ -961,16 +931,13 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <!-- Wider ambient beams -->
           <path d="M254,140 L40,30 L100,165 Z" fill="rgba(212,147,90,0.03)"/>
           <path d="M254,140 L470,30 L410,165 Z" fill="rgba(212,147,90,0.03)"/>
-
           <!-- Beacon glow halo -->
           <circle cx="254" cy="136" r="50" fill="url(#glowG)" opacity="0.6">
             <animate attributeName="r" values="50;62;50" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
           </circle>
-
           <!-- Sandy Island -->
           <ellipse cx="254" cy="340" rx="142" ry="32" fill="url(#sandG)"/>
           <ellipse cx="242" cy="336" rx="95" ry="18" fill="rgba(232,189,138,0.12)"/>
-
           <!-- Rocks -->
           <ellipse cx="142" cy="334" rx="20" ry="13" fill="#4E6070" opacity="0.85"/>
           <ellipse cx="125" cy="340" rx="14" ry="9" fill="#5A6E7E" opacity="0.7"/>
@@ -980,10 +947,8 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <ellipse cx="325" cy="345" rx="13" ry="8" fill="#4E6070" opacity="0.7"/>
           <ellipse cx="205" cy="351" rx="8" ry="5" fill="#5A6E7E" opacity="0.5"/>
           <ellipse cx="295" cy="350" rx="9" ry="6" fill="#5A6E7E" opacity="0.45"/>
-
           <!-- Tower shadow on sand -->
           <ellipse cx="260" cy="336" rx="40" ry="8" fill="rgba(0,0,0,0.12)"/>
-
           <!-- Keeper's House -->
           <rect x="155" y="297" width="65" height="35" rx="4" fill="#DFE5EB"/>
           <rect x="200" y="297" width="20" height="35" fill="rgba(0,0,0,0.05)"/>
@@ -998,7 +963,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <!-- House door -->
           <rect x="196" y="313" width="14" height="19" rx="7" fill="#1A4F82"/>
           <circle cx="207" cy="323" r="1.2" fill="#4A8DD4" opacity="0.5"/>
-
           <!-- Lighthouse Tower (striped, clipped) -->
           <g clip-path="url(#tClip)">
             <rect x="210" y="162" width="88" height="34" fill="url(#blueG)"/>
@@ -1007,14 +971,12 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <rect x="210" y="264" width="88" height="34" fill="url(#whiteG)"/>
             <rect x="210" y="298" width="88" height="34" fill="url(#blueG)"/>
           </g>
-
           <!-- Tower window -->
           <ellipse cx="254" cy="247" rx="16" ry="20" fill="rgba(212,147,90,0.05)"/>
           <ellipse cx="254" cy="247" rx="12" ry="16" fill="#0A1628"/>
           <ellipse cx="254" cy="247" rx="12" ry="16" fill="none" stroke="#4A8DD4" stroke-width="2.5"/>
           <line x1="254" y1="231" x2="254" y2="263" stroke="#4A8DD4" stroke-width="1.5"/>
           <line x1="242" y1="247" x2="266" y2="247" stroke="#4A8DD4" stroke-width="1.5"/>
-
           <!-- Gallery Platform -->
           <rect x="212" y="158" width="84" height="8" rx="3" fill="#2B6CB0"/>
           <rect x="212" y="158" width="84" height="3" rx="1.5" fill="#3478C0" opacity="0.6"/>
@@ -1030,7 +992,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <line x1="283" y1="149" x2="283" y2="158"/>
             <line x1="293" y1="149" x2="293" y2="158"/>
           </g>
-
           <!-- Lantern Room -->
           <rect x="231" y="114" width="46" height="38" rx="5" fill="#E8EDF2"/>
           <rect x="236" y="119" width="11" height="28" rx="2" fill="#0F1923" opacity="0.55"/>
@@ -1039,17 +1000,14 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <rect x="231" y="114" width="46" height="38" rx="5" fill="none" stroke="#2B6CB0" stroke-width="2"/>
           <line x1="248" y1="114" x2="248" y2="152" stroke="#2B6CB0" stroke-width="1.5"/>
           <line x1="261" y1="114" x2="261" y2="152" stroke="#2B6CB0" stroke-width="1.5"/>
-
           <!-- Dome -->
           <path d="M229,114 C229,105 240,90 254,88 C268,90 279,105 279,114 Z" fill="url(#domeG)"/>
           <path d="M229,114 C229,105 240,90 254,88 C268,90 279,105 279,114 Z" fill="none" stroke="#2B6CB0" stroke-width="1.5"/>
           <path d="M238,112 C240,104 247,94 254,92 C258,93 264,100 268,110" fill="none" stroke="rgba(74,141,212,0.2)" stroke-width="2"/>
-
           <!-- Spire -->
           <line x1="254" y1="88" x2="254" y2="72" stroke="#1A4F82" stroke-width="3.5" stroke-linecap="round"/>
           <circle cx="254" cy="68" r="5" fill="#2B6CB0"/>
           <circle cx="254" cy="68" r="2.5" fill="#4A8DD4"/>
-
           <!-- Light core -->
           <circle cx="254" cy="134" r="10" fill="rgba(224,173,122,0.35)">
             <animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
@@ -1060,7 +1018,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
           <circle cx="254" cy="134" r="3" fill="#fff" opacity="0.8">
             <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
           </circle>
-
           <!-- Water reflections -->
           <g opacity="0.5">
             <line x1="250" y1="355" x2="250" y2="368" stroke="#D4935A" stroke-width="0.5" opacity="0.1" stroke-linecap="round">
@@ -1073,7 +1030,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
               <animate attributeName="opacity" values="0.03;0.08;0.03" dur="2.8s" repeatCount="indefinite" begin="1s"/>
             </line>
           </g>
-
           <!-- Subtle water -->
           <path d="M0,368 Q65,362 130,366 Q195,370 260,364 Q325,358 390,365 Q455,370 500,366 L500,400 L0,400 Z" fill="rgba(43,108,176,0.06)"/>
           <path d="M0,378 Q80,373 160,376 Q240,380 320,374 Q400,370 500,376 L500,400 L0,400 Z" fill="rgba(43,108,176,0.04)"/>
@@ -1082,7 +1038,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      LOGO BAR
      ═══════════════════════════════════════════ -->
@@ -1099,7 +1054,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </div>
-
 <!-- ═══════════════════════════════════════════
      NARRATIVE — The Problem
      ═══════════════════════════════════════════ -->
@@ -1107,7 +1061,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <div class="container">
     <div class="narrative-inner">
       <span class="eyebrow reveal">Sound familiar?</span>
-      <h2 class="reveal">You didn't build a business<br>to babysit every decision.</h2>
+      <h2 class="reveal">You didn't build a $3M+/year business<br>to babysit every decision.</h2>
       <div class="wheel-divider reveal">
         <svg viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="50" cy="50" r="35"/>
@@ -1127,7 +1081,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      OUTCOME — What life looks like after
      ═══════════════════════════════════════════ -->
@@ -1136,7 +1089,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <div class="outcome-inner">
       <span class="eyebrow reveal">Calmer waters ahead</span>
       <h2 class="reveal">What it looks like <span class="accent">after we leave:</span></h2>
-      <p class="outcome-sub reveal">Imagine checking in on Monday and everything is already moving. No fires. No chasing. Just your team, running the play.</p>
+      <p class="outcome-sub reveal">For founders past $3M/year in revenue, this is the shift that changes everything. Imagine checking in on Monday and everything is already moving. No fires. No chasing. Just your team, running the play.</p>
       <div class="outcome-grid">
         <div class="outcome-item reveal">
           <div class="outcome-icon">
@@ -1170,7 +1123,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      METHOD — Three Phases
      ═══════════════════════════════════════════ -->
@@ -1246,7 +1198,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      PROOF
      ═══════════════════════════════════════════ -->
@@ -1254,16 +1205,21 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <div class="container">
     <span class="eyebrow reveal">Course Corrections</span>
     <h2 class="reveal">Ships we've steered back on course.</h2>
-    <p class="proof-sub reveal">These aren't hypotheticals. These are real ships we helped navigate to port. The numbers tell the story.</p>
+    <p class="proof-sub reveal">These aren't hypotheticals. Real teams. Real bottlenecks. Real results &mdash; delivered in weeks, not quarters.</p>
     <div class="proof-grid">
       <!-- Featured: Castrol -->
       <div class="proof-card featured-cs reveal">
         <div class="featured-cs-content">
-          <div class="proof-label">Walmart Connect &times; Castrol &nbsp;&middot;&nbsp; MMA Smarties Gold</div>
-          <h3>Built a first of its kind $7.5M shoppable retail media experience</h3>
-          <div class="proof-metrics">
+          <div class="proof-label">Walmart Connect &times; Castrol &nbsp;&middot;&nbsp; MMA Smarties Gold &nbsp;&middot;&nbsp; 30% New-to-Brand Lift</div>
+          <h3>Turned an overlooked oil brand into Walmart's top DIY destination &mdash; $7.5M in attributed sales</h3>
+          <div class="proof-metrics" style="grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;">
             <div class="proof-metric">
-              <div class="proof-metric-label after">Sales</div>
+              <div class="proof-metric-label after">Ad Sales</div>
+              <div class="proof-metric-value after">$13M+</div>
+            </div>
+            <div class="proof-arrow">&middot;</div>
+            <div class="proof-metric">
+              <div class="proof-metric-label after">Attributed</div>
               <div class="proof-metric-value after">$7.5M</div>
             </div>
             <div class="proof-arrow">&middot;</div>
@@ -1274,10 +1230,10 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <div class="proof-arrow">&middot;</div>
             <div class="proof-metric">
               <div class="proof-metric-label after">ROAS</div>
-              <div class="proof-metric-value after">7&times;</div>
+              <div class="proof-metric-value after">$7</div>
             </div>
           </div>
-          <p class="proof-desc">Program managed a 360&deg; interactive shoppable hub on Walmart.com, coordinating cross category strategy, celebrity talent, multi channel media, and Walmart's platform team.</p>
+          <p class="proof-desc">Castrol was being passed over in a low-engagement category. We orchestrated a first-of-its-kind 360&deg; shoppable hub on Walmart.com &mdash; coordinating cross-category strategy, NFL talent Larry Fitzgerald, multi-channel media (including Walmart's first-ever Spanish-language ads), and Walmart's platform team. The hub became one of Walmart's top DIY destinations, and Castrol was the only brand featured in Walmart.com's homepage navigation.</p>
           <a href="case-study-castrol.html" class="cs-link">Read the full case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
         <div class="featured-cs-img">
@@ -1298,7 +1254,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <div class="proof-metric-value after">3.5 mo</div>
           </div>
         </div>
-        <p class="proof-desc">Launch cycles cut 42%. Intake redesigned. Stage gates automated. Zero meetings added.</p>
+        <p class="proof-desc">A national retail brand was losing months to bloated launch cycles. We redesigned the intake process, automated stage gates, and cut launch time by 42% without adding a single meeting to anyone's calendar.</p>
       </div>
       <div class="proof-card reveal reveal-d2">
         <div class="proof-label">Fortune 500 Tech</div>
@@ -1314,7 +1270,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <div class="proof-metric-value after">97%</div>
           </div>
         </div>
-        <p class="proof-desc">On time delivery jumped nearly 40 points in one sprint. Ownership mapped. Handoff friction eliminated.</p>
+        <p class="proof-desc">A Fortune 500 creative team was missing deadlines on nearly half its projects. We mapped every handoff, assigned clear ownership, and took on-time delivery from 58% to 97% in a single sprint.</p>
       </div>
       <div class="proof-card reveal reveal-d3">
         <div class="proof-label">Global Media</div>
@@ -1330,12 +1286,11 @@ p, li { font-size: 1rem; line-height: 1.75; }
             <div class="proof-metric-value after">2 hrs/wk</div>
           </div>
         </div>
-        <p class="proof-desc">Status meetings replaced with async boards. Team velocity doubled. No one missed the standups.</p>
+        <p class="proof-desc">A global media team was burning 12 hours a week in status meetings nobody wanted. We replaced them with async visibility boards. Team velocity doubled and nobody missed the standups.</p>
       </div>
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      CATEGORIES WE NAVIGATE
      ═══════════════════════════════════════════ -->
@@ -1344,7 +1299,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <div class="categories-inner">
       <span class="eyebrow reveal" style="color:var(--sea-light);">Built for rough water</span>
       <h2 class="reveal">We specialize in categories others won't touch.</h2>
-      <p class="categories-sub reveal">Restricted platforms. Complex compliance. Industries where a single misstep costs more than money. We build ops that work anyway.</p>
+      <p class="categories-sub reveal">Restricted platforms. Complex compliance. Industries where a single misstep costs more than money. Most consultants won't touch these. We build ops that thrive in them.</p>
       <div class="cat-grid">
         <div class="cat-item reveal">
           <div class="cat-icon">
@@ -1352,7 +1307,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           </div>
           <div>
             <span class="cat-name">Sexual Wellness</span>
-            <span class="cat-detail">Discreet launches. Compliant flows.</span>
+            <span class="cat-detail">Discreet launches. Platform-compliant flows that convert.</span>
           </div>
         </div>
         <div class="cat-item reveal reveal-d1">
@@ -1361,7 +1316,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           </div>
           <div>
             <span class="cat-name">Pleasure Tech</span>
-            <span class="cat-detail">Hardware + content ops at scale.</span>
+            <span class="cat-detail">Hardware + content ops scaled without the guesswork.</span>
           </div>
         </div>
         <div class="cat-item reveal reveal-d2">
@@ -1370,7 +1325,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           </div>
           <div>
             <span class="cat-name">DTC Wellness</span>
-            <span class="cat-detail">Supplements. Skincare. Ingestibles.</span>
+            <span class="cat-detail">Supplements. Skincare. Ingestibles. Claim-safe ops.</span>
           </div>
         </div>
         <div class="cat-item reveal">
@@ -1379,7 +1334,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           </div>
           <div>
             <span class="cat-name">Longevity</span>
-            <span class="cat-detail">Biotech meets DTC. Regulated channels.</span>
+            <span class="cat-detail">Biotech meets DTC. Regulated channels navigated.</span>
           </div>
         </div>
         <div class="cat-item reveal reveal-d1">
@@ -1388,7 +1343,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
           </div>
           <div>
             <span class="cat-name">Adult Content</span>
-            <span class="cat-detail">Creator ops. Platform navigation.</span>
+            <span class="cat-detail">Creator ops. Platform navigation. Revenue protection.</span>
           </div>
         </div>
         <div class="cat-item reveal reveal-d2">
@@ -1397,14 +1352,13 @@ p, li { font-size: 1rem; line-height: 1.75; }
           </div>
           <div>
             <span class="cat-name">Compliance Heavy</span>
-            <span class="cat-detail">When the rules change weekly.</span>
+            <span class="cat-detail">When the rules change weekly, we keep you moving.</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      CAPTAIN — About
      ═══════════════════════════════════════════ -->
@@ -1428,7 +1382,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      OFFER — Pricing
      ═══════════════════════════════════════════ -->
@@ -1436,22 +1389,20 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <div class="container">
     <span class="eyebrow reveal">Come Aboard</span>
     <h2 class="reveal">Pick your port of entry.</h2>
-    <p class="offer-sub reveal">Every engagement is async, fixed scope, and ships in weeks. No retainers to sign, no proposals to chase, no games to play.</p>
-
+    <p class="offer-sub reveal">Built for founder-led teams doing $3M+/year who are ready to stop being the bottleneck. Every engagement is async, fixed scope, and ships in weeks. No retainers. No proposals to chase. No games.</p>
     <!-- Wave divider with anchor -->
     <div class="offer-wave-divider reveal" aria-hidden="true">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--sea-light)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.4">
         <circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="22"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
       </svg>
     </div>
-
     <div class="pricing-grid">
       <div class="pricing-card reveal reveal-d1">
         <div class="pricing-tier">Phase 1</div>
         <h3>Audit</h3>
         <div class="pricing-price">$3,000</div>
         <div class="pricing-duration">2 week sprint</div>
-        <p>We go below deck and find every leak in your operation. You get a clear, honest report on what's costing you time, money, and sanity.</p>
+        <p>We go below deck and find every leak in your operation. You get a clear, honest report on exactly what's costing you time, money, and sanity &mdash; and a prioritized roadmap to fix it.</p>
         <ul class="pricing-includes">
           <li>Full workflow audit</li>
           <li>Bottleneck &amp; friction map</li>
@@ -1469,7 +1420,7 @@ p, li { font-size: 1rem; line-height: 1.75; }
         <ul class="pricing-includes">
           <li>Everything in Audit</li>
           <li>Custom workflow architecture</li>
-          <li>CCP + SPOC setup</li>
+          <li>Clear ownership &amp; single-point-of-contact model</li>
           <li>Async visibility framework</li>
           <li>Team playbook &amp; training</li>
         </ul>
@@ -1497,12 +1448,11 @@ p, li { font-size: 1rem; line-height: 1.75; }
         <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fully async</li>
         <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fixed scope, fixed price</li>
         <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Selective intake</li>
-        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Enterprise tested methodology</li>
+        <li><svg class="check" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Fortune 500 proven methodology</li>
       </ul>
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      FINAL CTA
      ═══════════════════════════════════════════ -->
@@ -1510,13 +1460,12 @@ p, li { font-size: 1rem; line-height: 1.75; }
   <div class="container">
     <div class="final-cta-inner">
       <h2 class="reveal">Your team's been drifting long enough.</h2>
-      <p class="reveal">If you're doing $3M+ and every operational mistake costs real money, it's time to stop patching and start building. Let's get your ship pointed at the horizon.</p>
+      <p class="reveal">If you're doing $3M+/year and every operational fumble costs real revenue, it's time to stop patching holes and start building the ship right. Let's get your crew pointed at the horizon.</p>
       <a href="#apply" class="btn btn-sea reveal">Chart Your Course &rarr;</a>
       <span class="capacity reveal">We only take 3 crews per quarter</span>
     </div>
   </div>
 </section>
-
 <!-- ═══════════════════════════════════════════
      APPLICATION
      ═══════════════════════════════════════════ -->
@@ -1525,7 +1474,15 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <div class="application-inner reveal">
       <h2>Tell us where you're taking on water.</h2>
       <p class="application-sub">No pitch. No pressure. Just tell us what's broken and we'll tell you honestly if we can fix it.</p>
-      <form action="https://formspree.io/f/hello@sorenrho.com" method="POST">
+      <form action="https://formspree.io/f/xeerdzzr" method="POST">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="First and last" required>
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Company or brand name" required>
+        </div>
         <div class="form-group">
           <label for="revenue">Revenue range</label>
           <select id="revenue" name="revenue" required>
@@ -1573,7 +1530,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     </div>
   </div>
 </section>
-
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -1625,7 +1581,6 @@ p, li { font-size: 1rem; line-height: 1.75; }
     <p class="footer-legal">&copy; 2026 Pixique LLC d/b/a Soren Rho. All rights reserved.</p>
   </div>
 </footer>
-
 <!-- ═══════════════════════════════════════════
      SCRIPTS
      ═══════════════════════════════════════════ -->
@@ -1643,13 +1598,11 @@ mobileNav.querySelectorAll('a').forEach(a => {
     toggle.setAttribute('aria-expanded', 'false');
   });
 });
-
 // Header scroll
 const header = document.getElementById('header');
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
-
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
 const obs = new IntersectionObserver((entries) => {
@@ -1661,7 +1614,6 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 revealEls.forEach(el => obs.observe(el));
-
 // Section glow on scroll-enter
 const glowEls = document.querySelectorAll('.section-glow');
 const glowObs = new IntersectionObserver((entries) => {
@@ -1670,14 +1622,13 @@ const glowObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 glowEls.forEach(el => glowObs.observe(el));
-
 // Metric counter animation
 function animateValue(el, end, duration) {
   const isPercent = end.includes('%');
   const isMoney = end.includes('$');
-  const isTimes = end.includes('×') || end.includes('x');
+  const isTimes = end.includes('\u00d7') || end.includes('x');
   const hasUnit = end.match(/[a-zA-Z/]+$/);
-  const suffix = isPercent ? '%' : isTimes ? '×' : hasUnit ? hasUnit[0] : '';
+  const suffix = isPercent ? '%' : isTimes ? '\u00d7' : hasUnit ? hasUnit[0] : '';
   const prefix = isMoney ? '$' : '';
   const num = parseFloat(end.replace(/[^0-9.]/g, ''));
   if (isNaN(num)) return;
@@ -1692,7 +1643,6 @@ function animateValue(el, end, duration) {
   };
   requestAnimationFrame(step);
 }
-
 const metricEls = document.querySelectorAll('.proof-metric-value');
 const metricObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -1705,7 +1655,6 @@ const metricObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 metricEls.forEach(el => metricObs.observe(el));
-
 // Route line draw-in on method cards
 const routeSvgs = document.querySelectorAll('.method-route-svg');
 const routeObs = new IntersectionObserver((entries) => {
@@ -1717,7 +1666,6 @@ const routeObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 routeSvgs.forEach(el => routeObs.observe(el));
-
 // Proof arrow trail sync with metric counters
 const arrowEls = document.querySelectorAll('.proof-arrow');
 const arrowObs = new IntersectionObserver((entries) => {
@@ -1729,7 +1677,6 @@ const arrowObs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 arrowEls.forEach(el => arrowObs.observe(el));
-
 // Water ripple on button click
 document.querySelectorAll('.btn').forEach(btn => {
   btn.addEventListener('click', function(e) {
@@ -1744,7 +1691,6 @@ document.querySelectorAll('.btn').forEach(btn => {
     r.addEventListener('animationend', () => r.remove());
   });
 });
-
 // Lighthouse spotlight: tilt SVG toward cursor
 const heroGraphic = document.querySelector('.hero-graphic');
 if (heroGraphic && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1766,7 +1712,6 @@ if (heroGraphic && !window.matchMedia('(prefers-reduced-motion: reduce)').matche
     heroGraphic.style.setProperty('--lh-ry', '0deg');
   });
 }
-
 // Hero wind trail cursor (desktop only)
 if (window.innerWidth >= 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const trail = document.createElement('div');
@@ -1792,7 +1737,6 @@ if (window.innerWidth >= 1024 && !window.matchMedia('(prefers-reduced-motion: re
   });
   heroEl.addEventListener('mouseleave', () => { trail.style.opacity = '0'; });
 }
-
 // Timeline selector preview tooltip
 const timelineSel = document.getElementById('timeline');
 const timelinePrev = document.getElementById('timelinePreview');
