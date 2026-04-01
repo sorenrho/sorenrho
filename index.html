@@ -1104,8 +1104,19 @@ p,li{font-size:0.94rem;line-height:1.78}
               <stop offset="0%" stop-color="#2A404F" stop-opacity="0.7"/>
               <stop offset="100%" stop-color="#1E3040" stop-opacity="0.5"/>
             </linearGradient>
+            <linearGradient id="aDome" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2E5986" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#152C42" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="aRoof" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1C3D5E" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#152C42" stop-opacity="0.7"/>
+            </linearGradient>
             <clipPath id="aTow">
               <path d="M138,148 L124,390 L196,390 L182,148 Z"/>
+            </clipPath>
+            <clipPath id="aHouseWall">
+              <rect x="76" y="358" width="64" height="36"/>
             </clipPath>
           </defs>
 
@@ -1115,25 +1126,99 @@ p,li{font-size:0.94rem;line-height:1.78}
           </pattern>
           <rect width="320" height="480" fill="url(#aGrid)"/>
 
+          <!-- Coordinate cross — subtle -->
+          <line x1="160" y1="36" x2="160" y2="460" stroke="rgba(46,89,134,0.05)" stroke-width="0.5"/>
+          <line x1="10" y1="270" x2="310" y2="270" stroke="rgba(46,89,134,0.05)" stroke-width="0.5"/>
+
           <!-- Light beams — faint, structural -->
           <path d="M160,112 L20,30 L72,118 Z" fill="rgba(139,115,64,0.04)"/>
           <path d="M160,112 L300,30 L248,118 Z" fill="rgba(139,115,64,0.04)"/>
 
-          <!-- Rocky base -->
-          <ellipse cx="160" cy="408" rx="105" ry="18" fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
-          <ellipse cx="160" cy="406" rx="78" ry="11" fill="rgba(21,44,66,0.5)"/>
-          <ellipse cx="88" cy="403" rx="16" ry="9" fill="rgba(26,52,74,0.7)" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
-          <ellipse cx="226" cy="400" rx="14" ry="8" fill="rgba(26,52,74,0.6)" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
+          <!-- ── ROCKY BASE — detailed terrain ── -->
+          <path d="M55,408 Q80,394 110,400 Q140,392 160,396 Q185,390 210,398 Q240,394 265,408 Q240,418 200,422 Q160,426 120,422 Q80,418 55,408 Z" fill="rgba(21,44,66,0.5)" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
+          <path d="M62,406 Q68,398 78,400 Q82,396 88,402 Q80,410 66,410 Z" fill="rgba(26,52,74,0.7)" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
+          <path d="M222,398 Q232,392 240,396 Q244,400 238,406 Q228,408 224,404 Z" fill="rgba(26,52,74,0.6)" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
+          <path d="M180,404 Q188,398 196,402 Q192,410 182,408 Z" fill="rgba(26,52,74,0.5)" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <!-- Foundation platform -->
+          <rect x="110" y="388" width="100" height="6" rx="1" fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.2)" stroke-width="0.6"/>
+          <line x1="130" y1="388" x2="130" y2="394" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <line x1="150" y1="388" x2="150" y2="394" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <line x1="170" y1="388" x2="170" y2="394" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <line x1="190" y1="388" x2="190" y2="394" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <line x1="110" y1="391" x2="210" y2="391" stroke="rgba(46,89,134,0.1)" stroke-width="0.4"/>
+          <!-- Retaining wall -->
+          <path d="M110,394 L110,404 Q120,410 140,412 Q160,414 180,412 Q200,410 210,404 L210,394" fill="none" stroke="rgba(46,89,134,0.18)" stroke-width="0.6"/>
+          <line x1="120" y1="396" x2="120" y2="408" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="140" y1="396" x2="140" y2="412" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="160" y1="396" x2="160" y2="413" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="180" y1="396" x2="180" y2="412" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="200" y1="396" x2="200" y2="408" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
 
-          <!-- Keeper's house -->
-          <rect x="88" y="358" width="52" height="32" rx="2" fill="rgba(26,52,74,0.5)" stroke="rgba(46,89,134,0.25)" stroke-width="0.8"/>
-          <path d="M84,358 L114,334 L144,358 Z" fill="rgba(30,61,88,0.7)" stroke="rgba(46,89,134,0.2)" stroke-width="0.8"/>
-          <rect x="94" y="365" width="11" height="13" rx="1.5" fill="rgba(46,89,134,0.3)" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
-          <line x1="99.5" y1="365" x2="99.5" y2="378" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
-          <line x1="94" y1="371.5" x2="105" y2="371.5" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
-          <rect x="119" y="372" width="11" height="18" rx="5.5" fill="rgba(21,44,66,0.8)" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
+          <!-- ── KEEPER'S HOUSE ── -->
+          <rect x="74" y="384" width="68" height="10" rx="1" fill="rgba(21,44,66,0.6)" stroke="rgba(46,89,134,0.2)" stroke-width="0.6"/>
+          <line x1="74" y1="389" x2="142" y2="389" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <line x1="84" y1="384" x2="84" y2="394" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="94" y1="384" x2="94" y2="394" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="108" y1="384" x2="108" y2="394" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="118" y1="384" x2="118" y2="394" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="132" y1="384" x2="132" y2="394" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <rect x="76" y="358" width="64" height="26" rx="1" fill="rgba(26,52,74,0.5)" stroke="rgba(46,89,134,0.25)" stroke-width="0.8"/>
+          <g clip-path="url(#aHouseWall)" stroke="rgba(46,89,134,0.1)" stroke-width="0.4">
+            <line x1="76" y1="362" x2="140" y2="362"/>
+            <line x1="76" y1="366" x2="140" y2="366"/>
+            <line x1="76" y1="370" x2="140" y2="370"/>
+            <line x1="76" y1="374" x2="140" y2="374"/>
+            <line x1="76" y1="378" x2="140" y2="378"/>
+            <line x1="76" y1="382" x2="140" y2="382"/>
+          </g>
+          <line x1="76" y1="358" x2="76" y2="384" stroke="rgba(46,89,134,0.3)" stroke-width="1.2"/>
+          <line x1="140" y1="358" x2="140" y2="384" stroke="rgba(46,89,134,0.3)" stroke-width="1.2"/>
+          <!-- Roof -->
+          <path d="M70,358 L108,330 L146,358 Z" fill="url(#aRoof)" stroke="rgba(46,89,134,0.3)" stroke-width="0.8" stroke-linejoin="round"/>
+          <line x1="70" y1="358" x2="146" y2="358" stroke="rgba(46,89,134,0.2)" stroke-width="1.2"/>
+          <line x1="82" y1="352" x2="92" y2="340" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="96" y1="352" x2="102" y2="338" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="120" y1="352" x2="114" y2="338" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <line x1="134" y1="352" x2="124" y2="340" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
+          <!-- Chimney -->
+          <rect x="124" y="336" width="8" height="18" fill="rgba(21,44,66,0.7)" stroke="rgba(46,89,134,0.3)" stroke-width="0.7"/>
+          <rect x="122" y="334" width="12" height="3" rx="0.5" fill="rgba(30,61,88,0.8)" stroke="rgba(46,89,134,0.25)" stroke-width="0.5"/>
+          <line x1="124" y1="341" x2="132" y2="341" stroke="rgba(46,89,134,0.12)" stroke-width="0.3"/>
+          <line x1="124" y1="346" x2="132" y2="346" stroke="rgba(46,89,134,0.12)" stroke-width="0.3"/>
+          <line x1="124" y1="351" x2="132" y2="351" stroke="rgba(46,89,134,0.12)" stroke-width="0.3"/>
+          <line x1="128" y1="336" x2="128" y2="341" stroke="rgba(46,89,134,0.08)" stroke-width="0.3"/>
+          <line x1="126" y1="341" x2="126" y2="346" stroke="rgba(46,89,134,0.08)" stroke-width="0.3"/>
+          <line x1="130" y1="346" x2="130" y2="351" stroke="rgba(46,89,134,0.08)" stroke-width="0.3"/>
+          <!-- Windows -->
+          <rect x="82" y="362" width="12" height="15" rx="1" fill="rgba(12,27,40,0.7)" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
+          <line x1="88" y1="362" x2="88" y2="377" stroke="rgba(46,89,134,0.35)" stroke-width="0.6"/>
+          <line x1="82" y1="369" x2="94" y2="369" stroke="rgba(46,89,134,0.35)" stroke-width="0.6"/>
+          <rect x="80" y="360.5" width="16" height="2" rx="0.5" fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.2)" stroke-width="0.4"/>
+          <rect x="80" y="377" width="16" height="1.5" rx="0.5" fill="rgba(30,61,88,0.5)" stroke="rgba(46,89,134,0.2)" stroke-width="0.4"/>
+          <rect x="100" y="362" width="12" height="15" rx="1" fill="rgba(12,27,40,0.7)" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
+          <line x1="106" y1="362" x2="106" y2="377" stroke="rgba(46,89,134,0.35)" stroke-width="0.6"/>
+          <line x1="100" y1="369" x2="112" y2="369" stroke="rgba(46,89,134,0.35)" stroke-width="0.6"/>
+          <rect x="98" y="360.5" width="16" height="2" rx="0.5" fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.2)" stroke-width="0.4"/>
+          <rect x="98" y="377" width="16" height="1.5" rx="0.5" fill="rgba(30,61,88,0.5)" stroke="rgba(46,89,134,0.2)" stroke-width="0.4"/>
+          <!-- Door -->
+          <rect x="118" y="372" width="12" height="12" fill="rgba(12,27,40,0.8)" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
+          <path d="M118,372 Q118,364 124,364 Q130,364 130,372" fill="rgba(12,27,40,0.8)" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
+          <path d="M116,384 L116,372 Q116,362 124,362 Q132,362 132,372 L132,384" fill="none" stroke="rgba(46,89,134,0.25)" stroke-width="1"/>
+          <line x1="124" y1="365" x2="124" y2="384" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <circle cx="127" cy="376" r="1" fill="rgba(139,115,64,0.5)" stroke="rgba(139,115,64,0.3)" stroke-width="0.4"/>
+          <rect x="115" y="384" width="20" height="2" rx="0.5" fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.15)" stroke-width="0.4"/>
+          <rect x="113" y="386" width="24" height="2.5" rx="0.5" fill="rgba(26,52,74,0.5)" stroke="rgba(46,89,134,0.12)" stroke-width="0.4"/>
+          <!-- Dormer -->
+          <rect x="88" y="346" width="8" height="8" rx="0.5" fill="rgba(12,27,40,0.7)" stroke="rgba(46,89,134,0.35)" stroke-width="0.6"/>
+          <line x1="92" y1="346" x2="92" y2="354" stroke="rgba(46,89,134,0.25)" stroke-width="0.4"/>
+          <line x1="88" y1="350" x2="96" y2="350" stroke="rgba(46,89,134,0.25)" stroke-width="0.4"/>
+          <path d="M86,346 L92,340 L98,346" fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.25)" stroke-width="0.5"/>
+          <!-- Walkway -->
+          <rect x="136" y="378" width="18" height="6" rx="0.5" fill="rgba(26,52,74,0.4)" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
+          <line x1="136" y1="381" x2="154" y2="381" stroke="rgba(46,89,134,0.08)" stroke-width="0.4"/>
 
-          <!-- Tower — striped, clipped -->
+          <!-- ── TOWER — striped, with masonry detail ── -->
+          <rect x="120" y="384" width="80" height="6" rx="1" fill="rgba(30,61,88,0.7)" stroke="rgba(46,89,134,0.25)" stroke-width="0.7"/>
           <g clip-path="url(#aTow)">
             <rect x="118" y="148" width="84" height="34" fill="url(#aBlue)" opacity="0.9"/>
             <rect x="118" y="182" width="84" height="34" fill="url(#aWhite)"/>
@@ -1143,82 +1228,138 @@ p,li{font-size:0.94rem;line-height:1.78}
             <rect x="118" y="318" width="84" height="34" fill="url(#aWhite)"/>
             <rect x="118" y="352" width="84" height="40" fill="url(#aBlue)" opacity="0.9"/>
           </g>
-          <!-- Tower outline -->
           <path d="M138,148 L124,390 L196,390 L182,148 Z" fill="none" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
-
-          <!-- Tower window -->
+          <line x1="126" y1="320" x2="194" y2="320" stroke="rgba(46,89,134,0.15)" stroke-width="1.2"/>
+          <line x1="128" y1="284" x2="192" y2="284" stroke="rgba(46,89,134,0.15)" stroke-width="1.2"/>
+          <line x1="134" y1="216" x2="186" y2="216" stroke="rgba(46,89,134,0.15)" stroke-width="1.2"/>
+          <!-- Upper porthole -->
+          <circle cx="160" cy="196" r="7" fill="rgba(12,27,40,0.7)" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
+          <line x1="160" y1="189" x2="160" y2="203" stroke="rgba(46,89,134,0.3)" stroke-width="0.5"/>
+          <line x1="153" y1="196" x2="167" y2="196" stroke="rgba(46,89,134,0.3)" stroke-width="0.5"/>
+          <!-- Main watch window -->
           <ellipse cx="160" cy="260" rx="13" ry="17" fill="rgba(12,27,40,0.8)" stroke="rgba(46,89,134,0.5)" stroke-width="1.2"/>
           <line x1="160" y1="243" x2="160" y2="277" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
           <line x1="147" y1="260" x2="173" y2="260" stroke="rgba(46,89,134,0.4)" stroke-width="0.8"/>
+          <path d="M153,244 L160,240 L167,244" fill="none" stroke="rgba(46,89,134,0.3)" stroke-width="0.6"/>
+          <rect x="146" y="277" width="28" height="2" rx="0.5" fill="rgba(30,61,88,0.5)" stroke="rgba(46,89,134,0.2)" stroke-width="0.4"/>
+          <!-- Lower porthole -->
+          <circle cx="160" cy="340" r="6" fill="rgba(12,27,40,0.6)" stroke="rgba(46,89,134,0.35)" stroke-width="0.7"/>
+          <line x1="160" y1="334" x2="160" y2="346" stroke="rgba(46,89,134,0.25)" stroke-width="0.4"/>
+          <line x1="154" y1="340" x2="166" y2="340" stroke="rgba(46,89,134,0.25)" stroke-width="0.4"/>
 
-          <!-- Gallery platform -->
-          <rect x="120" y="144" width="80" height="7" rx="2" fill="rgba(30,61,88,0.8)" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
-          <rect x="118" y="138" width="84" height="2" rx="1" fill="rgba(46,89,134,0.4)"/>
-          <!-- Railing posts -->
-          <g stroke="rgba(46,89,134,0.35)" stroke-width="1" stroke-linecap="round">
-            <line x1="123" y1="138" x2="123" y2="144"/>
-            <line x1="133" y1="138" x2="133" y2="144"/>
-            <line x1="143" y1="138" x2="143" y2="144"/>
-            <line x1="153" y1="138" x2="153" y2="144"/>
-            <line x1="160" y1="138" x2="160" y2="144"/>
-            <line x1="167" y1="138" x2="167" y2="144"/>
-            <line x1="177" y1="138" x2="177" y2="144"/>
-            <line x1="187" y1="138" x2="187" y2="144"/>
-            <line x1="197" y1="138" x2="197" y2="144"/>
+          <!-- ── GALLERY PLATFORM — with bracket supports ── -->
+          <g fill="rgba(30,61,88,0.6)" stroke="rgba(46,89,134,0.25)" stroke-width="0.5">
+            <path d="M124,151 L120,144 L128,151 Z"/>
+            <path d="M140,151 L138,144 L142,151 Z"/>
+            <path d="M178,151 L176,144 L180,151 Z"/>
+            <path d="M196,151 L192,144 L200,151 Z"/>
+          </g>
+          <rect x="116" y="144" width="88" height="7" rx="1" fill="rgba(30,61,88,0.8)" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
+          <line x1="130" y1="144" x2="130" y2="151" stroke="rgba(46,89,134,0.1)" stroke-width="0.3"/>
+          <line x1="145" y1="144" x2="145" y2="151" stroke="rgba(46,89,134,0.1)" stroke-width="0.3"/>
+          <line x1="160" y1="144" x2="160" y2="151" stroke="rgba(46,89,134,0.1)" stroke-width="0.3"/>
+          <line x1="175" y1="144" x2="175" y2="151" stroke="rgba(46,89,134,0.1)" stroke-width="0.3"/>
+          <line x1="190" y1="144" x2="190" y2="151" stroke="rgba(46,89,134,0.1)" stroke-width="0.3"/>
+          <!-- Railing -->
+          <rect x="114" y="136" width="92" height="1.5" rx="0.5" fill="rgba(46,89,134,0.45)"/>
+          <line x1="114" y1="140" x2="206" y2="140" stroke="rgba(46,89,134,0.25)" stroke-width="0.5"/>
+          <g stroke="rgba(46,89,134,0.4)" stroke-width="0.8" stroke-linecap="round">
+            <line x1="118" y1="136" x2="118" y2="144"/>
+            <line x1="128" y1="136" x2="128" y2="144"/>
+            <line x1="138" y1="136" x2="138" y2="144"/>
+            <line x1="148" y1="136" x2="148" y2="144"/>
+            <line x1="155" y1="136" x2="155" y2="144"/>
+            <line x1="160" y1="136" x2="160" y2="144"/>
+            <line x1="165" y1="136" x2="165" y2="144"/>
+            <line x1="172" y1="136" x2="172" y2="144"/>
+            <line x1="182" y1="136" x2="182" y2="144"/>
+            <line x1="192" y1="136" x2="192" y2="144"/>
+            <line x1="202" y1="136" x2="202" y2="144"/>
           </g>
 
-          <!-- Lantern room -->
-          <rect x="140" y="98" width="40" height="44" rx="4" fill="rgba(20,40,60,0.7)" stroke="rgba(46,89,134,0.45)" stroke-width="1.2"/>
-          <line x1="160" y1="98" x2="160" y2="142" stroke="rgba(46,89,134,0.3)" stroke-width="0.8"/>
-          <line x1="150" y1="98" x2="150" y2="142" stroke="rgba(46,89,134,0.25)" stroke-width="0.7"/>
-          <line x1="170" y1="98" x2="170" y2="142" stroke="rgba(46,89,134,0.25)" stroke-width="0.7"/>
-          <line x1="140" y1="120" x2="180" y2="120" stroke="rgba(46,89,134,0.2)" stroke-width="0.7"/>
+          <!-- ── LANTERN ROOM — with Fresnel lens detail ── -->
+          <rect x="138" y="97" width="44" height="45" rx="3" fill="rgba(20,40,60,0.7)" stroke="rgba(46,89,134,0.45)" stroke-width="1.2"/>
+          <line x1="148" y1="97" x2="148" y2="142" stroke="rgba(46,89,134,0.3)" stroke-width="0.7"/>
+          <line x1="155" y1="97" x2="155" y2="142" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <line x1="160" y1="97" x2="160" y2="142" stroke="rgba(46,89,134,0.3)" stroke-width="0.7"/>
+          <line x1="165" y1="97" x2="165" y2="142" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <line x1="172" y1="97" x2="172" y2="142" stroke="rgba(46,89,134,0.3)" stroke-width="0.7"/>
+          <line x1="138" y1="110" x2="182" y2="110" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <line x1="138" y1="120" x2="182" y2="120" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <line x1="138" y1="130" x2="182" y2="130" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <!-- Fresnel lens rings -->
+          <circle cx="160" cy="120" r="16" fill="none" stroke="rgba(46,89,134,0.12)" stroke-width="0.5"/>
+          <circle cx="160" cy="120" r="12" fill="none" stroke="rgba(46,89,134,0.15)" stroke-width="0.5"/>
+          <circle cx="160" cy="120" r="8" fill="none" stroke="rgba(46,89,134,0.18)" stroke-width="0.5"/>
+          <circle cx="160" cy="120" r="4" fill="none" stroke="rgba(46,89,134,0.2)" stroke-width="0.5"/>
+          <line x1="144" y1="120" x2="176" y2="120" stroke="rgba(46,89,134,0.15)" stroke-width="0.8"/>
+          <line x1="160" y1="104" x2="160" y2="136" stroke="rgba(46,89,134,0.15)" stroke-width="0.8"/>
 
-          <!-- Dome -->
-          <path d="M138,98 C138,88 148,74 160,72 C172,74 182,88 182,98 Z" fill="rgba(21,44,66,0.85)" stroke="rgba(46,89,134,0.4)" stroke-width="1.2"/>
-          <path d="M144,96 C145,88 152,77 160,75" fill="none" stroke="rgba(46,89,134,0.2)" stroke-width="0.8"/>
+          <!-- ── DOME — with ventilator ball and weather vane ── -->
+          <path d="M136,97 C136,86 146,72 160,70 C174,72 184,86 184,97 Z" fill="url(#aDome)" stroke="rgba(46,89,134,0.4)" stroke-width="1.2"/>
+          <path d="M142,95 C143,86 150,75 160,72" fill="none" stroke="rgba(46,89,134,0.15)" stroke-width="0.6"/>
+          <path d="M152,95 C153,88 156,78 160,72" fill="none" stroke="rgba(46,89,134,0.1)" stroke-width="0.5"/>
+          <path d="M168,95 C167,88 164,78 160,72" fill="none" stroke="rgba(46,89,134,0.1)" stroke-width="0.5"/>
+          <path d="M178,95 C177,86 170,75 160,72" fill="none" stroke="rgba(46,89,134,0.15)" stroke-width="0.6"/>
+          <!-- Ventilator ball -->
+          <line x1="160" y1="70" x2="160" y2="56" stroke="rgba(21,44,66,0.9)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="160" cy="52" r="5.5" fill="rgba(21,44,66,0.9)" stroke="rgba(46,89,134,0.4)" stroke-width="1"/>
+          <circle cx="160" cy="52" r="3" fill="rgba(46,89,134,0.5)"/>
+          <circle cx="160" cy="52" r="1.2" fill="rgba(139,115,64,0.4)"/>
+          <!-- Lightning rod / weather vane -->
+          <line x1="160" y1="46.5" x2="160" y2="38" stroke="rgba(46,89,134,0.5)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="154" y1="42" x2="166" y2="42" stroke="rgba(46,89,134,0.35)" stroke-width="0.8" stroke-linecap="round"/>
+          <circle cx="154" cy="42" r="1" fill="rgba(46,89,134,0.3)"/>
+          <path d="M166,42 L169,40.5 L169,43.5 Z" fill="rgba(46,89,134,0.3)"/>
 
-          <!-- Spire -->
-          <line x1="160" y1="72" x2="160" y2="52" stroke="rgba(21,44,66,0.9)" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="160" cy="48" r="5" fill="rgba(21,44,66,0.9)" stroke="rgba(46,89,134,0.4)" stroke-width="1"/>
-          <circle cx="160" cy="48" r="2.5" fill="rgba(46,89,134,0.6)"/>
-
-          <!-- Beacon glow — layered brass pulse -->
-          <circle cx="160" cy="120" r="22" fill="rgba(139,115,64,0.06)">
-            <animate attributeName="r" values="22;30;22" dur="3s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+          <!-- ── BEACON GLOW — brass, pulsing ── -->
+          <circle cx="160" cy="120" r="10" fill="rgba(139,115,64,0.15)">
+            <animate attributeName="r" values="10;14;10" dur="2.8s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="2.8s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="160" cy="120" r="12" fill="rgba(139,115,64,0.18)">
-            <animate attributeName="r" values="12;16;12" dur="3s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+          <circle cx="160" cy="120" r="4" fill="rgba(139,115,64,0.7)">
+            <animate attributeName="r" values="4;5.5;4" dur="2.8s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="160" cy="120" r="5" fill="rgba(168,146,98,0.8)">
-            <animate attributeName="r" values="5;6.5;5" dur="3s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="160" cy="120" r="2.5" fill="rgba(220,200,150,0.95)">
-            <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+          <circle cx="160" cy="120" r="2" fill="rgba(196,168,98,0.9)">
+            <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
           </circle>
 
-          <!-- Dashed annotation lines — no text, just structural accents -->
-          <line x1="182" y1="98" x2="240" y2="88" stroke="rgba(46,89,134,0.15)" stroke-width="0.7" stroke-dasharray="3 4"/>
-          <line x1="172" y1="120" x2="240" y2="120" stroke="rgba(139,115,64,0.2)" stroke-width="0.7" stroke-dasharray="3 4"/>
-          <line x1="200" y1="141" x2="240" y2="151" stroke="rgba(46,89,134,0.15)" stroke-width="0.7" stroke-dasharray="3 4"/>
-          <line x1="124" y1="270" x2="60" y2="270" stroke="rgba(46,89,134,0.15)" stroke-width="0.7" stroke-dasharray="3 4"/>
-          <line x1="196" y1="390" x2="240" y2="420" stroke="rgba(46,89,134,0.15)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <!-- ── ANNOTATIONS ── -->
+          <line x1="167" y1="42" x2="240" y2="30" stroke="rgba(46,89,134,0.22)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="244" y="33" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.08em">FINIAL</text>
+          <line x1="184" y1="98" x2="240" y2="88" stroke="rgba(46,89,134,0.22)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="244" y="91" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.08em">LANTERN ROOM</text>
+          <line x1="176" y1="120" x2="240" y2="115" stroke="rgba(139,115,64,0.3)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="244" y="112" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(139,115,64,0.55)" letter-spacing="0.08em">FRESNEL LENS</text>
+          <text x="244" y="122" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="rgba(139,115,64,0.4)" letter-spacing="0.06em">(FIXED POINT)</text>
+          <line x1="206" y1="141" x2="240" y2="151" stroke="rgba(46,89,134,0.22)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="244" y="154" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.08em">GALLERY</text>
+          <line x1="124" y1="270" x2="60" y2="270" stroke="rgba(46,89,134,0.22)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="6" y="264" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.05em">TOWER</text>
+          <text x="6" y="274" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.05em">STRUCTURE</text>
+          <line x1="148" y1="260" x2="60" y2="310" stroke="rgba(46,89,134,0.2)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="6" y="314" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.4)" letter-spacing="0.05em">WATCH WINDOW</text>
+          <line x1="76" y1="370" x2="40" y2="380" stroke="rgba(46,89,134,0.22)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="6" y="376" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.05em">KEEPER'S</text>
+          <text x="6" y="386" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.05em">QUARTERS</text>
+          <line x1="196" y1="394" x2="240" y2="420" stroke="rgba(46,89,134,0.22)" stroke-width="0.7" stroke-dasharray="3 4"/>
+          <text x="244" y="424" font-family="'IBM Plex Mono',monospace" font-size="7.5" fill="rgba(46,89,134,0.45)" letter-spacing="0.08em">FOUNDATION</text>
 
-          <!-- Dimension bracket — tower height -->
-          <line x1="108" y1="148" x2="108" y2="390" stroke="rgba(46,89,134,0.12)" stroke-width="0.7"/>
-          <line x1="104" y1="148" x2="112" y2="148" stroke="rgba(46,89,134,0.12)" stroke-width="0.7"/>
-          <line x1="104" y1="390" x2="112" y2="390" stroke="rgba(46,89,134,0.12)" stroke-width="0.7"/>
+          <!-- Dimension brackets -->
+          <line x1="108" y1="148" x2="108" y2="390" stroke="rgba(46,89,134,0.18)" stroke-width="0.7"/>
+          <line x1="104" y1="148" x2="112" y2="148" stroke="rgba(46,89,134,0.18)" stroke-width="0.7"/>
+          <line x1="104" y1="390" x2="112" y2="390" stroke="rgba(46,89,134,0.18)" stroke-width="0.7"/>
+          <text x="88" y="272" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="rgba(46,89,134,0.3)" transform="rotate(-90 88 272)" text-anchor="middle" letter-spacing="0.1em">TOWER HT.</text>
+          <line x1="218" y1="38" x2="218" y2="394" stroke="rgba(46,89,134,0.1)" stroke-width="0.5"/>
+          <line x1="214" y1="38" x2="222" y2="38" stroke="rgba(46,89,134,0.1)" stroke-width="0.5"/>
+          <line x1="214" y1="394" x2="222" y2="394" stroke="rgba(46,89,134,0.1)" stroke-width="0.5"/>
+          <text x="224" y="220" font-family="'IBM Plex Mono',monospace" font-size="5.5" fill="rgba(46,89,134,0.2)" transform="rotate(-90 224 220)" text-anchor="middle" letter-spacing="0.1em">OVERALL HT.</text>
 
           <!-- Beam angle indicator -->
           <path d="M160,112 L100,68" stroke="rgba(139,115,64,0.15)" stroke-width="0.8" stroke-dasharray="2 4"/>
           <path d="M160,112 L220,68" stroke="rgba(139,115,64,0.15)" stroke-width="0.8" stroke-dasharray="2 4"/>
           <path d="M100,84 A65,65 0 0,1 220,84" fill="none" stroke="rgba(139,115,64,0.12)" stroke-width="0.8"/>
-
-          <!-- Coordinate cross — subtle -->
-          <line x1="160" y1="36" x2="160" y2="460" stroke="rgba(46,89,134,0.05)" stroke-width="0.5"/>
-          <line x1="10" y1="270" x2="310" y2="270" stroke="rgba(46,89,134,0.05)" stroke-width="0.5"/>
+          <text x="148" y="82" font-family="'IBM Plex Mono',monospace" font-size="6.5" fill="rgba(139,115,64,0.3)" letter-spacing="0.06em">ARC</text>
         </svg>
 
         <div class="about-lh-caption">
