@@ -620,11 +620,54 @@ p,li{font-size:0.94rem;line-height:1.78}
 .tier .btn{width:100%;justify-content:center}
 
 .pricing-note{
-  margin-top:2rem;padding:1.5rem 1.75rem;
+  margin-top:2rem;
   background:var(--foam);border:1px solid var(--shore);
 }
-.pricing-note p{font-size:.8rem;color:var(--drift);line-height:1.7;margin:0}
-.pricing-note strong{color:var(--stone);font-weight:600}
+.pricing-note-head{
+  padding:1.5rem 1.75rem;
+  border-bottom:1px solid var(--shore);
+}
+.pricing-note-head p{font-size:.82rem;color:var(--drift);line-height:1.7;margin:0}
+.pricing-note-head strong{color:var(--stone);font-weight:600}
+.pricing-note-stat{
+  display:inline-block;margin-top:.6rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.14em;
+  color:var(--brass);
+}
+.retainer-rows{border-bottom:1px solid var(--shore)}
+.retainer-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 1.75rem;
+  border-bottom:1px solid var(--shore);
+  transition:background .2s;
+}
+.retainer-row:last-child{border-bottom:none}
+.retainer-row:hover{background:var(--white)}
+.retainer-name{
+  font-size:.85rem;font-weight:600;color:var(--navy);
+  margin-bottom:3px;
+}
+.retainer-desc{
+  font-size:.76rem;color:var(--drift);line-height:1.55;
+  max-width:480px;
+}
+.retainer-price{
+  font-size:1.15rem;font-weight:700;color:var(--navy);
+  white-space:nowrap;padding-left:2rem;
+}
+.retainer-price span{
+  font-size:.62rem;font-weight:500;color:var(--drift);
+  letter-spacing:0.02em;
+}
+.pricing-note-foot{
+  padding:1rem 1.75rem;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.56rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--rule);line-height:1.8;
+}
 
 /* ══════════════════════════════════════════════
    CTA STRIP
@@ -1454,7 +1497,36 @@ p,li{font-size:0.94rem;line-height:1.78}
     </div>
 
     <div class="pricing-note r">
-      <p><strong>Post-engagement governance retainer available after Phase 03 completion.</strong> Three tiers: Governance Check ($3,000/month &mdash; monthly async system health report, no active support); Governance Retainer ($7,500/month &mdash; up to 4 hours of architectural oversight, async-only, system tuning); Active Governance ($12,000/month &mdash; up to 8 hours, includes quarterly strategy alignment). Approximately 70% of full implementation clients continue to a retainer arrangement within 60 days of project close. Retainer scope is governance and calibration only &mdash; execution work outside the governance cap is scoped and billed as a separate Sprint.</p>
+      <div class="pricing-note-head">
+        <p><strong>Post-engagement governance retainer</strong> &mdash; available after Phase 03 completion. Governance and calibration only. Execution work outside scope is billed as a separate Sprint.</p>
+        <span class="pricing-note-stat">70% of Phase 03 clients continue within 60 days</span>
+      </div>
+      <div class="retainer-rows">
+        <div class="retainer-row">
+          <div>
+            <div class="retainer-name">Governance Check</div>
+            <div class="retainer-desc">Monthly async system health report. No active support, no tuning, no ad hoc response.</div>
+          </div>
+          <div class="retainer-price">$3,000<span>/ month</span></div>
+        </div>
+        <div class="retainer-row">
+          <div>
+            <div class="retainer-name">Governance Retainer</div>
+            <div class="retainer-desc">Up to 4 hrs architectural oversight. Async-only. System tuning, 24&ndash;48hr turnaround. No meetings.</div>
+          </div>
+          <div class="retainer-price">$7,500<span>/ month</span></div>
+        </div>
+        <div class="retainer-row">
+          <div>
+            <div class="retainer-name">Active Governance</div>
+            <div class="retainer-desc">Up to 8 hrs oversight plus one quarterly strategy alignment session (60 min, recorded).</div>
+          </div>
+          <div class="retainer-price">$12,000<span>/ month</span></div>
+        </div>
+      </div>
+      <div class="pricing-note-foot">
+        Month-to-month &middot; 30-day notice to cancel &middot; Invoiced on the 1st &middot; Commences after Phase 03 close and operations playbook delivery
+      </div>
     </div>
   </div>
 </section>
