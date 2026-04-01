@@ -543,15 +543,7 @@ p,li{font-size:0.94rem;line-height:1.78}
   width:100%;max-width:400px;
   border-radius:var(--r);
 }
-@keyframes beam-sweep{
-  0%{transform:rotate(-40deg)}
-  50%{transform:rotate(40deg)}
-  100%{transform:rotate(-40deg)}
-}
-.lh-beam{
-  transform-origin:160px 120px;
-  animation:beam-sweep 6s cubic-bezier(.45,.05,.55,.95) infinite;
-}
+/* beam animation handled entirely by SVG SMIL */
 .about-lh-caption{
   font-family:'IBM Plex Mono',monospace;
   font-size:0.58rem;font-weight:500;
@@ -1123,26 +1115,57 @@ p,li{font-size:0.94rem;line-height:1.78}
           </pattern>
           <rect width="320" height="480" fill="url(#aGrid)"/>
 
-          <!-- Rotating light beam -->
+          <!-- Light beam — SVG animated sweep -->
           <defs>
-            <radialGradient id="beamG" cx="50%" cy="100%" r="100%">
-              <stop offset="0%" stop-color="rgba(168,146,98,0.35)"/>
-              <stop offset="40%" stop-color="rgba(139,115,64,0.12)"/>
-              <stop offset="100%" stop-color="rgba(139,115,64,0)"/>
-            </radialGradient>
+            <filter id="beamBlur">
+              <feGaussianBlur stdDeviation="3" />
+            </filter>
+            <linearGradient id="beamFade" x1="0.5" y1="1" x2="0.5" y2="0" gradientUnits="objectBoundingBox">
+              <stop offset="0%" stop-color="#A89262" stop-opacity="0.4"/>
+              <stop offset="40%" stop-color="#8B7340" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#8B7340" stop-opacity="0"/>
+            </linearGradient>
           </defs>
-          <g class="lh-beam">
-            <!-- Primary beam cone -->
-            <path d="M160,120 L80,10 L120,115 Z" fill="url(#beamG)" opacity="0.7"/>
-            <path d="M160,120 L200,115 L240,10 Z" fill="url(#beamG)" opacity="0.7"/>
-            <!-- Narrow bright core -->
-            <path d="M160,120 L130,25 L145,118 Z" fill="rgba(196,168,98,0.12)"/>
-            <path d="M160,120 L175,118 L190,25 Z" fill="rgba(196,168,98,0.12)"/>
+          <!-- Ambient glow behind beam area -->
+          <ellipse cx="160" cy="65" rx="70" ry="55" fill="#A89262" opacity="0.04" filter="url(#beamBlur)">
+            <animate attributeName="opacity" values="0.03;0.07;0.03" dur="5s" repeatCount="indefinite"/>
+          </ellipse>
+          <!-- Beam sweep: 7 slices fading in/out in sequence -->
+          <g filter="url(#beamBlur)">
+            <!-- Slice 1: far left -->
+            <path d="M160,118 L90,8 L115,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0.4;0.7;0.4;0;0;0;0;0;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
+            <!-- Slice 2 -->
+            <path d="M160,118 L115,8 L138,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0.4;0.75;0.4;0;0;0;0;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
+            <!-- Slice 3 -->
+            <path d="M160,118 L138,8 L155,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0.4;0.8;0.4;0;0;0;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
+            <!-- Slice 4: center -->
+            <path d="M160,118 L155,8 L165,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0;0.5;0.85;0.5;0;0;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
+            <!-- Slice 5 -->
+            <path d="M160,118 L165,8 L182,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0;0;0.4;0.8;0.4;0;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
+            <!-- Slice 6 -->
+            <path d="M160,118 L182,8 L205,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0;0;0;0.4;0.75;0.4;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
+            <!-- Slice 7: far right -->
+            <path d="M160,118 L205,8 L230,8 Z" fill="url(#beamFade)" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0;0;0;0;0.4;0.7;0.4;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
           </g>
-          <!-- Counter beam (opposite side, dimmer) -->
-          <g class="lh-beam" style="animation-delay:-3s;opacity:0.3">
-            <path d="M160,120 L80,10 L120,115 Z" fill="url(#beamG)"/>
-            <path d="M160,120 L200,115 L240,10 Z" fill="url(#beamG)"/>
+          <!-- Bright core that follows the sweep -->
+          <g filter="url(#beamBlur)">
+            <path d="M160,118 L145,20 L175,20 Z" fill="#A89262" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0;0.2;0.45;0.2;0;0;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+            </path>
           </g>
 
           <!-- Rocky base -->
@@ -1237,10 +1260,8 @@ p,li{font-size:0.94rem;line-height:1.78}
           <line x1="104" y1="148" x2="112" y2="148" stroke="rgba(46,89,134,0.12)" stroke-width="0.7"/>
           <line x1="104" y1="390" x2="112" y2="390" stroke="rgba(46,89,134,0.12)" stroke-width="0.7"/>
 
-          <!-- Beam arc indicator — follows the sweep -->
-          <g class="lh-beam" style="animation-delay:-0.3s;opacity:0.15">
-            <path d="M100,84 A65,65 0 0,1 220,84" fill="none" stroke="rgba(139,115,64,0.3)" stroke-width="0.6" stroke-dasharray="2 3"/>
-          </g>
+          <!-- Beam arc indicator — static accent -->
+          <path d="M120,84 A45,45 0 0,1 200,84" fill="none" stroke="rgba(139,115,64,0.12)" stroke-width="0.6" stroke-dasharray="2 3"/>
 
           <!-- Coordinate cross — subtle -->
           <line x1="160" y1="36" x2="160" y2="460" stroke="rgba(46,89,134,0.05)" stroke-width="0.5"/>
