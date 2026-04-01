@@ -3,480 +3,635 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Case Study: Castrol × Walmart — Larry's Garage | Soren Rho</title>
-<meta name="description" content="How we program-managed a first-of-its-kind shoppable retail media experience on Walmart.com that drove $7.5M in attributed sales and won MMA Smarties Gold.">
+<title>Castrol × Walmart Connect — Case Study | Soren Rho</title>
+<meta name="description" content="How operational infrastructure turned an overlooked oil brand into Walmart's top DIY destination — $7.5M in attributed sales, $7 ROAS, 51% new-to-brand buyers.">
+<meta property="og:title" content="Castrol × Walmart Connect — $7.5M in Attributed Sales">
+<meta property="og:description" content="An operational achievement disguised as a campaign. How cross-category orchestration, multi-stakeholder coordination, and platform-first architecture produced $7 ROAS and an MMA Smarties Gold.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sorenrho.com/case-study-castrol.html">
+<link rel="canonical" href="https://sorenrho.com/case-study-castrol.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #1A2636; background: #F8FAFB; line-height: 1.6;
-  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:#1A2636;
+  background:#F0F0EB;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
-img { max-width: 100%; display: block; }
-a { text-decoration: none; color: inherit; }
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
-:root {
-  --ink: #1A1A1A;
-  --charcoal: #2C2C2C;
-  --ink: #0F1923;
-  --charcoal: #1A2636;
-  --stone: #3D4F5F;
-  --drift: #6B7D8D;
-  --sand: #B8C4CE;
-  --shore: #DFE5EB;
-  --foam: #F0F3F6;
-  --white: #F8FAFB;
-  --sea: #2B6CB0;
-  --sea-light: #4A8DD4;
-  --sea-dark: #1E4F82;
-  --sea-glow: rgba(43,108,176,0.12);
-  --beam: #D4935A;
-  --beam-light: #E0AD7A;
-  --deep: #0A1628;
-  --deep-mid: #0F1E32;
-  --navy: #162A42;
-  --section-pad: 72px;
-  --side-pad: 24px;
-  --max-w: 1200px;
-  --max-prose: 720px;
-  --r: 8px;
-  --r-lg: 16px;
-  --r-xl: 24px;
-  --ease: cubic-bezier(0.4,0,0.2,1);
-  --ease-spring: cubic-bezier(0.16,1,0.3,1);
+:root{
+  --navy:    #0C1B28;
+  --ink:     #1A2636;
+  --stone:   #3C4E5E;
+  --drift:   #68798A;
+  --rule:    #C4CDD6;
+  --shore:   #DDE3E9;
+  --foam:    #EAEEF1;
+  --paper:   #F0F0EB;
+  --white:   #FAFAF7;
+  --brass:   #8B7340;
+  --brass-lt:#A89262;
+  --steel:   #2E5986;
+  --steel-lt:#4A7AB5;
+  --steel-dk:#1C3D5E;
+  --max-w:   1140px;
+  --px:      24px;
+  --py:      96px;
+  --r:       3px;
 }
 
-.serif { font-family: 'DM Serif Display', Georgia, serif; }
-h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: 2.2rem; font-weight: 400; line-height: 1.12; }
-h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.6rem; font-weight: 400; line-height: 1.2; }
-h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.35; }
-p, li { font-size: 1rem; line-height: 1.8; }
-.eyebrow {
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.16em; color: var(--sea);
+/* ── PAPER GRAIN ────────────────────────────── */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.4;
 }
 
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--side-pad); }
-.prose { max-width: var(--max-prose); }
-.section { padding: var(--section-pad) 0; }
-
-/* Reveal */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease-spring), transform 0.7s var(--ease-spring); }
-.reveal.vis { opacity: 1; transform: translateY(0); }
-.reveal-d1 { transition-delay: 0.08s; }
-.reveal-d2 { transition-delay: 0.16s; }
-.reveal-d3 { transition-delay: 0.24s; }
-.reveal-d4 { transition-delay: 0.32s; }
-
-/* Buttons */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
-  padding: 0 2rem; height: 52px; border-radius: var(--r);
-  border: none; cursor: pointer; transition: all 0.3s var(--ease);
-  white-space: nowrap;
+/* ── GRID TEXTURE ──────────────────────────── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(44,89,134,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(44,89,134,0.03) 1px,transparent 1px);
+  background-size:56px 56px;
+  pointer-events:none;z-index:0;
 }
-.btn-sea { background: var(--sea); color: #fff; }
-.btn-sea:hover { background: var(--sea-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(43,108,176,0.3); }
-.btn-ghost { background: transparent; color: var(--stone); border: 1.5px solid var(--sand); }
-.btn-ghost:hover { border-color: var(--sea); color: var(--sea); transform: translateY(-1px); }
 
-/* ═══════════════════════════════════════════
+/* ── TYPOGRAPHY ─────────────────────────────── */
+h1{font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:700;line-height:1.1;letter-spacing:-0.025em}
+h2{font-size:clamp(1.4rem,3vw,1.8rem);font-weight:700;line-height:1.15;letter-spacing:-0.02em}
+h3{font-size:1.05rem;font-weight:600;line-height:1.3;letter-spacing:-0.01em}
+p,li{font-size:0.94rem;line-height:1.78}
+
+.label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.2em;
+  color:var(--brass);
+}
+.label--lt{color:rgba(168,146,98,0.7)}
+.label--steel{color:var(--steel-lt)}
+
+/* ── LAYOUT ─────────────────────────────────── */
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 var(--px)}
+.section{padding:var(--py) 0;position:relative;z-index:1}
+
+/* ── REVEAL ─────────────────────────────────── */
+.r{opacity:0;transform:translateY(18px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+.r.v{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
+
+/* ── RULE ───────────────────────────────────── */
+.hr{width:36px;height:1.5px;background:var(--brass);margin:1.5rem 0}
+
+/* ── BUTTONS ────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:600;font-size:0.8rem;
+  letter-spacing:0.04em;text-transform:uppercase;
+  padding:0 1.6rem;height:46px;
+  border-radius:var(--r);border:none;
+  cursor:pointer;transition:all .22s ease;
+  white-space:nowrap;
+}
+.btn--dark{background:var(--navy);color:#fff}
+.btn--dark:hover{background:var(--steel-dk);transform:translateY(-1px);box-shadow:0 8px 24px rgba(12,27,40,.22)}
+.btn--steel{background:var(--steel);color:#fff}
+.btn--steel:hover{background:var(--steel-dk);transform:translateY(-1px);box-shadow:0 8px 24px rgba(46,89,134,.3)}
+.btn--outline{background:transparent;color:var(--navy);border:1.5px solid var(--rule)}
+.btn--outline:hover{border-color:var(--steel);color:var(--steel)}
+.link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:0.8rem;font-weight:600;color:var(--steel);
+  letter-spacing:0.02em;transition:gap .2s,color .2s;
+}
+.link:hover{gap:10px;color:var(--steel-dk)}
+.link svg{flex-shrink:0}
+
+/* ══════════════════════════════════════════════
    HEADER
-   ═══════════════════════════════════════════ */
-.header {
-  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-  background: rgba(250,249,247,0.88); backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border-bottom: 1px solid rgba(200,196,189,0.4); height: 64px;
-  transition: box-shadow 0.3s var(--ease);
+══════════════════════════════════════════════ */
+.hdr{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  height:58px;
+  background:rgba(240,240,235,.93);
+  backdrop-filter:blur(20px) saturate(1.3);
+  -webkit-backdrop-filter:blur(20px) saturate(1.3);
+  border-bottom:1px solid var(--shore);
+  transition:box-shadow .3s ease;
 }
-.header.scrolled { box-shadow: 0 1px 12px rgba(26,26,26,0.06); }
-.header-inner {
-  max-width: var(--max-w); margin: 0 auto; padding: 0 var(--side-pad);
-  height: 100%; display: flex; align-items: center; justify-content: space-between;
+.hdr.s{box-shadow:0 1px 12px rgba(12,27,40,.08)}
+.hdr-inner{
+  max-width:var(--max-w);margin:0 auto;padding:0 var(--px);
+  height:100%;display:flex;align-items:center;justify-content:space-between;
 }
-.logo { font-family: 'DM Serif Display', serif; font-size: 1.35rem; color: var(--ink); }
-.logo em { font-style: normal; color: var(--sea); font-weight: 400; }
-.nav-links { display: none; align-items: center; gap: 2.5rem; }
-.nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--drift); transition: color 0.3s var(--ease); }
-.nav-links a:hover { color: var(--ink); }
-.nav-links .btn { height: 40px; font-size: 0.8rem; padding: 0 1.4rem; }
-.back-link {
-  font-size: 0.82rem; font-weight: 500; color: var(--drift);
-  display: flex; align-items: center; gap: 6px;
-  transition: color 0.3s var(--ease);
+.logo{
+  font-family:'Hanken Grotesk',sans-serif;
+  font-weight:800;font-size:0.92rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--navy);
 }
-.back-link:hover { color: var(--ink); }
-.back-link svg { width: 16px; height: 16px; }
+.logo em{
+  font-style:normal;font-weight:300;
+  letter-spacing:0.06em;color:var(--drift);
+  margin-left:4px;
+}
+.nav{display:none;align-items:center;gap:2.2rem}
+.nav a{
+  font-size:0.75rem;font-weight:500;color:var(--drift);
+  letter-spacing:0.04em;text-transform:uppercase;
+  transition:color .2s;
+}
+.nav a:hover{color:var(--navy)}
+.nav .btn{height:36px;padding:0 1.2rem;font-size:0.72rem}
+.ham{display:block;background:none;border:none;cursor:pointer;padding:8px}
+.ham span{display:block;width:20px;height:1.5px;background:var(--navy);margin:5px 0;transition:all .25s}
+.mob{
+  display:none;position:fixed;
+  top:58px;left:0;width:100%;
+  background:rgba(240,240,235,.98);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--shore);
+  padding:1.5rem var(--px) 2rem;
+  z-index:99;flex-direction:column;gap:1.2rem;
+}
+.mob.open{display:flex}
+.mob a{font-size:.95rem;font-weight:600;color:var(--ink)}
+.mob .btn{width:100%;justify-content:center}
 
-/* ═══════════════════════════════════════════
-   CASE STUDY HERO
-   ═══════════════════════════════════════════ */
-.cs-hero {
-  padding-top: calc(64px + var(--section-pad));
-  padding-bottom: 48px;
-  background: var(--white);
+/* ══════════════════════════════════════════════
+   CASE STUDY — HERO
+══════════════════════════════════════════════ */
+.cs-hero{
+  padding-top:calc(58px + 72px);
+  padding-bottom:72px;
+  background:var(--navy);
+  position:relative;overflow:hidden;
 }
-.cs-hero .eyebrow { display: block; margin-bottom: 1rem; }
-.cs-hero h1 { color: var(--ink); margin-bottom: 1.2rem; max-width: 700px; }
-.cs-hero h1 .accent { color: var(--sea); }
-.cs-hero-sub {
-  font-size: 1.05rem; color: var(--stone); line-height: 1.75;
-  max-width: 620px; margin-bottom: 2rem;
+.cs-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 30% 80%, rgba(46,89,134,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 20%, rgba(12,27,40,0.4) 0%, transparent 50%);
+  pointer-events:none;
 }
-.cs-meta {
-  display: flex; flex-wrap: wrap; gap: 24px 40px;
-  padding-top: 1.5rem; border-top: 1px solid var(--shore);
+.cs-hero-inner{position:relative;z-index:1;max-width:800px}
+.cs-hero .label{color:var(--brass-lt);display:block;margin-bottom:1rem}
+.cs-hero h1{color:#fff;margin-bottom:1.2rem}
+.cs-hero h1 .dim{opacity:.5;font-weight:300}
+.cs-hero-sub{
+  font-size:1rem;color:rgba(255,255,255,.5);
+  line-height:1.75;max-width:640px;margin-bottom:2rem;
 }
-.cs-meta-item { }
-.cs-meta-label {
-  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--sand); margin-bottom: 2px;
+.cs-hero-sub strong{color:rgba(255,255,255,.75);font-weight:500}
+.cs-award{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--brass-lt);
+  border:1px solid rgba(139,115,64,0.2);
+  padding:8px 16px;
+  margin-top:0.5rem;
 }
-.cs-meta-value { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
-
-/* ═══════════════════════════════════════════
-   RESULTS BANNER
-   ═══════════════════════════════════════════ */
-.results-banner {
-  background: var(--deep); color: #fff; padding: 48px 0;
-  position: relative; overflow: hidden;
-}
-.results-banner::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 80%, rgba(43,108,176,0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-.results-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
-  position: relative; z-index: 1;
-}
-.result-item { text-align: center; }
-.result-number {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.4rem; line-height: 1.1; color: var(--beam-light);
-  margin-bottom: 4px;
-}
-.result-label {
-  font-size: 0.78rem; color: rgba(255,255,255,0.5);
-  font-weight: 500; line-height: 1.4;
-}
-.result-award {
-  grid-column: 1 / -1; text-align: center;
-  padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06);
-}
-.result-award .award-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--beam);
-  background: rgba(212,147,90,0.12); padding: 8px 20px;
-  border-radius: 100px;
-}
-.award-badge svg { width: 16px; height: 16px; fill: var(--beam); }
-
-/* ═══════════════════════════════════════════
-   CASE STUDY BODY
-   ═══════════════════════════════════════════ */
-.cs-body { background: var(--white); }
-.cs-body .prose { margin: 0 auto; }
-.cs-body h2 { margin-bottom: 1rem; font-size: 1.5rem; }
-.cs-body p { color: var(--stone); line-height: 1.85; margin-bottom: 1.2rem; }
-.cs-body p:last-child { margin-bottom: 0; }
-.cs-body strong { color: var(--ink); font-weight: 600; }
-
-.cs-block { padding: var(--section-pad) 0; }
-.cs-block + .cs-block { border-top: 1px solid var(--shore); }
-
-/* Callout box */
-.cs-callout {
-  background: var(--foam); border-left: 3px solid var(--sea);
-  border-radius: 0 var(--r-lg) var(--r-lg) 0;
-  padding: 28px 32px; margin: 2rem 0;
-}
-.cs-callout p { color: var(--stone); margin-bottom: 0; font-size: 0.95rem; }
-.cs-callout strong { color: var(--sea); }
-
-/* What we built list */
-.cs-screenshot {
-  margin: 2rem 0; border-radius: var(--r-lg); overflow: hidden;
-  border: 1px solid var(--shore); box-shadow: 0 16px 48px rgba(26,26,26,0.1);
-}
-.cs-screenshot img { width: 100%; height: auto; display: block; }
-.cs-screenshot-caption {
-  background: var(--foam); padding: 12px 20px; text-align: center;
-  font-size: 0.78rem; color: var(--drift); font-weight: 500;
-}
-.cs-what-list {
-  list-style: none; margin: 1.5rem 0;
-}
-.cs-what-list li {
-  font-size: 0.92rem; color: var(--stone); line-height: 1.75;
-  padding: 6px 0 6px 24px; position: relative;
-}
-.cs-what-list li::before {
-  content: ''; position: absolute; left: 0; top: 14px;
-  width: 6px; height: 6px; border-radius: 50%; background: var(--sea);
+.cs-award::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--brass);flex-shrink:0;
 }
 
-/* ═══════════════════════════════════════════
-   CTA
-   ═══════════════════════════════════════════ */
-.cs-cta {
-  background: var(--ink); color: #fff; padding: 64px 0; text-align: center;
-  position: relative; overflow: hidden;
+/* ══════════════════════════════════════════════
+   METRICS BAR
+══════════════════════════════════════════════ */
+.metrics-bar{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  padding:32px 0;
+  position:relative;z-index:1;
 }
-.cs-cta::before {
-  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 500px; height: 250px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(43,108,176,0.06) 0%, transparent 70%);
-  pointer-events: none;
+.metrics-row{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:24px;
 }
-.cs-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-.cs-cta h2 { color: #fff; margin-bottom: 0.8rem; }
-.cs-cta p { color: rgba(255,255,255,0.5); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.7; }
+.metric{text-align:center}
+.metric .num{
+  font-size:1.8rem;font-weight:700;
+  color:#fff;line-height:1;
+}
+.metric .lbl{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.14em;
+  color:rgba(255,255,255,.3);margin-top:6px;
+}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════════
+   CASE STUDY — BODY
+══════════════════════════════════════════════ */
+.cs-body{background:var(--paper)}
+.cs-body-inner{max-width:720px}
+.cs-body .label{display:block;margin-bottom:.9rem}
+.cs-body h2{color:var(--navy);margin-bottom:1rem}
+.cs-body p{color:var(--stone);line-height:1.85;margin-bottom:1.2rem;font-size:0.95rem}
+.cs-body p strong{color:var(--ink);font-weight:600}
+
+/* Diagnosis-style cards for the operational breakdown */
+.ops-grid{
+  display:grid;grid-template-columns:1fr;gap:2px;
+  margin:2rem 0;
+}
+.ops-card{
+  background:var(--white);
+  border:1px solid var(--shore);
+  padding:24px 28px;
+  display:grid;grid-template-columns:auto 1fr;gap:20px;
+  align-items:start;
+  transition:border-color .25s;
+}
+.ops-card:hover{border-color:var(--steel)}
+.ops-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:1.4rem;font-weight:500;
+  color:var(--rule);line-height:1;
+  padding-top:2px;
+}
+.ops-card h3{color:var(--navy);margin-bottom:.3rem;font-size:.95rem}
+.ops-card p{font-size:.83rem;color:var(--drift);line-height:1.65;margin:0}
+
+/* Fixed statement */
+.fixed-statement{
+  margin:2.5rem 0;
+  padding:1.75rem 2rem;
+  background:var(--navy);
+  border-left:2px solid var(--brass);
+}
+.fixed-statement p{
+  font-size:1.05rem;color:rgba(255,255,255,.8);
+  line-height:1.6;margin:0;
+}
+.fixed-statement p em{
+  color:var(--brass-lt);font-style:normal;font-weight:600;
+}
+
+/* Before/After cards */
+.ba-grid{
+  display:grid;grid-template-columns:1fr;gap:2px;
+  margin:2rem 0;
+}
+.ba-card{
+  background:var(--white);
+  border:1px solid var(--shore);
+  padding:24px 28px;
+  transition:border-color .25s;
+}
+.ba-card:hover{border-color:var(--steel)}
+.ba-card h3{color:var(--navy);margin-bottom:.8rem;font-size:.9rem}
+.ba-row{display:flex;align-items:center;gap:16px}
+.ba-v .n{font-size:1.5rem;font-weight:700;line-height:1}
+.ba-v .l{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;text-transform:uppercase;
+  letter-spacing:.12em;margin-top:3px;font-weight:500;
+}
+.ba-v.bef .n{color:var(--rule)}
+.ba-v.bef .l{color:var(--rule)}
+.ba-v.aft .n{color:var(--steel)}
+.ba-v.aft .l{color:var(--steel-lt)}
+.ba-arr{color:var(--rule);font-size:.9rem}
+
+/* Video embed */
+.cs-video{
+  margin:2.5rem 0;
+  background:var(--navy);
+  border:1px solid rgba(255,255,255,.06);
+  position:relative;
+  padding-bottom:56.25%;
+  height:0;
+  overflow:hidden;
+}
+.cs-video iframe{
+  position:absolute;top:0;left:0;
+  width:100%;height:100%;border:0;
+}
+.cs-video-caption{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.58rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.16em;
+  color:var(--drift);margin-top:12px;
+  text-align:center;
+}
+
+/* ══════════════════════════════════════════════
+   CTA STRIP
+══════════════════════════════════════════════ */
+.cta-strip{
+  background:var(--steel-dk);
+  padding:72px 0;text-align:center;
+  position:relative;z-index:1;
+}
+.cta-strip h2{color:#fff;margin-bottom:.8rem;max-width:620px;margin-left:auto;margin-right:auto}
+.cta-strip p{color:rgba(255,255,255,.45);font-size:.92rem;margin-bottom:1.75rem;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* ══════════════════════════════════════════════
    FOOTER
-   ═══════════════════════════════════════════ */
-.footer {
-  background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); color: #fff;
-  padding: 40px 0;
+══════════════════════════════════════════════ */
+.footer{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:36px 0;position:relative;z-index:1;
 }
-.footer .logo { color: #fff; }
-.footer .logo em { color: var(--sea); }
-.footer-lighthouse-mini { width: 48px; height: 56px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;
-.footer-inner {
-  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px;
+.footer-inner{
+  display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:14px;
 }
-.footer-links { display: flex; align-items: center; gap: 2rem; }
-.footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); transition: color 0.3s var(--ease); }
-.footer-links a:hover { color: #fff; }
-.footer-email { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
-.footer-legal { font-size: 0.7rem; color: rgba(255,255,255,0.15); margin-top: 1.5rem; text-align: center; }
+.footer-nav{display:flex;gap:2rem}
+.footer-nav a{font-size:.75rem;color:rgba(255,255,255,.25);transition:color .2s}
+.footer-nav a:hover{color:#fff}
+.footer-email{font-size:.75rem;color:rgba(255,255,255,.2)}
+.footer-legal{font-size:.62rem;color:rgba(255,255,255,.1);margin-top:1rem;text-align:center}
+.footer .logo{color:rgba(255,255,255,.7)}
+.footer .logo em{color:rgba(255,255,255,.25)}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════════
    RESPONSIVE
-   ═══════════════════════════════════════════ */
-@media (min-width: 768px) {
-  :root { --side-pad: 40px; --section-pad: 80px; }
-  html { font-size: 17px; }
-  h1 { font-size: 2.6rem; }
-  .results-grid { grid-template-columns: repeat(4, 1fr); }
-  .result-award { grid-column: 1 / -1; }
-  .footer-inner { flex-direction: row; text-align: left; justify-content: space-between; }
+══════════════════════════════════════════════ */
+@media(min-width:768px){
+  :root{--px:44px;--py:112px}
+  html{font-size:17px}
+  .metrics-row{grid-template-columns:repeat(5,1fr)}
+  .ops-grid{grid-template-columns:repeat(2,1fr)}
+  .ba-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-inner{flex-direction:row;justify-content:space-between;text-align:left}
 }
-@media (min-width: 1024px) {
-  :root { --side-pad: 60px; --section-pad: 96px; }
-  html { font-size: 18px; }
-  h1 { font-size: 2.8rem; }
-  .nav-links { display: flex; }
-  .result-number { font-size: 3rem; }
-}
-@media (min-width: 1280px) {
-  :root { --side-pad: 100px; }
+@media(min-width:1024px){
+  :root{--px:64px}
+  .nav{display:flex}
+  .ham{display:none}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header" id="header">
-  <div class="header-inner">
-    <a href="/" class="logo">Soren <em>Rho</em></a>
-    <nav class="nav-links">
-      <a href="/" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg> Back to Home</a>
-      <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea" style="height:40px;font-size:0.8rem;padding:0 1.4rem;">Discovery Call</a>
+<!-- HEADER — matches homepage -->
+<header class="hdr" id="hdr">
+  <div class="hdr-inner">
+    <a href="index.html" class="logo">Soren<em>Rho</em></a>
+    <nav class="nav">
+      <a href="index.html#method">Method</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#about">About</a>
+      <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn--steel">Discovery Call</a>
     </nav>
+    <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
-
-<!-- ═══════════════════════════════════════════
-     CASE STUDY HERO
-     ═══════════════════════════════════════════ -->
-<section class="cs-hero">
-  <div class="container">
-    <span class="eyebrow reveal">Case Study</span>
-    <h1 class="reveal">Castrol × Walmart: Building a <span class="accent">first-of-its-kind</span> retail media experience</h1>
-    <p class="cs-hero-sub reveal">A commoditized brand in a low-engagement category needed a way to reach new buyers. We program-managed a 360° shoppable destination on Walmart.com that drove $7.5M in attributed sales.</p>
-    <div class="cs-meta reveal">
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Industry</div>
-        <div class="cs-meta-value">Retail Media / CPG</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Client</div>
-        <div class="cs-meta-value">BP / Castrol</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Platform</div>
-        <div class="cs-meta-value">Walmart Connect</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Role</div>
-        <div class="cs-meta-value">Creative Program Management</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     RESULTS BANNER
-     ═══════════════════════════════════════════ -->
-<section class="results-banner">
-  <div class="container">
-    <div class="results-grid">
-      <div class="result-item reveal reveal-d1">
-        <div class="result-number">$7.5M</div>
-        <div class="result-label">Sales attributed<br>to advertising</div>
-      </div>
-      <div class="result-item reveal reveal-d2">
-        <div class="result-number">51%</div>
-        <div class="result-label">New buyers<br>to Castrol</div>
-      </div>
-      <div class="result-item reveal reveal-d3">
-        <div class="result-number">$7</div>
-        <div class="result-label">Return on<br>ad spend</div>
-      </div>
-      <div class="result-item reveal reveal-d4">
-        <div class="result-number">1 min+</div>
-        <div class="result-label">Avg. time spent<br>on hub</div>
-      </div>
-      <div class="result-award reveal">
-        <span class="award-badge">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          MMA Smarties Gold — Global &amp; North America
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     CASE STUDY BODY
-     ═══════════════════════════════════════════ -->
-<div class="cs-body">
-
-  <!-- The Situation -->
-  <div class="cs-block">
-    <div class="container">
-      <div class="prose">
-        <span class="eyebrow reveal">The Situation</span>
-        <h2 class="reveal">A brand people knew — but didn't choose</h2>
-        <p class="reveal">Motor oil is one of the lowest-engagement categories in retail. Customers walk in knowing what they want and walk out in under a minute. Castrol had awareness but not consideration — shoppers saw it as a "dad's brand" and defaulted to whatever was cheapest or most familiar.</p>
-        <p class="reveal">BP needed a way to re-introduce Castrol to DIY enthusiasts at Walmart, the single largest motor oil retail channel. The challenge wasn't media spend — it was creating something worth stopping for in a category nobody stops for.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Strategy -->
-  <div class="cs-block">
-    <div class="container">
-      <div class="prose">
-        <span class="eyebrow reveal">The Strategy</span>
-        <h2 class="reveal">Meet DIYers where they're already passionate</h2>
-        <p class="reveal">The insight was simple: DIY motor oil buyers don't just change oil. They're high-engagement shoppers across multiple categories — home improvement tools, workout equipment, and storage/organization all over-indexed with this audience.</p>
-        <p class="reveal">Instead of fighting for attention in the oil aisle, the strategy was to build a <strong>cross-category destination</strong> that felt native to how DIYers actually shop. Castrol would be the host, not the pitch — curating products from across Walmart's catalog under one shoppable hub, anchored by former NFL star Larry Fitzgerald as the face of the experience.</p>
-        <div class="cs-callout reveal">
-          <p>The core concept: <strong>Larry's Garage</strong> — a fully shoppable, 360° interactive destination on Walmart.com where shoppers could explore a virtual garage, watch how-to videos, browse cross-category products, and add to cart without ever leaving the experience.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- What We Built -->
-  <div class="cs-block">
-    <div class="container">
-      <div class="prose">
-        <span class="eyebrow reveal">What We Built</span>
-        <h2 class="reveal">A 360° retail media experience — from zero</h2>
-        <p class="reveal">This was the first experience of its kind on Walmart.com. There was no template, no existing playbook, no precedent for what a shoppable branded destination could look like inside Walmart's ecosystem. Everything had to be program-managed from scratch across creative, sales, production, and Walmart's own platform teams.</p>
-        <div class="cs-screenshot reveal">
-          <img src="Castrol.png" alt="Larry's Garage — the 360° shoppable hub on Walmart.com featuring Larry Fitzgerald" loading="lazy">
-          <div class="cs-screenshot-caption">The Larry's Garage hub live on Walmart.com — a 360° shoppable destination, first of its kind on the platform.</div>
-        </div>
-        <ul class="cs-what-list reveal">
-          <li>A fully interactive, 360° shoppable hub on Walmart.com featuring Larry Fitzgerald's garage with hotspot-driven product discovery</li>
-          <li>Coordinated cross-category merchandising pulling in products from home improvement, fitness, storage, and automotive</li>
-          <li>"How to" video content embedded directly in the experience, featuring Larry walking through DIY basics</li>
-          <li>Integrated oil finder tool allowing shoppers to match the right Castrol product to their vehicle</li>
-          <li>Category takeover ads, display (on-site and off-site), search ads, and a first-ever Spanish-language campaign on Walmart Connect</li>
-          <li>Earned organic placement on Walmart.com's homepage navigation — the only brand product to receive a featured shop</li>
-        </ul>
-        <p class="reveal">Every piece of content was utility-driven and educational. The hub wasn't a landing page with a buy button — it was a genuine shopping experience designed to hold attention in a category that normally gets none.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- The Operational Challenge -->
-  <div class="cs-block">
-    <div class="container">
-      <div class="prose">
-        <span class="eyebrow reveal">The Operational Reality</span>
-        <h2 class="reveal">Why this project would normally fail</h2>
-        <p class="reveal">Multi-stakeholder retail media campaigns like this are where most creative operations break down. You're coordinating between a brand team (BP/Castrol), a retailer's media arm (Walmart Connect), a celebrity and their representation (Larry Fitzgerald), production teams for video and interactive content, the retailer's category merchandising team, and platform engineers who have to build something that's never existed before.</p>
-        <p class="reveal"><strong>Every handoff is a failure point.</strong> Misaligned timelines between creative and media. Approval loops that stall for weeks. Platform constraints discovered mid-build. Talent availability windows that don't align with production schedules.</p>
-        <p class="reveal">The reason this shipped — and shipped successfully — is because the program management held. Every stakeholder had clear ownership, every dependency was mapped, and every deliverable had a single accountable path from brief to launch.</p>
-        <div class="cs-callout reveal">
-          <p>This is the work Soren Rho does: we don't create the ads or write the strategy. We <strong>build the operating system</strong> that makes complex, multi-stakeholder creative programs actually ship — on time, on budget, and at a level of execution that wins awards.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<div class="mob" id="mob">
+  <a href="index.html#method">Method</a>
+  <a href="index.html#results">Results</a>
+  <a href="index.html#pricing">Pricing</a>
+  <a href="index.html#about">About</a>
+  <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn--steel">Book a Discovery Call</a>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     CTA
-     ═══════════════════════════════════════════ -->
-<section class="cs-cta">
-  <div class="container">
-    <div class="cs-cta-inner">
-      <h2 class="reveal">Your next launch deserves this level of rigor.</h2>
-      <p class="reveal">If your team is managing complex creative programs and things keep slipping through the cracks, let's talk about what a systems overhaul could look like.</p>
-      <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn-sea reveal">Book a Discovery Call</a>
+<!-- ══════════════════════════════════════════════
+     CASE STUDY HERO
+══════════════════════════════════════════════ -->
+<section class="cs-hero">
+  <div class="wrap">
+    <div class="cs-hero-inner">
+      <a href="index.html#results" class="link r" style="color:rgba(255,255,255,.35);margin-bottom:2rem;display:inline-flex">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        Back to Results
+      </a>
+      <span class="label r d1">Walmart Connect &times; Castrol &nbsp;&middot;&nbsp; Retail Media</span>
+      <h1 class="r d2">$7.5M in attributed sales. <span class="dim">Not a creative achievement. An operational one.</span></h1>
+      <p class="cs-hero-sub r d3">
+        Castrol was being passed over in a low-engagement category. We designed and built the operational infrastructure for a first-of-its-kind 360&deg; shoppable retail media experience on Walmart.com &mdash; coordinating cross-category strategy, NFL talent, multi-channel media, and Walmart&rsquo;s own platform team. <strong>The hub became one of Walmart&rsquo;s top DIY destinations.</strong>
+      </p>
+      <div class="cs-award r d4">MMA Smarties &mdash; Global Gold &amp; North America Gold</div>
     </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════════════════════
+     METRICS BAR
+══════════════════════════════════════════════ -->
+<div class="metrics-bar">
+  <div class="wrap">
+    <div class="metrics-row">
+      <div class="metric r">
+        <div class="num">$7.5M</div>
+        <div class="lbl">Attributed Revenue</div>
+      </div>
+      <div class="metric r d1">
+        <div class="num">$7</div>
+        <div class="lbl">ROAS</div>
+      </div>
+      <div class="metric r d2">
+        <div class="num">51%</div>
+        <div class="lbl">New-to-Brand Buyers</div>
+      </div>
+      <div class="metric r d3">
+        <div class="num">30%</div>
+        <div class="lbl">NTB Lift</div>
+      </div>
+      <div class="metric r d4">
+        <div class="num">1+ min</div>
+        <div class="lbl">Avg. Time on Hub</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     BODY — THE OPERATIONAL PROBLEM
+══════════════════════════════════════════════ -->
+<section class="cs-body section">
+  <div class="wrap">
+    <div class="cs-body-inner">
+
+      <span class="label r">The operational problem</span>
+      <h2 class="r">Motor oil is a category nobody thinks about until they need it.</h2>
+      <div class="hr r"></div>
+
+      <p class="r">Castrol had a brand recognition problem that no amount of creative was going to fix. Potential customers knew the name, but passed on it &mdash; viewing it as a legacy brand with a premium price point. In a category where consumers go directly to the brand they want, buy it, and leave, there was no natural moment to reconsider. Motor oil is a low-engagement category. Customers don&rsquo;t browse. They grab what they know.</p>
+
+      <p class="r">The insight was behavioral, not creative: DIY automotive consumers are passionate about multiple product categories outside of motor oil &mdash; tools, storage, workout equipment, home improvement. Castrol&rsquo;s audience was already shopping at Walmart. They just weren&rsquo;t shopping for Castrol.</p>
+
+      <p class="r"><strong>The challenge wasn&rsquo;t making a better ad. It was building an operational infrastructure that could intercept these consumers in the categories they already cared about, and introduce Castrol at the point of highest engagement.</strong></p>
+
+      <!-- ══════════════════════════════════════════════
+           WHAT WE BUILT
+      ══════════════════════════════════════════════ -->
+      <span class="label r" style="margin-top:3rem">What we built</span>
+      <h2 class="r">A multi-stakeholder retail media system &mdash; first of its kind in the category.</h2>
+      <div class="hr r"></div>
+
+      <p class="r">We orchestrated a 360&deg; shoppable hub on Walmart.com that cross-pollinated Castrol with the DIY product categories its target audience was already engaged with. The hub featured NFL athlete and Castrol spokesperson Larry Fitzgerald, whose garage was transformed into a fully interactive, shoppable destination &mdash; tutorial videos, product recommendations, and direct add-to-cart functionality across multiple Walmart departments.</p>
+
+      <p class="r">This was not a media buy with a landing page attached. This was a platform-level integration that required coordinating across six operational layers simultaneously:</p>
+
+      <div class="ops-grid">
+        <div class="ops-card r d1">
+          <div class="ops-num">01</div>
+          <div>
+            <h3>Cross-category strategy</h3>
+            <p>Partnered with Walmart to research and identify which product categories Castrol&rsquo;s DIY audience over-indexed in &mdash; tools, storage, workout equipment, and organization &mdash; then built a hub that blended those categories with Castrol proof points.</p>
+          </div>
+        </div>
+        <div class="ops-card r d2">
+          <div class="ops-num">02</div>
+          <div>
+            <h3>Talent integration and content production</h3>
+            <p>Coordinated Larry Fitzgerald&rsquo;s involvement across off-site media, on-site hub content, and the shoppable experience itself. Every touchpoint was utility-driven and educational &mdash; not promotional.</p>
+          </div>
+        </div>
+        <div class="ops-card r d3">
+          <div class="ops-num">03</div>
+          <div>
+            <h3>Platform architecture with Walmart Connect</h3>
+            <p>Built a first-of-its-kind 360&deg; interactive shoppable unit on Walmart.com. Managed the technical integration with Walmart&rsquo;s platform team, merchandising support, and dynamic product placements across the auto category.</p>
+          </div>
+        </div>
+        <div class="ops-card r d4">
+          <div class="ops-num">04</div>
+          <div>
+            <h3>Multi-channel media orchestration</h3>
+            <p>Deployed category takeover ads, display campaigns on and off Walmart.com, search ads, and Spanish-language advertising &mdash; a first for Walmart&rsquo;s retail media network. Every channel drove back to the hub.</p>
+          </div>
+        </div>
+        <div class="ops-card r d1">
+          <div class="ops-num">05</div>
+          <div>
+            <h3>Retailer relationship management</h3>
+            <p>The cross-category value proposition was strong enough that Walmart organically embedded Castrol into the homepage navigation of Walmart.com &mdash; the only brand to receive this placement. Dynamic merchandise placements followed across the full auto category.</p>
+          </div>
+        </div>
+        <div class="ops-card r d2">
+          <div class="ops-num">06</div>
+          <div>
+            <h3>Measurement infrastructure</h3>
+            <p>Built attribution tracking across all touchpoints &mdash; from category takeover ads through hub engagement to point-of-purchase &mdash; to produce the first clean measurement of retail media impact in the auto category for this scale of program.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fixed-statement r">
+        <p>Castrol surpassed every brand KPI for the year &mdash; $7.5M in directly attributed sales, $7 ROAS, and more than $13M in total attributed ad sales on Walmart.com. <em>That wasn&rsquo;t because the creative was better. It was because the operational system behind it worked.</em></p>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+           WHAT MADE IT WORK
+      ══════════════════════════════════════════════ -->
+      <span class="label r" style="margin-top:3rem">Why it worked</span>
+      <h2 class="r">The infrastructure was the strategy.</h2>
+      <div class="hr r"></div>
+
+      <p class="r">Most retail media campaigns fail at coordination, not concept. The creative idea is fine. The media plan is fine. What breaks is the handoff between the brand team, the retailer&rsquo;s platform team, the talent agency, the media buyers, and the merchandising leads. Without a governance system that assigns ownership at each stage, work stalls, approvals bottleneck, and the experience launches incomplete or late.</p>
+
+      <p class="r">This engagement succeeded because we built the operating system before we built the experience. Every stakeholder had a defined role. Every handoff had a single point of contact. Every approval moved through a documented stage gate &mdash; not through Slack threads and calendar holds.</p>
+
+      <p class="r">The result was a program that launched on time across six coordinated workstreams, with no missed deliverables, in a category that had never attempted this level of integrated retail media execution.</p>
+
+      <!-- ══════════════════════════════════════════════
+           VIDEO
+      ══════════════════════════════════════════════ -->
+      <div class="cs-video r" style="margin-top:3rem">
+        <iframe
+          src="https://player.vimeo.com/video/906583306?h=028957c973"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          title="Castrol × Walmart Connect — Campaign Walkthrough">
+        </iframe>
+      </div>
+      <p class="cs-video-caption r">Campaign walkthrough &mdash; Castrol &times; Walmart Connect</p>
+
+      <!-- ══════════════════════════════════════════════
+           RESULTS
+      ══════════════════════════════════════════════ -->
+      <span class="label r" style="margin-top:3rem">Measured outcomes</span>
+      <h2 class="r">Every KPI surpassed. Every benchmark cleared.</h2>
+      <div class="hr r"></div>
+
+      <div class="ba-grid">
+        <div class="ba-card r d1">
+          <h3>Attributed ad sales on Walmart.com</h3>
+          <div class="ba-row">
+            <div class="ba-v aft">
+              <div class="n">$7.5M</div>
+              <div class="l">Directly attributed</div>
+            </div>
+          </div>
+        </div>
+        <div class="ba-card r d2">
+          <h3>Return on ad spend</h3>
+          <div class="ba-row">
+            <div class="ba-v aft">
+              <div class="n">$7</div>
+              <div class="l">ROAS</div>
+            </div>
+          </div>
+        </div>
+        <div class="ba-card r d3">
+          <h3>New-to-brand buyers</h3>
+          <div class="ba-row">
+            <div class="ba-v aft">
+              <div class="n">51%</div>
+              <div class="l">Of annual Castrol purchases</div>
+            </div>
+          </div>
+        </div>
+        <div class="ba-card r d4">
+          <h3>New-to-brand lift</h3>
+          <div class="ba-row">
+            <div class="ba-v aft">
+              <div class="n">30%</div>
+              <div class="l">YoY increase</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="r">Average time spent in the shoppable hub exceeded one minute &mdash; well above Walmart&rsquo;s retail media benchmarks. The hub became one of Walmart&rsquo;s top DIY destinations. New buyers accounted for more than half of all annual Castrol purchases through the platform.</p>
+
+      <p class="r">The program won the MMA Smarties Global Gold and North America Gold awards for Integrated Ecommerce Innovation &mdash; recognition typically reserved for consumer-facing creative work. In this case, the award went to the system that made the creative work possible.</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CTA STRIP
+══════════════════════════════════════════════ -->
+<div class="cta-strip">
+  <div class="wrap">
+    <h2 class="r">Your operation has the same kind of coordination gaps.</h2>
+    <p class="r">If your team is running multi-stakeholder programs on informal process, the outcomes are predictable: missed handoffs, stalled approvals, and results that don&rsquo;t match the ambition. We fix the architecture.</p>
+    <a href="https://calendly.com/sorenrho/discovery-call" target="_blank" rel="noopener" class="btn btn--steel r">Book a Discovery Call</a>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-lighthouse-mini" aria-hidden="true">
-      <svg viewBox="0 0 48 56" width="48" height="56" fill="none">
-        <ellipse cx="24" cy="52" rx="20" ry="4" fill="#D4935A" opacity="0.3"/>
-        <defs><clipPath id="ftClip"><path d="M19,22 L17,48 L31,48 L29,22 Z"/></clipPath></defs>
-        <g clip-path="url(#ftClip)">
-          <rect x="15" y="22" width="18" height="5.2" fill="#2B6CB0" opacity="0.55"/>
-          <rect x="15" y="27.2" width="18" height="5.2" fill="rgba(255,255,255,0.1)"/>
-          <rect x="15" y="32.4" width="18" height="5.2" fill="#2B6CB0" opacity="0.55"/>
-          <rect x="15" y="37.6" width="18" height="5.2" fill="rgba(255,255,255,0.1)"/>
-          <rect x="15" y="42.8" width="18" height="5.2" fill="#2B6CB0" opacity="0.55"/>
-        </g>
-        <rect x="16" y="20.5" width="16" height="2.5" rx="1" fill="rgba(255,255,255,0.08)"/>
-        <rect x="15.5" y="19" width="17" height="1.5" rx="0.75" fill="#4A8DD4" opacity="0.35"/>
-        <rect x="19.5" y="11" width="9" height="9" rx="2" fill="rgba(255,255,255,0.1)" stroke="#2B6CB0" stroke-width="0.8" opacity="0.7"/>
-        <path d="M19,11 C19,8 21.5,5 24,4.5 C26.5,5 29,8 29,11 Z" fill="#1E4F82" opacity="0.6"/>
-        <line x1="24" y1="4.5" x2="24" y2="1.5" stroke="#1E4F82" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-        <circle cx="24" cy="1" r="1.3" fill="#2B6CB0" opacity="0.45"/>
-        <circle cx="24" cy="15" r="6" fill="rgba(212,147,90,0.12)">
-          <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="24" cy="15" r="2.5" fill="#D4935A" opacity="0.7">
-          <animate attributeName="opacity" values="0.5;0.9;0.5" dur="3s" repeatCount="indefinite"/>
-        </circle>
-        <ellipse cx="10" cy="50.5" rx="3.5" ry="2" fill="rgba(255,255,255,0.04)"/>
-        <ellipse cx="37" cy="49.5" rx="3" ry="1.8" fill="rgba(255,255,255,0.03)"/>
-      </svg>
-    </div>
+  <div class="wrap">
     <div class="footer-inner">
-      <a href="/" class="logo">Soren <em>Rho</em></a>
-      <div class="footer-links">
-        <a href="/">Home</a>
+      <a href="index.html" class="logo">Soren<em>Rho</em></a>
+      <div class="footer-nav">
+        <a href="index.html#method">Method</a>
+        <a href="index.html#results">Results</a>
+        <a href="index.html#pricing">Pricing</a>
         <a href="mailto:hello@sorenrho.com">Contact</a>
       </div>
       <span class="footer-email">hello@sorenrho.com</span>
@@ -487,22 +642,19 @@ p, li { font-size: 1rem; line-height: 1.8; }
 
 <script>
 // Header scroll
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>hdr.classList.toggle('s',scrollY>40),{passive:true});
+
+// Mobile menu
+const ham=document.getElementById('ham'),mob=document.getElementById('mob');
+ham.addEventListener('click',()=>mob.classList.toggle('open'));
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
 
 // Scroll reveal
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('vis');
-      obs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => obs.observe(el));
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
