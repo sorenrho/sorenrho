@@ -104,7 +104,12 @@ p{margin:0 0 1.1rem}
 .closev .vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.5}
 .closev::after{content:"";position:absolute;inset:0;background:rgba(18,40,58,.62);z-index:1}
 .closev .wrap{position:relative;z-index:2}
-@media(prefers-reduced-motion:reduce){.vidbox video,.closev .vbg{display:none}
+.storyv{position:relative;overflow:hidden}
+.storyv .vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.55;filter:saturate(.85)}
+.storyv::after{content:"";position:absolute;inset:0;background:rgba(18,40,58,.72);z-index:1}
+.storyv .wrap{position:relative;z-index:2;grid-template-columns:1fr;max-width:760px}
+.storyv.ghost::before{z-index:2}
+@media(prefers-reduced-motion:reduce){.vidbox video,.closev .vbg,.storyv .vbg{display:none}
   .vidbox{background:var(--navy)}.vidbox::before{content:"";display:block;padding-top:56%}}
 /* header */
 .hdr{position:sticky;top:0;z-index:20;background:rgba(245,241,232,.92);backdrop-filter:blur(10px);
@@ -203,7 +208,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
 <header class="hdr">
   <div class="wrap">
     <div class="logo" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="26" viewBox="0 0 28 40" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/><line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#12283a" stroke-width="1.4"/><line x1="11" y1="20" x2="17" y2="20" stroke="#12283a" stroke-width="1.4"/><rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/><path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/><line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/><line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/><line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/></svg>Soren Rho</div>
-    <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="buy">Buy the Single Day &rarr;</a>
+    <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="buy">Get a Diagnosis &rarr;</a>
   </div>
 </header>
 
@@ -219,8 +224,8 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
     <svg class="squig" viewBox="0 0 300 14" fill="none" aria-hidden="true"><path d="M4 9 C 50 2, 95 12, 148 7 S 250 3, 296 8" stroke="#2a5a66" stroke-width="2.5" stroke-linecap="round"/></svg>
     <p class="sub">Your team is talented. Your delivery is the problem.</p>
     <p class="lede">We build the system that fixes it: intake, approvals, tracking, and launch, in the tools you already use. Fixed scope, fixed fee, and you own everything we build.</p>
-    <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="btn">Buy the Single Day &middot; $2,500</a><a href="#offers" class="alink" style="color:var(--teal)">See the offers</a>
-    <p class="note">No sales calls. The Single Day is instant. The Build is quoted in writing within one business day.</p>
+    <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="btn">Get a Diagnosis &middot; $900</a><a href="#offers" class="alink" style="color:var(--teal)">See the offers</a>
+    <p class="note">No sales calls. The Diagnosis starts the moment you pay. The Build is quoted in writing.</p>
   </div>
 </section>
 <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 L0 30 C 240 75, 480 5, 720 30 C 960 55, 1200 15, 1440 40 L1440 0 Z" fill="#EDE7D9"/></svg>
@@ -254,26 +259,29 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
           <li>You get full documentation, built so it runs without us</li>
         </ul>
         <a href="mailto:hello@sorenrho.com?subject=Build%20quote&body=Answer%20whatever%20you%20can%3B%20rough%20is%20fine.%20You%27ll%20get%20a%20fixed%20quote%20within%20one%20business%20day.%0A%0A1.%20How%20big%20is%20the%20team%20doing%20the%20work%3F%0A2.%20What%20ships%20in%20a%20typical%20month%20(emails%2C%20pages%2C%20posts%2C%20campaigns)%3F%0A3.%20What%20tools%20do%20you%20use%20today%3F%0A4.%20How%20does%20new%20work%20arrive%20right%20now%3F%0A5.%20Who%20approves%20things%2C%20and%20where%20does%20that%20happen%3F%0A6.%20What%20shipped%20late%20most%20recently%2C%20and%20why%3F%0A7.%20What%20happens%20if%20nothing%20changes%3F%0A8.%20When%20do%20you%20want%20to%20start%3F" class="btn">Get a quote</a>
-        <p class="note">The email opens with eight short questions. Answer roughly; you will have a fixed number within one business day. Ongoing support afterward is available, but only after a Build.</p>
+        <p class="note">The email opens with eight short questions. Answer roughly; you will have a fixed number within one business day. If you start with the Diagnosis, its $900 credits toward the Build in full.</p>
       </div>
       <div class="offer">
-        <p class="tag">The fast one</p>
-        <h3>The Single Day</h3>
-        <p class="price">$2,500, flat</p>
+        <p class="tag">The starting point</p>
+        <h3>The Diagnosis</h3>
+        <p class="price">$900, flat</p>
         <ul>
-          <li>Up to 8 focused hours with your team</li>
-          <li>Good for launch prep, unsticking a stuck project, or an audit of what is breaking</li>
-          <li>Written summary and next steps within 24 hours</li>
-          <li>If it turns into a Build, the day's fee credits toward it</li>
+          <li>Pay, then answer ten questions and send three screenshots of how work actually happens today</li>
+          <li>Within three business days: a written diagnosis of where your workflow breaks, and the recommended fix</li>
+          <li>Includes a fixed quote for the 30-Day Build; the $900 credits toward it in full within 60 days</li>
+          <li>No call at any point, unless you want one</li>
         </ul>
-        <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="btn btn--quiet">Buy the Single Day</a>
-        <p class="note">Also available for photographers: a two-week model-release and file-system build at the same price. Just say so at checkout.</p>
+        <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="btn btn--quiet">Get a Diagnosis</a>
+        <p class="note">Works at any size, from a one-person studio to a full marketing team.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="dark ghost" data-n="01">
+<section class="dark storyv ghost" data-n="01">
+  <video class="vbg" autoplay muted loop playsinline preload="none" poster="studio-sm.jpg" aria-hidden="true" tabindex="-1">
+    <source src="lighthouse-beam-sm.mp4" type="video/mp4">
+  </video>
   <div class="wrap">
     <div>
       <p class="eyebrow">How it feels after</p>
@@ -281,9 +289,6 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
       <p>Every piece of work sits in exactly one known state, with exactly one person responsible for it right now. That is the whole trick. Fifteen things are not harder than three when each one has a home; three things are chaos when they do not.</p>
       <p>You can take a meeting, take a week off, or take on the next big launch, and nothing quietly dies in a thread while you are gone.</p>
     </div>
-    <div class="vidbox"><video autoplay muted loop playsinline preload="none" poster="studio-sm.jpg" aria-hidden="true" tabindex="-1">
-      <source src="lighthouse-beam-sm.mp4" type="video/mp4">
-    </video></div>
   </div>
 </section>
 
@@ -292,9 +297,9 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
 <section class="sec bio ghost" data-n="02">
   <div class="wrap">
     <p class="eyebrow">Who you are hiring</p>
-    <h2>One person leads every engagement, and the system is built to outlive her.</h2>
-    <p class="soft">Soren Rho's founder came to this from journalism, which is a long way of saying she has always been the person who writes down what happened and keeps the notes in order. She spent fifteen years producing content at high volume, for people who were not gentle about deadlines.</p>
-    <p class="soft">Soren Rho is deliberately small. The founder leads every engagement herself and takes two or three clients at a time, because the whole point is senior attention, not a junior coordinator with a logo on their email.</p>
+    <h2>A small senior team, and a system built to outlive us.</h2>
+    <p class="soft">The team came up through newsrooms and production floors: fifteen years of shipping content at high volume, for people who were not gentle about deadlines. Writing down what happened and keeping the notes in order is the house habit.</p>
+    <p class="soft">Soren Rho is deliberately small and takes two or three clients at a time, because the whole point is senior attention, not a junior coordinator with a logo on their email.</p>
     <p class="soft">Full work history and references are shared on request.</p>
   </div>
 </section>
@@ -326,9 +331,10 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
   <div class="wrap">
     <p class="eyebrow">Fair questions</p>
     <h2>The things you are actually wondering.</h2>
-    <div><h3>Why is there no sales call?</h3><p>Because your time is worth something and so is ours, and a free consultation is usually a sales pitch with better manners. The Single Day is a fixed thing at a fixed price. The Build gets quoted in writing from eight questions, so the first conversation we have is one where we are already working for you.</p></div>
+    <div><h3>Why is there no sales call?</h3><p>Because your time is worth something and so is ours, and a free consultation is usually a sales pitch with better manners. The Diagnosis is a fixed thing at a fixed price. The Build gets quoted in writing, so the first conversation we have is one where we are already working for you.</p></div>
+    <div><h3>What happens after I buy the Diagnosis?</h3><p>Within one business day you get the survey: ten questions and three screenshots, including your project board exactly as it looks right now. Do not tidy it first; the mess is the data. Within three business days of your answers, you get the written diagnosis, the recommended system, and a fixed Build quote.</p></div>
     <div><h3>Do we have to switch tools?</h3><p>No. We build in whatever you already use: Notion, Asana, Monday, Workfront, a shared drive. New software is usually how these projects die.</p></div>
-    <div><h3>Is it just one person?</h3><p>Mostly, and on purpose. The founder leads every engagement. Specialists come in for specific builds when needed.</p></div>
+    <div><h3>Who does the work?</h3><p>A deliberately small team. Someone senior runs your engagement from start to finish, and specialists come in for specific builds when needed. Nothing gets handed to a junior coordinator.</p></div>
     <div><h3>What happens when you leave?</h3><p>The system keeps running. Everything is documented in plain English, your team is trained on it, and it lives in your accounts. If it only worked while we were in the room, we would have sold you a dependency instead of a system.</p></div>
     <div><h3>Can you stay on long-term?</h3><p>After a Build, yes, month to month. But the system is designed so you will not need us, and we would rather say that up front.</p></div>
   </div>
@@ -343,7 +349,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:
     <div style="max-width:56ch;margin:0 auto">
       <h2 style="max-width:none">In rough water, a ship steers by a fixed point. Something steady, that says: this is the way through.</h2>
       <p style="max-width:44ch;margin:0 auto 1.6rem">That is what gets built here. A system that holds under load and runs without anyone standing watch.</p>
-      <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="btn" style="background:var(--teal)">Buy the Single Day <small>$2,500</small></a>
+      <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="btn" style="background:var(--teal)">Get a Diagnosis <small>$900</small></a>
       <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin:18px 0 0">The lighthouse in the name is not decorative. It is the fixed point.</p>
     </div>
   </div>
