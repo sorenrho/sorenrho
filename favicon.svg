@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="g" cx="16" cy="7" r="6" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E0AD7A" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#D4935A" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#D4935A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Beacon glow -->
+  <circle cx="16" cy="7" r="6" fill="url(#g)"/>
+  <!-- Dome -->
+  <path d="M13,10 C13,8 14.5,5.5 16,5 C17.5,5.5 19,8 19,10 Z" fill="#1E4F82"/>
+  <!-- Lantern room -->
+  <rect x="13" y="10" width="6" height="4" rx="1" fill="#DFE5EB" stroke="#2B6CB0" stroke-width="0.5"/>
+  <!-- Gallery -->
+  <rect x="12" y="14" width="8" height="1.5" rx="0.5" fill="#2B6CB0"/>
+  <!-- Tower stripes (tapered) -->
+  <path d="M13.2,15.5 L12,28 L20,28 L18.8,15.5 Z" fill="#2B6CB0"/>
+  <path d="M12.8,19 L12.4,24 L19.6,24 L19.2,19 Z" fill="#DFE5EB"/>
+  <!-- Sandy base -->
+  <ellipse cx="16" cy="28.5" rx="10" ry="2.5" fill="#D4935A" opacity="0.5"/>
+  <!-- Beacon light core -->
+  <circle cx="16" cy="7" r="1.8" fill="#E0AD7A"/>
+  <circle cx="16" cy="7" r="0.8" fill="#fff" opacity="0.9"/>
+</svg>

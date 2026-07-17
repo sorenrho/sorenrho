@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Application Received — Soren Rho</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{
+  font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  color:#1A2636;
+  background:#F0F0EB;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+:root{
+  --navy:    #0C1B28;
+  --ink:     #1A2636;
+  --stone:   #3C4E5E;
+  --drift:   #68798A;
+  --rule:    #C4CDD6;
+  --shore:   #DDE3E9;
+  --foam:    #EAEEF1;
+  --paper:   #F0F0EB;
+  --white:   #FAFAF7;
+  --brass:   #8B7340;
+  --brass-lt:#A89262;
+  --steel:   #2E5986;
+  --steel-lt:#4A7AB5;
+  --steel-dk:#1C3D5E;
+  --max-w:   1140px;
+  --px:      24px;
+}
+
+/* Paper grain */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.4;
+}
+
+/* Grid texture */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(44,89,134,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(44,89,134,0.03) 1px,transparent 1px);
+  background-size:56px 56px;
+  pointer-events:none;z-index:0;
+}
+
+a{text-decoration:none;color:inherit}
+
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 var(--px)}
+
+/* Logo */
+.logo{
+  font-size:1.05rem;font-weight:700;
+  letter-spacing:-0.02em;color:var(--navy);
+}
+.logo em{font-style:normal;color:var(--brass)}
+
+/* Header */
+.hdr{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  background:rgba(240,240,235,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--shore);
+}
+.hdr-inner{
+  max-width:var(--max-w);margin:0 auto;
+  padding:14px var(--px);
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Main content */
+.ty-main{
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  padding:120px var(--px) 80px;
+  position:relative;z-index:1;
+}
+.ty-card{
+  max-width:540px;width:100%;
+  background:var(--white);
+  border:1px solid var(--shore);
+  padding:56px 48px;
+  text-align:center;
+}
+.ty-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.62rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.2em;
+  color:var(--brass);
+  margin-bottom:1.25rem;
+}
+.ty-card h1{
+  font-size:clamp(1.4rem,3vw,1.8rem);
+  font-weight:700;line-height:1.15;
+  letter-spacing:-0.02em;color:var(--navy);
+  margin-bottom:1.25rem;
+}
+.ty-card p{
+  font-size:.92rem;line-height:1.75;
+  color:var(--drift);max-width:420px;
+  margin:0 auto;
+}
+.ty-hr{
+  width:36px;height:1.5px;
+  background:var(--brass);
+  margin:1.5rem auto;
+}
+
+/* Footer */
+.footer{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.04);
+  padding:36px 0;position:relative;z-index:1;
+}
+.footer-inner{
+  display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:14px;
+}
+.footer-email{font-size:.75rem;color:rgba(255,255,255,.2)}
+.footer-legal{font-size:.62rem;color:rgba(255,255,255,.1);margin-top:1rem;text-align:center}
+.footer .logo{color:rgba(255,255,255,.7)}
+.footer .logo em{color:rgba(255,255,255,.25)}
+
+@media(min-width:768px){
+  :root{--px:44px}
+  html{font-size:17px}
+}
+@media(min-width:1024px){
+  :root{--px:64px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="/" class="logo">Soren<em>Rho</em></a>
+  </div>
+</header>
+
+<main class="ty-main">
+  <div class="ty-card">
+    <div class="ty-label">Confirmation</div>
+    <h1>Your application has been received.</h1>
+    <div class="ty-hr"></div>
+    <p>If your situation is a fit, you'll hear from us within 2 business days with a link to book your paid diagnostic session.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <a href="/" class="logo">Soren<em>Rho</em></a>
+      <span class="footer-email">hello@sorenrho.com</span>
+    </div>
+    <p class="footer-legal">&copy; 2026 Pixique LLC d/b/a Soren Rho. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

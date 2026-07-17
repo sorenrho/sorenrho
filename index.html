@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soren Rho: content operations that ship on time</title>
+<meta name="description" content="Soren Rho is a content operations studio. Intake, approvals, tracking, and launch systems for teams that ship a lot, built in the tools you already use.">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 40"><path d="M9 38 L12 12 L16 12 L19 38 Z" fill="none" stroke="%2312283a" stroke-width="2"/><rect x="10.5" y="5" width="7" height="7" fill="none" stroke="%2312283a" stroke-width="2"/><path d="M9.5 5 L14 1 L18.5 5 Z" fill="%2312283a"/><line x1="6" y1="38" x2="22" y2="38" stroke="%2312283a" stroke-width="2"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#20272e; --soft:#5a6670; --line:#e2dccd;
+  --navy:#12283a; --teal:#2a5a66; --teal-dk:#1f454f;
+  --panel:#ffffff; --paper:#F5F1E8; --cream-dk:#EDE7D9;
+  --maxw:920px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.7;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+a{color:var(--teal);text-decoration:none}
+a:hover{color:var(--teal-dk)}
+h1,h2,h3{color:var(--navy);font-weight:600;letter-spacing:-.02em;margin:0}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal);margin:0 0 16px;display:flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:3px;height:13px;background:var(--teal)}
+p{margin:0 0 1.1rem}
+.soft{color:var(--soft)}
+.sec{padding:60px 0;border-top:1px solid var(--line)}
+.sec h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.16;margin:0 0 18px;max-width:22ch;letter-spacing:-.015em}
+.lede{font-size:1.15rem;color:var(--soft);max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;
+  font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;border-radius:4px;transition:background .2s}
+.btn:hover{background:var(--teal-dk);color:#fff}
+.btn small{opacity:.7;font-weight:400}
+.btn--quiet{background:transparent;color:var(--navy);border:1px solid var(--line)}
+.btn--quiet:hover{background:var(--panel);color:var(--navy)}
+.note{font-size:.82rem;color:var(--soft);margin-top:14px}
+/* ghost numerals: the signature, 3 placements */
+.ghost{position:relative}
+.ghost::before{content:attr(data-n);position:absolute;top:8px;right:0;z-index:0;
+  font-family:'Newsreader',serif;font-weight:500;font-size:clamp(72px,14vw,150px);line-height:1;
+  color:rgba(18,40,58,.06);pointer-events:none}
+.dark.ghost::before{color:rgba(255,255,255,.06)}
+.ghost>.wrap{position:relative;z-index:1}
+@media(max-width:640px){.ghost::before{font-size:72px}}
+
+/* hero: full-bleed environment (Bain) */
+.herod{position:relative;background:var(--navy);overflow:hidden}
+.herod .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
+  opacity:.45;filter:saturate(.8)}
+.herod::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(18,40,58,.92) 0%,rgba(18,40,58,.55) 55%,rgba(18,40,58,.25) 100%)}
+.herod .wrap{position:relative;z-index:2;padding-top:104px;padding-bottom:96px}
+.herod h1{font-family:'Newsreader',serif;font-weight:400;color:#fff;letter-spacing:-.02em;
+  font-size:clamp(2.5rem,6.2vw,4.4rem);line-height:1.05;max-width:15ch;margin:0 0 26px}
+.herod h1 .acc{color:#8fd0dc;font-style:normal}
+.herod .lede{font-size:1.18rem;color:rgba(255,255,255,.82);max-width:50ch;margin-bottom:18px}
+.herod .terms{font-size:1.02rem;color:rgba(255,255,255,.6);max-width:52ch;margin-bottom:30px}
+.herod .terms b{color:#fff;font-weight:600}
+.herod .btn{background:var(--teal)}
+.herod .btn:hover{background:#357380}
+.herod .note{color:rgba(255,255,255,.5)}
+.alink{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:500;font-size:.95rem;
+  letter-spacing:.02em;margin-left:22px}
+.alink:hover{color:#8fd0dc}
+.alink::after{content:"\2192";transition:transform .2s}
+.alink:hover::after{transform:translateX(4px)}
+@media(max-width:640px){.herod .wrap{padding-top:72px;padding-bottom:64px}.alink{margin-left:0;margin-top:14px;display:flex}}
+
+/* hero: centered editorial (Jasmine) */
+.heroj{position:relative;background:var(--cream-dk);overflow:hidden;text-align:center}
+.heroj .wrap{position:relative;z-index:2;padding-top:96px;padding-bottom:120px;max-width:980px}
+.heroj .ghostword{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Newsreader',serif;font-weight:500;font-size:clamp(120px,22vw,260px);line-height:1;
+  color:rgba(18,40,58,.05);white-space:nowrap;pointer-events:none;z-index:1;user-select:none}
+.heroj h1{font-family:'Newsreader',serif;font-weight:500;color:var(--navy);letter-spacing:-.02em;
+  font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.08;max-width:18ch;margin:0 auto 10px}
+.heroj h1 .acc{color:var(--teal);position:relative;display:inline-block}
+.heroj .squig{display:block;margin:6px auto 26px;width:min(300px,60%)}
+.heroj .sub{font-family:'Newsreader',serif;font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--ink);
+  max-width:44ch;margin:0 auto 14px;line-height:1.5}
+.heroj .lede{max-width:56ch;margin:0 auto 30px;font-size:1.08rem}
+.heroj .note{margin-top:16px}
+.heroj .alink{color:var(--teal);margin-left:18px}
+.heroj .alink:hover{color:var(--teal-dk)}
+
+.heroj .hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.heroj::before{content:"";position:absolute;inset:0;background:rgba(237,231,217,.82);z-index:1}
+.heroj .ghostword{z-index:2}
+.heroj .wrap{z-index:3}
+@media(prefers-reduced-motion:reduce){.heroj .hbg{display:none}}
+.wave{display:block;width:100%;height:70px;margin-top:-1px}
+@media(max-width:640px){.heroj .wrap{padding-top:64px;padding-bottom:80px}.heroj .alink{margin:14px 0 0;display:inline-flex}}
+
+/* video moments */
+.vidbox{border-radius:10px;overflow:hidden;position:relative}
+.vidbox video{width:100%;display:block;filter:saturate(.85)}
+.closev{position:relative;overflow:hidden}
+.closev .vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.5}
+.closev::after{content:"";position:absolute;inset:0;background:rgba(18,40,58,.62);z-index:1}
+.closev .wrap{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.vidbox video,.closev .vbg{display:none}
+  .vidbox{background:var(--navy)}.vidbox::before{content:"";display:block;padding-top:56%}}
+/* header */
+.hdr{position:sticky;top:0;z-index:20;background:rgba(245,241,232,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:'Newsreader',serif;font-size:1.2rem;color:var(--navy);font-weight:500}
+.hdr a.buy{font-size:.82rem;font-weight:600;color:var(--teal);letter-spacing:.02em}
+/* hero */
+.hero{padding:64px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-family:'Newsreader',serif;font-weight:400;letter-spacing:-.02em;
+  font-size:clamp(2.3rem,5.6vw,4rem);line-height:1.06;max-width:16ch;margin:0 0 24px}
+.hero .lede{font-size:1.18rem;color:var(--ink);max-width:52ch;margin-bottom:18px}
+.hero .terms{font-size:1.02rem;color:var(--soft);max-width:52ch;margin-bottom:28px}
+.hero .terms b{color:var(--navy);font-weight:600}
+.hero-img{border-radius:12px;overflow:hidden;position:relative}
+.hero-img img{width:100%;height:100%;min-height:380px;object-fit:cover;display:block;filter:saturate(.85)}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-img img{min-height:240px;max-height:300px}}
+/* failure modes grid */
+.fails{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:34px 0 0;border-top:1px solid var(--line)}
+.fails div{padding:22px 26px 24px 0;border-bottom:1px solid var(--line)}
+.fails div:nth-child(odd){border-right:1px solid var(--line)}
+.fails div:nth-child(even){padding-left:26px}
+.fails .n{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--teal);display:block;margin-bottom:8px}
+.fails h3{font-size:1.02rem;margin:0 0 6px;letter-spacing:-.01em}
+.fails p{margin:0;color:var(--soft);font-size:.93rem;line-height:1.6}
+@media(max-width:640px){.fails{grid-template-columns:1fr}.fails div{border-right:0 !important;padding-left:0 !important}}
+/* outcomes arrows */
+.outs{list-style:none;padding:0;margin:26px 0 0}
+.outs li{display:grid;grid-template-columns:2rem 1fr;gap:12px;padding:18px 0;border-top:1px solid var(--line)}
+.outs .a{color:var(--teal);font-weight:600}
+.outs h3{font-size:1.05rem;margin:0 0 4px}
+.outs p{margin:0;color:var(--soft);font-size:.95rem;line-height:1.6}
+/* stat band */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--navy);margin:6px 0 0}
+.stats div{padding:20px 20px 22px 0}
+.stats div+div{border-left:1px solid var(--line);padding-left:22px}
+.stats b{display:block;font-size:2.1rem;line-height:1;letter-spacing:-.03em;color:var(--navy);font-weight:600}
+.stats span{display:block;font-size:.74rem;color:var(--soft);margin-top:9px;line-height:1.4}
+@media(max-width:640px){.stats{grid-template-columns:1fr}.stats div+div{border-left:0;padding-left:0}}
+/* offers */
+.offers{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px}
+.offer{border:1px solid var(--line);border-radius:12px;padding:30px 30px 26px;background:var(--panel)}
+.offer.lead{border:2px solid var(--teal)}
+.offer .tag{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 10px}
+.offer h3{font-family:'Newsreader',serif;font-weight:500;font-size:1.5rem;margin:0 0 4px}
+.offer .price{font-size:1.05rem;color:var(--navy);font-weight:600;margin:0 0 14px}
+.offer ul{list-style:none;padding:0;margin:0 0 20px}
+.offer li{padding:8px 0;border-top:1px solid var(--line);color:var(--soft);font-size:.94rem;line-height:1.55}
+.offer li:first-child{border-top:0}
+.offer .note{margin-top:12px}
+@media(max-width:760px){.offers{grid-template-columns:1fr}}
+/* dark band */
+.dark{background:var(--navy);color:rgba(255,255,255,.85)}
+.dark .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding-top:64px;padding-bottom:64px}
+.dark h2{color:#fff;font-family:'Newsreader',serif;font-weight:400;font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.2;margin:0 0 16px;max-width:20ch}
+.dark p{color:rgba(255,255,255,.78);font-size:1rem;line-height:1.7}
+.dark .eyebrow{color:#8fd0dc}
+.dark .eyebrow::before{background:#8fd0dc}
+.dark img{width:100%;border-radius:10px;display:block}
+@media(max-width:760px){.dark .wrap{grid-template-columns:1fr}}
+/* steps */
+.steps{list-style:none;padding:0;margin:26px 0 0}
+.steps li{display:grid;grid-template-columns:110px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line)}
+.steps .when{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:4px}
+.steps h3{font-size:1.1rem;margin:0 0 6px;letter-spacing:-.01em}
+.steps p{margin:0;color:var(--soft);font-size:.98rem;line-height:1.65}
+@media(max-width:640px){.steps li{grid-template-columns:1fr;gap:4px}}
+/* two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;gap:6px}
+  .hero{padding:48px 0 40px}.sec{padding:44px 0}}
+/* fit list */
+.fit{list-style:none;padding:0;margin:16px 0 0}
+.fit li{padding:10px 0;border-top:1px solid var(--line);color:var(--soft);font-size:.96rem}
+.fit li:first-child{border-top:0}
+.fit li b{color:var(--navy);font-weight:600}
+/* faq */
+.faq h3{font-size:1.05rem;margin:0 0 6px;color:var(--navy)}
+.faq div{padding:22px 0;border-top:1px solid var(--line)}
+.faq p{margin:0;color:var(--soft)}
+.bio p{max-width:62ch}
+footer{border-top:1px solid var(--line);padding:40px 0 60px;margin-top:20px}
+footer p{font-size:.82rem;color:var(--soft);max-width:70ch;margin:0 0 8px}
+footer a{color:var(--soft);border-bottom:1px solid var(--line)}
+/* a11y */
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:12px;top:10px;position:fixed;z-index:50;background:#fff;border:1px solid var(--line);
+  padding:10px 16px;border-radius:6px;color:var(--navy)}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="hdr">
+  <div class="wrap">
+    <div class="logo" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="26" viewBox="0 0 28 40" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/><line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#12283a" stroke-width="1.4"/><line x1="11" y1="20" x2="17" y2="20" stroke="#12283a" stroke-width="1.4"/><rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/><path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/><line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/><line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/><line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/></svg>Soren Rho</div>
+    <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="buy">Buy the Single Day &rarr;</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="heroj">
+  <video class="hbg" autoplay muted loop playsinline preload="metadata" poster="lighthouse-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="lighthouse-hero.webm" type="video/webm">
+    <source src="lighthouse-hero.mp4" type="video/mp4">
+  </video>
+  <div class="ghostword" aria-hidden="true">on time</div>
+  <div class="wrap">
+    <h1>We make your content <span class="acc">ship on time.</span></h1>
+    <svg class="squig" viewBox="0 0 300 14" fill="none" aria-hidden="true"><path d="M4 9 C 50 2, 95 12, 148 7 S 250 3, 296 8" stroke="#2a5a66" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <p class="sub">Your team is talented. Your delivery is the problem.</p>
+    <p class="lede">We build the system that fixes it: intake, approvals, tracking, and launch, in the tools you already use. Fixed scope, fixed fee, and you own everything we build.</p>
+    <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="btn">Buy the Single Day &middot; $2,500</a><a href="#offers" class="alink" style="color:var(--teal)">See the offers</a>
+    <p class="note">No sales calls. The Single Day is instant. The Build is quoted in writing within one business day.</p>
+  </div>
+</section>
+<svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 L0 30 C 240 75, 480 5, 720 30 C 960 55, 1200 15, 1440 40 L1440 0 Z" fill="#EDE7D9"/></svg>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Sound familiar?</p>
+    <h2>The team is not the problem. The system is.</h2>
+    <div class="fails">
+      <div><span class="n">01</span><h3>Work arrives from everywhere</h3><p>Slack, email, a hallway conversation, a deck nobody finished. Nothing has one front door, so nothing has one priority list.</p></div>
+      <div><span class="n">02</span><h3>Approvals disappear</h3><p>The review happened, someone had thoughts, and now the file sits in limbo while the launch date does not move.</p></div>
+      <div><span class="n">03</span><h3>Status lives in your head</h3><p>You spend more time chasing updates than doing the work, because you are the only person who knows where everything is.</p></div>
+      <div><span class="n">04</span><h3>Launches run on adrenaline</h3><p>Assets land late, nothing has an owner, and the date you announced slips again. Launches fail on sequencing, not on talent.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="offers">
+  <div class="wrap">
+    <p class="eyebrow">Two ways in</p>
+    <h2>Pick the size of the problem.</h2>
+    <div class="offers">
+      <div class="offer lead">
+        <p class="tag">The flagship</p>
+        <h3>The 30-Day Build</h3>
+        <p class="price">Fixed fee, quoted in writing</p>
+        <ul>
+          <li>Week 1: we find what is actually broken, intake, approvals, tracking, handoffs</li>
+          <li>Week 2: the plan, one front door for work, owners and deadlines for every gate</li>
+          <li>Weeks 3 and 4: we build it in your existing tools and train your team on it</li>
+          <li>You get full documentation, built so it runs without us</li>
+        </ul>
+        <a href="mailto:hello@sorenrho.com?subject=Build%20quote&body=Answer%20whatever%20you%20can%3B%20rough%20is%20fine.%20You%27ll%20get%20a%20fixed%20quote%20within%20one%20business%20day.%0A%0A1.%20How%20big%20is%20the%20team%20doing%20the%20work%3F%0A2.%20What%20ships%20in%20a%20typical%20month%20(emails%2C%20pages%2C%20posts%2C%20campaigns)%3F%0A3.%20What%20tools%20do%20you%20use%20today%3F%0A4.%20How%20does%20new%20work%20arrive%20right%20now%3F%0A5.%20Who%20approves%20things%2C%20and%20where%20does%20that%20happen%3F%0A6.%20What%20shipped%20late%20most%20recently%2C%20and%20why%3F%0A7.%20What%20happens%20if%20nothing%20changes%3F%0A8.%20When%20do%20you%20want%20to%20start%3F" class="btn">Get a quote</a>
+        <p class="note">The email opens with eight short questions. Answer roughly; you will have a fixed number within one business day. Ongoing support afterward is available, but only after a Build.</p>
+      </div>
+      <div class="offer">
+        <p class="tag">The fast one</p>
+        <h3>The Single Day</h3>
+        <p class="price">$2,500, flat</p>
+        <ul>
+          <li>Up to 8 focused hours with your team</li>
+          <li>Good for launch prep, unsticking a stuck project, or an audit of what is breaking</li>
+          <li>Written summary and next steps within 24 hours</li>
+          <li>If it turns into a Build, the day's fee credits toward it</li>
+        </ul>
+        <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="btn btn--quiet">Buy the Single Day</a>
+        <p class="note">Also available for photographers: a two-week model-release and file-system build at the same price. Just say so at checkout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark ghost" data-n="01">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">How it feels after</p>
+      <h2>The system holds, even on a bad Thursday.</h2>
+      <p>Every piece of work sits in exactly one known state, with exactly one person responsible for it right now. That is the whole trick. Fifteen things are not harder than three when each one has a home; three things are chaos when they do not.</p>
+      <p>You can take a meeting, take a week off, or take on the next big launch, and nothing quietly dies in a thread while you are gone.</p>
+    </div>
+    <div class="vidbox"><video autoplay muted loop playsinline preload="none" poster="studio-sm.jpg" aria-hidden="true" tabindex="-1">
+      <source src="lighthouse-beam-sm.mp4" type="video/mp4">
+    </video></div>
+  </div>
+</section>
+
+
+
+<section class="sec bio ghost" data-n="02">
+  <div class="wrap">
+    <p class="eyebrow">Who you are hiring</p>
+    <h2>One person leads every engagement, and the system is built to outlive her.</h2>
+    <p class="soft">Soren Rho's founder came to this from journalism, which is a long way of saying she has always been the person who writes down what happened and keeps the notes in order. She spent fifteen years producing content at high volume, for people who were not gentle about deadlines.</p>
+    <p class="soft">Soren Rho is deliberately small. The founder leads every engagement herself and takes two or three clients at a time, because the whole point is senior attention, not a junior coordinator with a logo on their email.</p>
+    <p class="soft">Full work history and references are shared on request.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap two-col">
+    <div>
+      <p class="eyebrow">Good fit</p>
+      <ul class="fit">
+        <li><b>You ship a lot</b>: offers, landing pages, emails, campaigns, in-store content</li>
+        <li><b>Your team is talented</b> but delivery is messy</li>
+        <li><b>You have tried to fix it yourself</b> and do not have the time</li>
+        <li><b>You want someone senior</b> who has run this at volume</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">Not a fit</p>
+      <ul class="fit">
+        <li>You need the content designed or written. We run the system; we do not make the work.</li>
+        <li>You want a big agency with lots of people</li>
+        <li>You want cheap hourly help</li>
+        <li>You are not willing to change how work comes in</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec faq">
+  <div class="wrap">
+    <p class="eyebrow">Fair questions</p>
+    <h2>The things you are actually wondering.</h2>
+    <div><h3>Why is there no sales call?</h3><p>Because your time is worth something and so is ours, and a free consultation is usually a sales pitch with better manners. The Single Day is a fixed thing at a fixed price. The Build gets quoted in writing from eight questions, so the first conversation we have is one where we are already working for you.</p></div>
+    <div><h3>Do we have to switch tools?</h3><p>No. We build in whatever you already use: Notion, Asana, Monday, Workfront, a shared drive. New software is usually how these projects die.</p></div>
+    <div><h3>Is it just one person?</h3><p>Mostly, and on purpose. The founder leads every engagement. Specialists come in for specific builds when needed.</p></div>
+    <div><h3>What happens when you leave?</h3><p>The system keeps running. Everything is documented in plain English, your team is trained on it, and it lives in your accounts. If it only worked while we were in the room, we would have sold you a dependency instead of a system.</p></div>
+    <div><h3>Can you stay on long-term?</h3><p>After a Build, yes, month to month. But the system is designed so you will not need us, and we would rather say that up front.</p></div>
+  </div>
+</section>
+
+<section class="dark closev" id="close">
+  <video class="vbg" autoplay muted loop playsinline preload="metadata" poster="lighthouse-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="lighthouse-hero.webm" type="video/webm">
+    <source src="lighthouse-hero.mp4" type="video/mp4">
+  </video>
+  <div class="wrap" style="grid-template-columns:1fr;text-align:center;padding-top:72px;padding-bottom:72px">
+    <div style="max-width:56ch;margin:0 auto">
+      <h2 style="max-width:none">In rough water, a ship steers by a fixed point. Something steady, that says: this is the way through.</h2>
+      <p style="max-width:44ch;margin:0 auto 1.6rem">That is what gets built here. A system that holds under load and runs without anyone standing watch.</p>
+      <a href="https://buy.stripe.com/5kQdR8eKv5Ck7tR8XMeQM07" class="btn" style="background:var(--teal)">Buy the Single Day <small>$2,500</small></a>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin:18px 0 0">The lighthouse in the name is not decorative. It is the fixed point.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong style="color:var(--navy)">Soren Rho</strong> is a content operations studio. We build the intake, approval, tracking, and launch systems that make content ship on time, and we hand them over when we are done.</p>
+    <p>Questions: <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a></p>
+    <p><a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    <p>&copy; 2026 Pixique LLC d/b/a Soren Rho. Photo by <a href="https://unsplash.com/@joshuawann" rel="noopener">Joshua Wann</a> on Unsplash.</p>
+  </div>
+</footer>
+</body>
+</html>
