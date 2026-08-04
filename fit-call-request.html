@@ -3,36 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Request a Fit Call | Soren Rho</title>
+<title>Book a Fit Call | Soren Rho</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
 <style>
-:root{--navy:#12283a;--teal:#2a5a66;--ink:#20272e;--soft:#5a6670;--line:#ddd5c4;--paper:#f5f1e8;--panel:#fffdf8;--maxw:860px;--radius:22px;--shadow:0 18px 54px rgba(18,40,58,.10)}
+:root{--navy:#12283a;--teal:#2a5a66;--ink:#20272e;--soft:#5a6670;--line:#ddd5c4;--paper:#f5f1e8;--panel:#fffdf8;--maxw:960px;--radius:22px;--shadow:0 18px 54px rgba(18,40,58,.10)}
 *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:var(--teal);text-decoration:none} a:hover{color:var(--navy)}
 h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.025em} h1,h2{font-family:'Newsreader',serif}
-p{margin:0 0 1rem}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+p{margin:0 0 1rem} ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .header{position:sticky;top:0;z-index:20;background:rgba(245,241,232,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,40,58,.10)}
 .header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px}
 .brand{display:inline-flex;align-items:center;gap:12px;color:var(--navy);font-family:'Newsreader',serif;font-size:1.24rem;font-weight:600}
-.hero{padding:64px 0 32px}.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.hero{padding:64px 0 24px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
 .eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
-.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:.98;max-width:12ch;margin-bottom:18px}
-.hero p{max-width:44rem;color:var(--soft)}
-.card{background:var(--panel);border:1px solid rgba(18,40,58,.10);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:56px}
-label{display:block;font-weight:600;color:var(--navy);margin:18px 0 8px}
-input,textarea,select{width:100%;padding:14px 16px;border:1px solid rgba(18,40,58,.16);border-radius:14px;background:#fff;color:var(--ink);font:inherit}
-textarea{min-height:120px;resize:vertical}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;border:1px solid transparent;background:var(--navy);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.hero h1{font-size:clamp(2.3rem,5.2vw,4.2rem);line-height:.96;max-width:12ch;margin-bottom:18px}
+.hero p{max-width:48rem;color:var(--soft)}
+.grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);gap:24px;padding-bottom:56px}
+.card{background:var(--panel);border:1px solid rgba(18,40,58,.10);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.card h2{font-size:1.6rem;margin-bottom:14px}
+.checklist,.notes{display:grid;gap:12px}
+.checklist li,.notes li{position:relative;padding-left:18px;color:var(--soft)}
+.checklist li::before,.notes li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--teal);transform:translateY(-50%)}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;border:1px solid transparent;background:var(--navy);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .btn:hover{background:var(--teal);color:#fff}
-.support{margin-top:16px;color:var(--soft);font-size:.92rem}
-.confirmation{display:none;margin-top:20px;padding:18px 20px;border-radius:16px;background:rgba(42,90,102,.08);color:var(--navy)}
-.confirmation.visible{display:block}
+.support{margin-top:18px;color:var(--soft);font-size:.92rem}
 footer{border-top:1px solid rgba(18,40,58,.10);padding:32px 0 48px} footer p{margin:0 0 10px;color:var(--soft);font-size:.9rem}
-a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}.card{padding:22px}.hero{padding-top:56px}}
 </style>
 </head>
 <body>
@@ -40,71 +44,35 @@ a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,
 <main class="wrap">
   <section class="hero">
     <p class="eyebrow">Confirm Fit First</p>
-    <h1>Request a fit call for the Creative Operations Diagnosis.</h1>
-    <p>Use this form to confirm that the operational challenge is within scope, the Diagnosis is the right starting point, and the engagement can work within your timeline and purchasing process.</p>
+    <h1>Book a Creative Operations Fit Call.</h1>
+    <p>Book a focused 20-minute conversation with a senior Soren Rho lead to confirm whether your organization’s creative-operations challenge is within scope, whether the Creative Operations Diagnosis is the right starting point, and whether the engagement can work within your timeline and purchasing process.</p>
   </section>
-  <section class="card">
-    <form id="fit-call-form">
-      <input type="hidden" name="form_type" value="Fit Call Request">
-      <input type="hidden" name="_subject" value="Soren Rho Fit Call Request">
-      <label for="organization">Organization</label>
-      <input id="organization" name="organization" autocomplete="organization" required>
-      <label for="role">Your role</label>
-      <input id="role" name="role" required>
-      <label for="email">Business email</label>
-      <input id="email" name="business_email" type="email" autocomplete="email" required>
-      <label for="project_volume">Approximate monthly project volume</label>
-      <input id="project_volume" name="project_volume" required>
-      <label for="what_breaking">What is currently breaking?</label>
-      <textarea id="what_breaking" name="current_challenge" required></textarea>
-      <label for="authority">Do you have authority to commission the Diagnosis?</label>
-      <select id="authority" name="commissioning_authority" required>
-        <option value="">Select one</option>
-        <option>Yes</option>
-        <option>No</option>
-        <option>Shared approval</option>
-      </select>
-      <div style="margin-top:24px">
-        <button class="btn" id="fit-submit" type="submit">Request a Fit Call</button>
+  <section class="grid">
+    <article class="card">
+      <h2>What this call is for</h2>
+      <ul class="checklist">
+        <li>Confirm what is currently breaking or creating delivery risk</li>
+        <li>Clarify the teams and stakeholders involved</li>
+        <li>Review the current workflow and tool environment at a high level</li>
+        <li>Understand the volume or complexity of work being managed</li>
+        <li>Discuss timing, procurement, and potential next steps</li>
+      </ul>
+      <div class="btn-row">
+        <a class="btn" href="https://calendar.app.google/5p9fKLLbbNxzdgLY9" rel="noopener">Book a 20-Minute Fit Call</a>
       </div>
-      <p class="support">This form submits directly to Soren Rho. Please do not include confidential client data, credentials, or regulated information. See the <a href="privacy.html">Privacy Policy</a>. Scheduling will be confirmed by email.</p>
-      <div class="confirmation" id="fit-confirmation" aria-live="polite"></div>
-    </form>
+      <p class="support">Google Calendar will show available times and automatically generate the Google Meet link after booking.</p>
+    </article>
+    <aside class="card">
+      <h2>Before you book</h2>
+      <ul class="notes">
+        <li>Include your organization name, role, website, and a brief description of the problem when booking.</li>
+        <li>This is a fit and scoping conversation rather than a working consultation.</li>
+        <li>Detailed workflow analysis and operational recommendations begin with the paid Creative Operations Diagnosis.</li>
+      </ul>
+      <p class="support">Questions before booking? Email <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a>.</p>
+    </aside>
   </section>
 </main>
 <footer><div class="wrap"><p>Soren Rho builds customized creative operations systems for organizations whose work has outgrown their processes.</p><p><a href="index.html">Home</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p><p>&copy; 2026 Pixique LLC d/b/a Soren Rho</p></div></footer>
-<script>
-document.getElementById('fit-call-form').addEventListener('submit', function (event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const submit = document.getElementById('fit-submit');
-  const confirmation = document.getElementById('fit-confirmation');
-  submit.disabled = true;
-  submit.textContent = 'Submitting...';
-  confirmation.classList.remove('visible');
-  confirmation.textContent = '';
-
-  fetch('https://formspree.io/f/xeerdzzr', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json'
-    },
-    body: new FormData(form)
-  }).then(async (response) => {
-    if (!response.ok) {
-      throw new Error('Submission failed');
-    }
-    form.reset();
-    confirmation.textContent = 'Fit-call request received. Soren Rho will review it and confirm next steps and scheduling by email.';
-    confirmation.classList.add('visible');
-  }).catch(() => {
-    confirmation.innerHTML = 'The form did not submit successfully. Please try again or email <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a>.';
-    confirmation.classList.add('visible');
-  }).finally(() => {
-    submit.disabled = false;
-    submit.textContent = 'Request a Fit Call';
-  });
-});
-</script>
 </body>
 </html>
