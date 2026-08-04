@@ -3,382 +3,1549 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Soren Rho: content operations that ship on time</title>
-<meta name="description" content="Soren Rho is a content operations studio. Intake, approvals, tracking, and launch systems for teams that ship a lot, built in the tools you already use.">
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 40"><path d="M9 38 L12 12 L16 12 L19 38 Z" fill="none" stroke="%2312283a" stroke-width="2"/><rect x="10.5" y="5" width="7" height="7" fill="none" stroke="%2312283a" stroke-width="2"/><path d="M9.5 5 L14 1 L18.5 5 Z" fill="%2312283a"/><line x1="6" y1="38" x2="22" y2="38" stroke="%2312283a" stroke-width="2"/></svg>'>
+<title>Soren Rho | Creative Operations Systems</title>
+<meta name="description" content="Soren Rho designs customized workflows, governance, and production systems for creative and marketing organizations managing complex, high-volume work.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#20272e; --soft:#5a6670; --line:#e2dccd;
-  --navy:#12283a; --teal:#2a5a66; --teal-dk:#1f454f;
-  --panel:#ffffff; --paper:#F5F1E8; --cream-dk:#EDE7D9;
-  --maxw:920px;
+  --navy:#12283a;
+  --navy-deep:#0d1d2b;
+  --navy-ink:#163247;
+  --teal:#2a5a66;
+  --teal-soft:#9fd3db;
+  --ink:#20272e;
+  --soft:#5a6670;
+  --line:#ddd5c4;
+  --paper:#f5f1e8;
+  --paper-strong:#ede7d9;
+  --panel:#fffdf8;
+  --white:#ffffff;
+  --maxw:1180px;
+  --radius:22px;
+  --shadow:0 18px 54px rgba(18,40,58,.10);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);
-  font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.7;
-  -webkit-font-smoothing:antialiased}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(42,90,102,.10), transparent 24%),
+    linear-gradient(rgba(18,40,58,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,40,58,.025) 1px, transparent 1px);
+  background-size:auto, 48px 48px, 48px 48px;
+  opacity:.4;
+}
+img,video{max-width:100%;display:block}
 a{color:var(--teal);text-decoration:none}
-a:hover{color:var(--teal-dk)}
-h1,h2,h3{color:var(--navy);font-weight:600;letter-spacing:-.02em;margin:0}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--teal);margin:0 0 16px;display:flex;align-items:center;gap:9px}
-.eyebrow::before{content:"";width:3px;height:13px;background:var(--teal)}
-p{margin:0 0 1.1rem}
-.soft{color:var(--soft)}
-.sec{padding:60px 0;border-top:1px solid var(--line)}
-.sec h2{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(1.6rem,3.6vw,2.2rem);line-height:1.16;margin:0 0 18px;max-width:22ch;letter-spacing:-.015em}
-.lede{font-size:1.15rem;color:var(--soft);max-width:60ch}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;
-  font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;border-radius:4px;transition:background .2s}
-.btn:hover{background:var(--teal-dk);color:#fff}
-.btn small{opacity:.7;font-weight:400}
-.btn--quiet{background:transparent;color:var(--navy);border:1px solid var(--line)}
-.btn--quiet:hover{background:var(--panel);color:var(--navy)}
-.note{font-size:.82rem;color:var(--soft);margin-top:14px}
-/* ghost numerals: the signature, 3 placements */
-.ghost{position:relative}
-.ghost::before{content:attr(data-n);position:absolute;top:8px;right:0;z-index:0;
-  font-family:'Newsreader',serif;font-weight:500;font-size:clamp(72px,14vw,150px);line-height:1;
-  color:rgba(18,40,58,.06);pointer-events:none}
-.dark.ghost::before{color:rgba(255,255,255,.06)}
-.ghost>.wrap{position:relative;z-index:1}
-@media(max-width:640px){.ghost::before{font-size:72px}}
+a:hover{color:var(--navy)}
+h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.025em}
+h1,h2{font-family:'Newsreader',serif}
+p{margin:0 0 1rem}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{
+  left:12px;
+  top:12px;
+  position:fixed;
+  z-index:100;
+  background:var(--white);
+  color:var(--navy);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 14px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 16px;
+  color:var(--teal);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.eyebrow::before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:currentColor;
+}
+.section{
+  position:relative;
+  z-index:1;
+  padding:86px 0;
+  border-top:1px solid rgba(18,40,58,.08);
+}
+section[id]{
+  scroll-margin-top:100px;
+}
+.section h2{
+  font-size:clamp(2rem,4.1vw,3.15rem);
+  line-height:1.02;
+  max-width:15ch;
+  margin-bottom:18px;
+}
+.intro{
+  max-width:64ch;
+  color:var(--soft);
+  font-size:1.05rem;
+}
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 22px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:#214b56;color:#fff}
+.btn-secondary{
+  background:transparent;
+  color:var(--navy);
+  border-color:rgba(18,40,58,.16);
+}
+.btn-secondary:hover{background:rgba(255,255,255,.75)}
+.support{margin-top:18px;color:var(--soft);font-size:.93rem}
+.panel{
+  background:var(--panel);
+  border:1px solid rgba(18,40,58,.10);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+.rule-list{
+  display:grid;
+  gap:0;
+  margin-top:28px;
+}
+.rule-list article{
+  padding:22px 0;
+  border-top:1px solid rgba(18,40,58,.10);
+}
+.rule-list article:first-child{border-top:0}
+.rule-list h3{font-size:1.14rem;margin-bottom:8px}
+.rule-list p{color:var(--soft);margin:0}
+.wave{
+  display:block;
+  width:100%;
+  height:72px;
+  margin-top:-1px;
+}
+.lighthouse-mark{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.lighthouse-mark svg{width:34px;height:48px}
 
-/* hero: full-bleed environment (Bain) */
-.herod{position:relative;background:var(--navy);overflow:hidden}
-.herod .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
-  opacity:.45;filter:saturate(.8)}
-.herod::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(18,40,58,.92) 0%,rgba(18,40,58,.55) 55%,rgba(18,40,58,.25) 100%)}
-.herod .wrap{position:relative;z-index:2;padding-top:104px;padding-bottom:96px}
-.herod h1{font-family:'Newsreader',serif;font-weight:400;color:#fff;letter-spacing:-.02em;
-  font-size:clamp(2.5rem,6.2vw,4.4rem);line-height:1.05;max-width:15ch;margin:0 0 26px}
-.herod h1 .acc{color:#8fd0dc;font-style:normal}
-.herod .lede{font-size:1.18rem;color:rgba(255,255,255,.82);max-width:50ch;margin-bottom:18px}
-.herod .terms{font-size:1.02rem;color:rgba(255,255,255,.6);max-width:52ch;margin-bottom:30px}
-.herod .terms b{color:#fff;font-weight:600}
-.herod .btn{background:var(--teal)}
-.herod .btn:hover{background:#357380}
-.herod .note{color:rgba(255,255,255,.5)}
-.alink{display:inline-flex;align-items:center;gap:10px;color:#fff;font-weight:500;font-size:.95rem;
-  letter-spacing:.02em;margin-left:22px}
-.alink:hover{color:#8fd0dc}
-.alink::after{content:"\2192";transition:transform .2s}
-.alink:hover::after{transform:translateX(4px)}
-@media(max-width:640px){.herod .wrap{padding-top:72px;padding-bottom:64px}.alink{margin-left:0;margin-top:14px;display:flex}}
+.header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(245,241,232,.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(18,40,58,.10);
+}
+.header .wrap{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px 24px;
+  padding-top:16px;
+  padding-bottom:16px;
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:var(--navy);
+  font-family:'Newsreader',serif;
+  font-size:1.24rem;
+  font-weight:600;
+}
+.brand svg{flex:0 0 auto}
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+  gap:14px 20px;
+}
+.nav a{
+  color:var(--navy);
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.nav .btn{
+  min-height:44px;
+  padding:0 18px;
+}
+.nav .btn,
+.nav .btn:hover,
+.nav .btn:focus-visible,
+.nav .btn:visited{
+  color:#fff;
+}
 
-/* hero: centered editorial (Jasmine) */
-.heroj{position:relative;background:var(--cream-dk);overflow:hidden;text-align:center}
-.heroj .wrap{position:relative;z-index:2;padding-top:96px;padding-bottom:120px;max-width:980px}
-.heroj .ghostword{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:'Newsreader',serif;font-weight:500;font-size:clamp(120px,22vw,260px);line-height:1;
-  color:rgba(18,40,58,.05);white-space:nowrap;pointer-events:none;z-index:1;user-select:none}
-.heroj h1{font-family:'Newsreader',serif;font-weight:500;color:var(--navy);letter-spacing:-.02em;
-  font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.08;max-width:18ch;margin:0 auto 10px}
-.heroj h1 .acc{color:var(--teal);position:relative;display:inline-block}
-.heroj .squig{display:block;margin:6px auto 26px;width:min(300px,60%)}
-.heroj .sub{font-family:'Newsreader',serif;font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--ink);
-  max-width:44ch;margin:0 auto 14px;line-height:1.5}
-.heroj .lede{max-width:56ch;margin:0 auto 30px;font-size:1.08rem}
-.heroj .note{margin-top:16px}
-.heroj .alink{color:var(--teal);margin-left:18px}
-.heroj .alink:hover{color:var(--teal-dk)}
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:var(--navy);
+}
+.hero video,
+.hero .poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.45;
+  filter:saturate(.82);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(108deg, rgba(13,29,43,.94) 0%, rgba(13,29,43,.76) 50%, rgba(13,29,43,.38) 100%),
+    radial-gradient(circle at 76% 22%, rgba(159,211,219,.22), transparent 26%);
+}
+.hero .wrap{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+  gap:36px;
+  align-items:end;
+  padding-top:80px;
+  padding-bottom:104px;
+}
+.hero-copy{color:#fff}
+.hero-copy .eyebrow{color:var(--teal-soft)}
+.hero .btn-primary{
+  background:#fff;
+  color:var(--navy);
+}
+.hero .btn-primary:visited{
+  background:#fff;
+  color:var(--navy);
+}
+.hero .btn-primary:hover,
+.hero .btn-primary:focus-visible{
+  background:var(--teal-soft);
+  color:var(--navy-deep);
+}
+.hero .btn-secondary{
+  color:#fff;
+  border-color:rgba(255,255,255,.38);
+  background:rgba(255,255,255,.06);
+}
+.hero .btn-secondary:visited{
+  color:#fff;
+  background:rgba(255,255,255,.06);
+}
+.hero .btn-secondary:hover,
+.hero .btn-secondary:focus-visible{
+  color:#fff;
+  background:rgba(255,255,255,.14);
+}
+.hero-copy h1{
+  color:#fff;
+  font-size:clamp(3rem,7vw,5.5rem);
+  line-height:.93;
+  max-width:10ch;
+  margin-bottom:24px;
+}
+.hero-copy p{
+  max-width:35rem;
+  color:rgba(255,255,255,.84);
+  font-size:1.13rem;
+}
+.hero-copy .support{color:rgba(255,255,255,.70)}
+.hero-side{
+  position:relative;
+  padding:28px;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(16px);
+}
+.hero-side::before{
+  content:"";
+  position:absolute;
+  left:28px;
+  top:28px;
+  bottom:28px;
+  width:1px;
+  background:linear-gradient(180deg, rgba(159,211,219,0), rgba(159,211,219,.7), rgba(159,211,219,0));
+}
+.hero-side .lighthouse-mark{
+  margin-left:auto;
+  margin-bottom:20px;
+}
+.hero-point{
+  position:relative;
+  padding-left:34px;
+}
+.hero-point + .hero-point{margin-top:18px}
+.hero-point .tag{
+  display:block;
+  margin-bottom:6px;
+  color:var(--teal-soft);
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.hero-point p{
+  color:#fff;
+  font-size:.95rem;
+  margin:0;
+}
 
-.heroj .hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.heroj::before{content:"";position:absolute;inset:0;background:rgba(237,231,217,.82);z-index:1}
-.heroj .ghostword{z-index:2}
-.heroj .wrap{z-index:3}
-@media(prefers-reduced-motion:reduce){.heroj .hbg{display:none}}
-.wave{display:block;width:100%;height:70px;margin-top:-1px}
-@media(max-width:640px){.heroj .wrap{padding-top:64px;padding-bottom:80px}.heroj .alink{margin:14px 0 0;display:inline-flex}}
+.problem-layout{
+  display:grid;
+  grid-template-columns:minmax(250px,.62fr) minmax(0,1.38fr);
+  gap:40px;
+  align-items:start;
+}
+.problem-intro{
+  position:sticky;
+  top:94px;
+}
+.problem-list article{
+  display:grid;
+  grid-template-columns:84px 1fr;
+  gap:18px;
+  padding:22px 0;
+  border-top:1px solid rgba(18,40,58,.10);
+}
+.problem-list article:first-child{border-top:0}
+.problem-num{
+  color:var(--teal);
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.problem-list h3{font-size:1.14rem;margin-bottom:6px}
+.problem-list p{color:var(--soft);margin:0}
+.consequence{
+  margin-top:26px;
+  padding:18px 0 0;
+  border-top:2px solid var(--navy);
+  color:var(--navy);
+  font-weight:600;
+}
 
-/* video moments */
-.vidbox{border-radius:10px;overflow:hidden;position:relative}
-.vidbox video{width:100%;display:block;filter:saturate(.85)}
-.closev{position:relative;overflow:hidden}
-.closev .vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.5}
-.closev::after{content:"";position:absolute;inset:0;background:rgba(18,40,58,.62);z-index:1}
-.closev .wrap{position:relative;z-index:2}
-.storyv{position:relative;overflow:hidden}
-.storyv .vbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.55;filter:saturate(.85)}
-.storyv::after{content:"";position:absolute;inset:0;background:rgba(18,40,58,.72);z-index:1}
-.storyv .wrap{position:relative;z-index:2;grid-template-columns:1fr;max-width:760px}
-.storyv.ghost::before{z-index:2}
-@media(prefers-reduced-motion:reduce){.vidbox video,.closev .vbg,.storyv .vbg{display:none}
-  .vidbox{background:var(--navy)}.vidbox::before{content:"";display:block;padding-top:56%}}
-/* header */
-.hdr{position:sticky;top:0;z-index:20;background:rgba(245,241,232,.92);backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-family:'Newsreader',serif;font-size:1.2rem;color:var(--navy);font-weight:500}
-.hdr a.buy{font-size:.82rem;font-weight:600;color:var(--teal);letter-spacing:.02em}
-/* hero */
-.hero{padding:64px 0 56px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.hero h1{font-family:'Newsreader',serif;font-weight:400;letter-spacing:-.02em;
-  font-size:clamp(2.3rem,5.6vw,4rem);line-height:1.06;max-width:16ch;margin:0 0 24px}
-.hero .lede{font-size:1.18rem;color:var(--ink);max-width:52ch;margin-bottom:18px}
-.hero .terms{font-size:1.02rem;color:var(--soft);max-width:52ch;margin-bottom:28px}
-.hero .terms b{color:var(--navy);font-weight:600}
-.hero-img{border-radius:12px;overflow:hidden;position:relative}
-.hero-img img{width:100%;height:100%;min-height:380px;object-fit:cover;display:block;filter:saturate(.85)}
-@media(max-width:820px){.hero-grid{grid-template-columns:1fr}.hero-img img{min-height:240px;max-height:300px}}
-/* failure modes grid */
-.fails{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:34px 0 0;border-top:1px solid var(--line)}
-.fails div{padding:22px 26px 24px 0;border-bottom:1px solid var(--line)}
-.fails div:nth-child(odd){border-right:1px solid var(--line)}
-.fails div:nth-child(even){padding-left:26px}
-.fails .n{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--teal);display:block;margin-bottom:8px}
-.fails h3{font-size:1.02rem;margin:0 0 6px;letter-spacing:-.01em}
-.fails p{margin:0;color:var(--soft);font-size:.93rem;line-height:1.6}
-@media(max-width:640px){.fails{grid-template-columns:1fr}.fails div{border-right:0 !important;padding-left:0 !important}}
-/* outcomes arrows */
-.outs{list-style:none;padding:0;margin:26px 0 0}
-.outs li{display:grid;grid-template-columns:2rem 1fr;gap:12px;padding:18px 0;border-top:1px solid var(--line)}
-.outs .a{color:var(--teal);font-weight:600}
-.outs h3{font-size:1.05rem;margin:0 0 4px}
-.outs p{margin:0;color:var(--soft);font-size:.95rem;line-height:1.6}
-/* stat band */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--navy);margin:6px 0 0}
-.stats div{padding:20px 20px 22px 0}
-.stats div+div{border-left:1px solid var(--line);padding-left:22px}
-.stats b{display:block;font-size:2.1rem;line-height:1;letter-spacing:-.03em;color:var(--navy);font-weight:600}
-.stats span{display:block;font-size:.74rem;color:var(--soft);margin-top:9px;line-height:1.4}
-@media(max-width:640px){.stats{grid-template-columns:1fr}.stats div+div{border-left:0;padding-left:0}}
-/* offers */
-.offers{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px}
-.offer{border:1px solid var(--line);border-radius:12px;padding:30px 30px 26px;background:var(--panel)}
-.offer.lead{border:2px solid var(--teal)}
-.offer .tag{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 10px}
-.offer h3{font-family:'Newsreader',serif;font-weight:500;font-size:1.5rem;margin:0 0 4px}
-.offer .price{font-size:1.05rem;color:var(--navy);font-weight:600;margin:0 0 14px}
-.offer ul{list-style:none;padding:0;margin:0 0 20px}
-.offer li{padding:8px 0;border-top:1px solid var(--line);color:var(--soft);font-size:.94rem;line-height:1.55}
-.offer li:first-child{border-top:0}
-.offer .note{margin-top:12px}
-@media(max-width:760px){.offers{grid-template-columns:1fr}}
-/* dark band */
-.dark{background:var(--navy);color:rgba(255,255,255,.85)}
-.dark .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding-top:64px;padding-bottom:64px}
-.dark h2{color:#fff;font-family:'Newsreader',serif;font-weight:400;font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.2;margin:0 0 16px;max-width:20ch}
-.dark p{color:rgba(255,255,255,.78);font-size:1rem;line-height:1.7}
-.dark .eyebrow{color:#8fd0dc}
-.dark .eyebrow::before{background:#8fd0dc}
-.dark img{width:100%;border-radius:10px;display:block}
-@media(max-width:760px){.dark .wrap{grid-template-columns:1fr}}
-/* steps */
-.steps{list-style:none;padding:0;margin:26px 0 0}
-.steps li{display:grid;grid-template-columns:110px 1fr;gap:22px;padding:24px 0;border-top:1px solid var(--line)}
-.steps .when{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:4px}
-.steps h3{font-size:1.1rem;margin:0 0 6px;letter-spacing:-.01em}
-.steps p{margin:0;color:var(--soft);font-size:.98rem;line-height:1.65}
-@media(max-width:640px){.steps li{grid-template-columns:1fr;gap:4px}}
-/* two col */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-@media(max-width:700px){.two-col{grid-template-columns:1fr;gap:6px}
-  .hero{padding:48px 0 40px}.sec{padding:44px 0}}
-/* fit list */
-.fit{list-style:none;padding:0;margin:16px 0 0}
-.fit li{padding:10px 0;border-top:1px solid var(--line);color:var(--soft);font-size:.96rem}
-.fit li:first-child{border-top:0}
-.fit li b{color:var(--navy);font-weight:600}
-/* faq */
-.faq h3{font-size:1.05rem;margin:0 0 6px;color:var(--navy)}
-.faq div{padding:22px 0;border-top:1px solid var(--line)}
-.faq p{margin:0;color:var(--soft)}
-.bio p{max-width:62ch}
-footer{border-top:1px solid var(--line);padding:40px 0 60px;margin-top:20px}
-footer p{font-size:.82rem;color:var(--soft);max-width:70ch;margin:0 0 8px}
-footer a{color:var(--soft);border-bottom:1px solid var(--line)}
-/* a11y */
-a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px}
-.skip{position:absolute;left:-999px}
-.skip:focus{left:12px;top:10px;position:fixed;z-index:50;background:#fff;border:1px solid var(--line);
-  padding:10px 16px;border-radius:6px;color:var(--navy)}
+.build-section{
+  background:linear-gradient(180deg, var(--paper-strong), rgba(245,241,232,.96));
+}
+.build-frame{
+  position:relative;
+  padding:34px;
+  overflow:hidden;
+}
+.build-frame::before{
+  content:"";
+  position:absolute;
+  right:-50px;
+  top:-30px;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(159,211,219,.36), rgba(159,211,219,0));
+}
+.build-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,.84fr) minmax(0,1.16fr);
+  gap:34px;
+  align-items:start;
+}
+.build-aside{
+  padding-right:10px;
+}
+.build-aside .lighthouse-mark{margin-bottom:20px}
+.build-aside .lighthouse-mark svg path,
+.build-aside .lighthouse-mark svg rect,
+.build-aside .lighthouse-mark svg line{
+  stroke:var(--navy);
+}
+.cap-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 28px;
+}
+.cap-grid article{
+  padding:18px 0;
+  border-top:1px solid rgba(18,40,58,.10);
+}
+.cap-grid article:nth-child(-n+2){border-top:0}
+.cap-grid h3{font-size:1.02rem;margin-bottom:6px}
+.cap-grid p{color:var(--soft);margin:0}
+
+.method{
+  position:relative;
+  overflow:hidden;
+  background:var(--navy);
+  color:#fff;
+}
+.method video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.26;
+}
+.method::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(13,29,43,.94), rgba(13,29,43,.78));
+}
+.method .wrap{
+  position:relative;
+  z-index:1;
+}
+.method h2,
+.method h3{color:#fff}
+.method .eyebrow{color:var(--teal-soft)}
+.method .intro{color:rgba(255,255,255,.74)}
+.steps{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:18px;
+  margin-top:34px;
+}
+.step{
+  position:relative;
+  padding:24px 20px 22px;
+  border-radius:22px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.09);
+}
+.step::before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:0;
+  width:56px;
+  height:2px;
+  background:var(--teal-soft);
+}
+.step-num{
+  color:var(--teal-soft);
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.step p{color:rgba(255,255,255,.74);margin:0}
+
+.services-wrap{
+  display:grid;
+  grid-template-columns:minmax(0,.66fr) minmax(0,1.34fr);
+  gap:34px;
+  align-items:start;
+}
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.service-card{
+  display:flex;
+  flex-direction:column;
+  padding:28px;
+}
+.service-card:nth-child(2){
+  background:linear-gradient(180deg, rgba(42,90,102,.07), rgba(255,253,248,1));
+  border-color:rgba(42,90,102,.16);
+}
+.service-card h3{font-size:1.2rem;margin-bottom:10px}
+.service-card p{color:var(--soft)}
+.service-card .meta{
+  display:grid;
+  gap:8px;
+  margin:18px 0 20px;
+  color:var(--navy);
+  font-size:.86rem;
+  font-weight:700;
+}
+.service-card ul{
+  display:grid;
+  gap:10px;
+  margin:0 0 24px;
+}
+.service-card li{
+  position:relative;
+  padding-left:18px;
+  color:var(--soft);
+}
+.service-card li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.72em;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--teal);
+  transform:translateY(-50%);
+}
+.service-card .btn{margin-top:auto}
+.service-card .service-note{
+  margin-top:14px;
+  font-size:.9rem;
+  color:var(--soft);
+}
+.service-card .service-sequence{
+  margin:0 0 14px;
+  color:var(--navy);
+  font-size:.9rem;
+  font-weight:600;
+}
+
+.commitment-section{
+  background:linear-gradient(180deg, rgba(237,231,217,.72), rgba(245,241,232,.96));
+}
+.commitment-head{
+  max-width:60rem;
+}
+.commitment-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:34px;
+}
+.commitment-card{
+  display:flex;
+  flex-direction:column;
+  padding:28px;
+}
+.commitment-card.recommended{
+  background:linear-gradient(180deg, rgba(42,90,102,.09), rgba(255,253,248,1));
+  border-color:rgba(42,90,102,.18);
+}
+.commitment-card h3{
+  font-size:1.24rem;
+  margin-bottom:6px;
+}
+.commitment-price{
+  color:var(--navy);
+  font-size:1.02rem;
+  font-weight:700;
+  margin-bottom:14px;
+}
+.commitment-card p{
+  color:var(--soft);
+}
+.commitment-card ul{
+  display:grid;
+  gap:10px;
+  margin:18px 0 24px;
+}
+.commitment-card li{
+  position:relative;
+  padding-left:18px;
+  color:var(--soft);
+}
+.commitment-card li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.72em;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--teal);
+  transform:translateY(-50%);
+}
+.commitment-card .btn{margin-top:auto}
+.checkout-note{
+  margin:0 0 14px;
+  color:var(--soft);
+  font-size:.88rem;
+}
+.commitment-note{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(18,40,58,.10);
+  font-size:.9rem;
+  color:var(--soft);
+}
+.commitment-support{
+  margin-top:14px;
+  font-size:.9rem;
+  color:var(--soft);
+}
+
+.flow-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+  margin-top:34px;
+}
+.flow-box{padding:28px}
+.flow-box.before{
+  background:linear-gradient(180deg, #fff5f1, #fffdf9);
+}
+.flow-box.after{
+  background:linear-gradient(180deg, #eff9f8, #fffdf9);
+}
+.flow-box h3{margin-bottom:16px}
+.flow-steps{
+  display:grid;
+  gap:12px;
+}
+.flow-steps li{
+  display:grid;
+  grid-template-columns:20px 1fr;
+  gap:12px;
+  align-items:start;
+  color:var(--navy);
+  font-size:.93rem;
+  font-weight:600;
+}
+.flow-steps li span{
+  color:var(--teal);
+  font-weight:700;
+}
+
+.proof-band{
+  position:relative;
+  overflow:hidden;
+  background:var(--navy-deep);
+  color:#fff;
+}
+.proof-band video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.26;
+}
+.proof-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(13,29,43,.94), rgba(13,29,43,.78));
+}
+.proof-band .wrap{
+  position:relative;
+  z-index:1;
+}
+.proof-head h2,
+.proof-portfolio h3,
+.proof-system h3,
+.proof-support-card h3{color:#fff}
+.proof-head .eyebrow,
+.proof-label{color:var(--teal-soft)}
+.proof-head .intro{color:rgba(255,255,255,.76);max-width:62rem;margin-top:18px}
+.proof-portfolio{
+  margin-top:30px;
+  padding:28px 30px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;
+  backdrop-filter:blur(10px);
+}
+.proof-label{
+  display:block;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.proof-portfolio p,
+.proof-system p,
+.proof-support-card p,
+.proof-connection{
+  color:rgba(255,255,255,.76);
+}
+.proof-portfolio p:last-child{margin-bottom:0}
+.proof-system{
+  margin-top:28px;
+  max-width:70rem;
+}
+.proof-system h3{
+  font-size:1.48rem;
+  margin-bottom:14px;
+}
+.proof-support-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  margin-top:24px;
+}
+.proof-support-card{
+  padding:22px;
+  border-radius:22px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+.proof-support-card h3{
+  font-size:1.05rem;
+  margin-bottom:8px;
+}
+.proof-support-card p{margin:0 0 12px}
+.proof-support-card ul{
+  display:grid;
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.proof-support-card li{
+  position:relative;
+  padding-left:16px;
+  color:rgba(255,255,255,.76);
+  font-size:.92rem;
+}
+.proof-support-card li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.72em;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--teal-soft);
+  transform:translateY(-50%);
+}
+.proof-deliverables{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.proof-deliverable{
+  padding:18px 20px;
+  border-radius:20px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.8);
+  font-size:.94rem;
+}
+.proof-connection{
+  margin:24px 0 0;
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.10);
+  font-weight:600;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);
+  gap:24px;
+  margin-top:30px;
+}
+.about-card,
+.about-side,
+.fit-box,
+.faq-item,
+.cta-box{
+  padding:28px;
+}
+.about-card p,
+.about-side li,
+.fit-box li,
+.faq-item p,
+.cta-box p{color:var(--soft)}
+.about-side ul,
+.fit-box ul{
+  display:grid;
+  gap:12px;
+}
+.about-side li,
+.fit-box li{
+  position:relative;
+  padding-left:18px;
+}
+.about-side li::before,
+.fit-box li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.72em;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--teal);
+  transform:translateY(-50%);
+}
+.about-credential{
+  margin:22px 0 0;
+  color:var(--soft);
+  font-size:.95rem;
+  max-width:60rem;
+}
+
+.fit-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:30px;
+}
+
+.faq-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin-top:32px;
+}
+.faq-item h3{
+  font-size:1.08rem;
+  margin-bottom:10px;
+}
+
+.final-cta{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg, var(--paper-strong), rgba(215,235,233,.72));
+}
+.final-cta::before{
+  content:"";
+  position:absolute;
+  inset:auto -8vw -12vw auto;
+  width:40vw;
+  height:40vw;
+  border-radius:50%;
+  border:1px solid rgba(42,90,102,.12);
+  box-shadow:0 0 0 60px rgba(42,90,102,.04), 0 0 0 120px rgba(42,90,102,.03);
+}
+.cta-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);
+  gap:24px;
+  align-items:center;
+}
+.cta-box{
+  background:rgba(255,255,255,.72);
+}
+
+footer{
+  position:relative;
+  z-index:1;
+  border-top:1px solid rgba(18,40,58,.10);
+  padding:34px 0 52px;
+}
+footer p{
+  margin:0 0 10px;
+  color:var(--soft);
+  font-size:.9rem;
+}
+
+@media (max-width:1080px){
+  .hero .wrap,
+  .problem-layout,
+  .build-grid,
+  .services-wrap,
+  .about-grid,
+  .cta-grid{
+    grid-template-columns:1fr;
+  }
+  .proof-deliverables{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .proof-support-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .service-grid,
+  .commitment-grid,
+  .steps,
+  .faq-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .problem-intro{
+    position:static;
+  }
+}
+@media (max-width:760px){
+  html{scroll-behavior:auto}
+  .section{padding:64px 0}
+  .nav > a:not(.btn){
+    display:none;
+  }
+  .header .wrap{
+    flex-wrap:nowrap;
+    align-items:center;
+  }
+  .nav{
+    justify-content:flex-start;
+    margin-left:auto;
+  }
+  .nav .btn{
+    font-size:.72rem;
+    padding:0 14px;
+  }
+  .hero .wrap{padding-top:56px;padding-bottom:72px}
+  .hero-copy h1{max-width:11ch}
+  .service-grid,
+  .commitment-grid,
+  .cap-grid,
+  .steps,
+  .flow-grid,
+  .fit-grid,
+  .faq-grid{
+    grid-template-columns:1fr;
+  }
+  .proof-deliverables,
+  .proof-support-grid{
+    grid-template-columns:1fr;
+  }
+  .problem-list article,
+  .flow-steps li{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .build-frame,
+  .hero-side,
+  .service-card,
+  .flow-box,
+  .about-card,
+  .about-side,
+  .fit-box,
+  .faq-item,
+  .cta-box{
+    padding:22px;
+  }
+  .wave{height:52px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important}
+  .hero video,
+  .method video,
+  .proof-band video{display:none}
+}
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible{
+  outline:3px solid var(--teal);
+  outline-offset:3px;
+}
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
 
-<header class="hdr">
+<header class="header">
   <div class="wrap">
-    <div class="logo" style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="26" viewBox="0 0 28 40" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/><line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#12283a" stroke-width="1.4"/><line x1="11" y1="20" x2="17" y2="20" stroke="#12283a" stroke-width="1.4"/><rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/><path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/><line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/><line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/><line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/></svg>Soren Rho</div>
-    <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="buy">Get a Diagnosis &rarr;</a>
+    <a href="#main" class="brand" aria-label="Soren Rho home">
+      <svg width="20" height="30" viewBox="0 0 28 40" fill="none" aria-hidden="true">
+        <path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#12283a" stroke-width="1.4"/>
+        <line x1="11" y1="20" x2="17" y2="20" stroke="#12283a" stroke-width="1.4"/>
+        <rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/>
+        <path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/>
+        <line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/>
+        <line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+        <line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+      </svg>
+      Soren Rho
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#what-we-build">What We Build</a>
+      <a href="#services">Services</a>
+      <a href="#producer-os">Producer OS</a>
+      <a href="#about">About</a>
+      <a class="btn btn-primary" href="#start-diagnosis">Start a Diagnosis</a>
+    </nav>
   </div>
 </header>
 
 <main id="main">
-<section class="heroj">
-  <video class="hbg" autoplay muted loop playsinline preload="metadata" poster="lighthouse-poster.jpg" aria-hidden="true" tabindex="-1">
-    <source src="lighthouse-hero.webm" type="video/webm">
-    <source src="lighthouse-hero.mp4" type="video/mp4">
-  </video>
-  <div class="ghostword" aria-hidden="true">on time</div>
-  <div class="wrap">
-    <h1>We make your content <span class="acc">ship on time.</span></h1>
-    <svg class="squig" viewBox="0 0 300 14" fill="none" aria-hidden="true"><path d="M4 9 C 50 2, 95 12, 148 7 S 250 3, 296 8" stroke="#2a5a66" stroke-width="2.5" stroke-linecap="round"/></svg>
-    <p class="sub">Your team is talented. Your delivery is the problem.</p>
-    <p class="lede">We build the system that fixes it: intake, approvals, tracking, and launch, in the tools you already use. Fixed scope, fixed fee, and you own everything we build.</p>
-    <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="btn">Get a Diagnosis &middot; $900</a><a href="#offers" class="alink" style="color:var(--teal)">See the offers</a>
-    <p class="note">No sales calls. The Diagnosis starts the moment you pay. The Build is quoted in writing.</p>
-  </div>
-</section>
-<svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 L0 30 C 240 75, 480 5, 720 30 C 960 55, 1200 15, 1440 40 L1440 0 Z" fill="#EDE7D9"/></svg>
-
-<section class="sec">
-  <div class="wrap">
-    <p class="eyebrow">Sound familiar?</p>
-    <h2>The team is not the problem. The system is.</h2>
-    <div class="fails">
-      <div><span class="n">01</span><h3>Work arrives from everywhere</h3><p>Slack, email, a hallway conversation, a deck nobody finished. Nothing has one front door, so nothing has one priority list.</p></div>
-      <div><span class="n">02</span><h3>Approvals disappear</h3><p>The review happened, someone had thoughts, and now the file sits in limbo while the launch date does not move.</p></div>
-      <div><span class="n">03</span><h3>Status lives in your head</h3><p>You spend more time chasing updates than doing the work, because you are the only person who knows where everything is.</p></div>
-      <div><span class="n">04</span><h3>Launches run on adrenaline</h3><p>Assets land late, nothing has an owner, and the date you announced slips again. Launches fail on sequencing, not on talent.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="what">
-  <div class="wrap">
-    <p class="eyebrow">What we do</p>
-    <h2>Here is what we do.</h2>
-    <p class="lede">We build the operations layer under your content, in the tools your team already uses. Your team keeps making the work. We build the system that gets it out the door. Every build draws on the same parts:</p>
-    <ul class="outs">
-      <li><span class="a">&rarr;</span><div><h3>Intake design</h3><p>One front door for every request, so nothing arrives by hallway conversation.</p></div></li>
-      <li><span class="a">&rarr;</span><div><h3>Approval mapping</h3><p>Who says yes, where they say it, and by when, written down and agreed to.</p></div></li>
-      <li><span class="a">&rarr;</span><div><h3>Status tracking</h3><p>Every piece of work in one known state with one owner, visible to anyone who asks.</p></div></li>
-      <li><span class="a">&rarr;</span><div><h3>File architecture</h3><p>One home for finished work and one naming rule, so a file from three months ago takes a minute to find.</p></div></li>
-      <li><span class="a">&rarr;</span><div><h3>Launch sequencing</h3><p>Dates built backward from what has to be true first, so the date you announce is the date you hit.</p></div></li>
-      <li><span class="a">&rarr;</span><div><h3>Documentation and training</h3><p>Written in plain English for the person who joins next year, and your team trained on it before we leave.</p></div></li>
-    </ul>
-    <p class="soft" style="margin-top:26px;max-width:60ch">The result: your team goes from "where does this stand?" to "it shipped Tuesday, the way the plan said it would."</p>
-  </div>
-</section>
-
-<section class="sec" id="offers">
-  <div class="wrap">
-    <p class="eyebrow">Two ways in</p>
-    <h2>Pick the size of the problem.</h2>
-    <div class="offers">
-      <div class="offer lead">
-        <p class="tag">The flagship</p>
-        <h3>The 30-Day Build</h3>
-        <p class="price">Fixed fee, quoted in writing</p>
-        <ul>
-          <li>Week 1: we find what is actually broken, intake, approvals, tracking, handoffs</li>
-          <li>Week 2: the plan, one front door for work, owners and deadlines for every gate</li>
-          <li>Weeks 3 and 4: we build it in your existing tools and train your team on it</li>
-          <li>You get full documentation, built so it runs without us</li>
-        </ul>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFHf9u6JRdiDRUa1Hp6mF-V6s-8WgxwGi86uEKNzQOFUCZzA/viewform" class="btn">Get a quote</a>
-        <p class="note">The form is eight short questions. Answer roughly; you will have a fixed number within one business day. If you start with the Diagnosis, its $900 credits toward the Build in full.</p>
+  <section class="hero">
+    <video autoplay muted loop playsinline preload="metadata" poster="lighthouse-poster.jpg" aria-hidden="true">
+      <source src="lighthouse-hero.webm" type="video/webm">
+      <source src="lighthouse-hero.mp4" type="video/mp4">
+    </video>
+    <div class="poster" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Creative Operations</p>
+        <h1>Your creative team has outgrown its operating system.</h1>
+        <p>Soren Rho designs the workflows, governance, and production systems that help marketing and creative organizations deliver more work with fewer delays, missed handoffs, and approval bottlenecks.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#start-diagnosis">Start a Creative Operations Diagnosis</a>
+          <a class="btn btn-secondary" href="#producer-os">See the Producer OS</a>
+        </div>
+        <p class="support">Built for organizations managing recurring, multi-stakeholder creative and marketing work.</p>
       </div>
-      <div class="offer">
-        <p class="tag">The starting point</p>
-        <h3>The Diagnosis</h3>
-        <p class="price">$900, flat</p>
-        <ul>
-          <li>Pay, then answer ten questions and send three screenshots of how work actually happens today</li>
-          <li>Within three business days: a written diagnosis of where your workflow breaks, and the recommended fix</li>
-          <li>Includes a fixed quote for the 30-Day Build; the $900 credits toward it in full within 60 days</li>
-          <li>No call at any point, unless you want one</li>
-        </ul>
-        <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="btn btn--quiet">Get a Diagnosis</a>
-        <p class="note">Works at any size, from a one-person studio to a full marketing team.</p>
+      <aside class="hero-side" aria-label="What Soren Rho addresses">
+        <div class="lighthouse-mark" aria-hidden="true">
+          <svg viewBox="0 0 28 40" fill="none">
+            <path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+            <line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#ffffff" stroke-width="1.4"/>
+            <line x1="11" y1="20" x2="17" y2="20" stroke="#ffffff" stroke-width="1.4"/>
+            <rect x="10.5" y="5" width="7" height="7" stroke="#ffffff" stroke-width="2"/>
+            <path d="M9.5 5 L14 1 L18.5 5 Z" fill="#ffffff"/>
+            <line x1="6" y1="38" x2="22" y2="38" stroke="#ffffff" stroke-width="2"/>
+            <line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#9fd3db" stroke-width="1.3"/>
+            <line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#9fd3db" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <div class="hero-point">
+          <span class="tag">Where work breaks</span>
+          <p>Work enters through multiple channels without a complete brief, clear priority, or defined owner.</p>
+        </div>
+        <div class="hero-point">
+          <span class="tag">What gets defined</span>
+          <p>Ownership, review gates, timelines, and escalation paths become explicit.</p>
+        </div>
+        <div class="hero-point">
+          <span class="tag">What improves</span>
+          <p>Teams gain a working model they can run, measure, teach, and improve.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <svg class="wave" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0 L0 34 C 210 82, 410 10, 690 34 C 930 54, 1190 18, 1440 42 L1440 0 Z" fill="#12283a"></path>
+  </svg>
+
+  <section class="section">
+    <div class="wrap problem-layout">
+      <div class="problem-intro">
+        <p class="eyebrow">The Real Bottleneck</p>
+        <h2>The team is not the problem. The system is.</h2>
+        <p class="intro">Creative work rarely fails because the team lacks talent. It fails between requests, departments, reviews, decisions, and handoffs.</p>
+      </div>
+      <div>
+        <div class="problem-list">
+          <article>
+            <div class="problem-num">01</div>
+            <div><h3>Incomplete requests</h3><p>Work begins before the brief, assets, scope, or decision-makers are ready.</p></div>
+          </article>
+          <article>
+            <div class="problem-num">02</div>
+            <div><h3>Unclear ownership</h3><p>Multiple people are involved, but no one owns the next decision.</p></div>
+          </article>
+          <article>
+            <div class="problem-num">03</div>
+            <div><h3>Approval bottlenecks</h3><p>Feedback arrives late, conflicts across stakeholders, or disappears across tools.</p></div>
+          </article>
+          <article>
+            <div class="problem-num">04</div>
+            <div><h3>Reactive resourcing</h3><p>Assignments are made after deadlines are already at risk.</p></div>
+          </article>
+          <article>
+            <div class="problem-num">05</div>
+            <div><h3>Institutional dependence</h3><p>Critical processes live in the head of one producer, manager, or longtime employee.</p></div>
+          </article>
+          <article>
+            <div class="problem-num">06</div>
+            <div><h3>AI without governance</h3><p>Content volume increases faster than the organization’s ability to review, approve, track, and control it.</p></div>
+          </article>
+        </div>
+        <p class="consequence">The result is missed launches, expensive rework, excessive meetings, employee burnout, agency overages, and leadership without reliable visibility.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="dark storyv ghost" data-n="01">
-  <video class="vbg" autoplay muted loop playsinline preload="none" poster="studio-sm.jpg" aria-hidden="true" tabindex="-1">
-    <source src="lighthouse-beam-sm.mp4" type="video/mp4">
-  </video>
-  <div class="wrap">
-    <div>
-      <p class="eyebrow">How it feels after</p>
-      <h2>The system holds, even on a bad Thursday.</h2>
-      <p>Every piece of work sits in exactly one known state, with exactly one person responsible for it right now. That is the whole trick. Fifteen things are not harder than three when each one has a home; three things are chaos when they do not.</p>
-      <p>You can take a meeting, take a week off, or take on the next big launch, and nothing quietly dies in a thread while you are gone.</p>
+  <section class="section build-section" id="what-we-build">
+    <div class="wrap">
+      <div class="build-frame panel">
+        <div class="build-grid">
+          <div class="build-aside">
+            <div class="lighthouse-mark" aria-hidden="true">
+              <svg viewBox="0 0 28 40" fill="none">
+                <path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/>
+                <line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#12283a" stroke-width="1.4"/>
+                <line x1="11" y1="20" x2="17" y2="20" stroke="#12283a" stroke-width="1.4"/>
+                <rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/>
+                <path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/>
+                <line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/>
+                <line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+                <line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+              </svg>
+            </div>
+            <p class="eyebrow">What We Build</p>
+            <h2>A complete operating system for creative and marketing delivery.</h2>
+            <p class="intro">Soren Rho turns the way work actually happens into a system the organization can run, measure, teach, and improve.</p>
+            <p class="support">The final engagement is not simply a handbook. It is a working operational model supported by workflows, templates, rules, checklists, training, and implementation guidance.</p>
+          </div>
+          <div class="cap-grid">
+            <article><h3>Intake and readiness</h3><p>Standards for what must be true before work starts.</p></article>
+            <article><h3>Roles and decision rights</h3><p>Clear ownership for decisions, approvals, and handoffs.</p></article>
+            <article><h3>Project lifecycles</h3><p>Defined stages from request through completion.</p></article>
+            <article><h3>SLAs and timelines</h3><p>Service levels and schedules matched to real delivery needs.</p></article>
+            <article><h3>Resource allocation</h3><p>Assignment rules that reduce firefighting and hidden overload.</p></article>
+            <article><h3>Reviews and approvals</h3><p>Gates that keep feedback timely, visible, and usable.</p></article>
+            <article><h3>Feedback management</h3><p>Procedures for collecting, resolving, and recording feedback.</p></article>
+            <article><h3>Handoff and quality control</h3><p>Checks that reduce missed details before launch.</p></article>
+            <article><h3>Vendor and agency workflows</h3><p>Operating rules for external partners and shared ownership.</p></article>
+            <article><h3>Exceptions and escalation</h3><p>Paths for urgent work, blockers, and decision deadlocks.</p></article>
+            <article><h3>Reporting and governance</h3><p>Visibility for leadership without manual detective work.</p></article>
+            <article><h3>AI-assisted production workflows</h3><p>Controls for speed, review, approval, and governance.</p></article>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-
-<section class="sec bio ghost" data-n="02">
-  <div class="wrap">
-    <p class="eyebrow">Who you are hiring</p>
-    <h2>A small senior team, and a system built to outlive us.</h2>
-    <p class="soft">The team came up through newsrooms and production floors: fifteen years of shipping content at high volume, for people who were not gentle about deadlines. Writing down what happened and keeping the notes in order is the house habit.</p>
-    <p class="soft">Soren Rho is deliberately small and takes two or three clients at a time, because the whole point is senior attention, not a junior coordinator with a logo on their email.</p>
-    <p class="soft">Full work history and references are shared on request.</p>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap two-col">
-    <div>
-      <p class="eyebrow">Good fit</p>
-      <ul class="fit">
-        <li><b>You ship a lot</b>: offers, landing pages, emails, campaigns, in-store content</li>
-        <li><b>Your team is talented</b> but delivery is messy</li>
-        <li><b>You have tried to fix it yourself</b> and do not have the time</li>
-        <li><b>You want someone senior</b> who has run this at volume</li>
-      </ul>
+  <section class="section method">
+    <video autoplay muted loop playsinline preload="none" poster="studio-sm.jpg" aria-hidden="true">
+      <source src="lighthouse-beam-sm.mp4" type="video/mp4">
+    </video>
+    <div class="wrap">
+      <p class="eyebrow">The Soren Rho Method</p>
+      <h2>Diagnose. Design. Build. Activate. Optimize.</h2>
+      <p class="intro">The work moves in sequence so leaders can see what is changing, teams can absorb it, and the system can hold under real operating conditions.</p>
+      <div class="steps">
+        <article class="step">
+          <p class="step-num">Step 1</p>
+          <h3>Diagnose</h3>
+          <p>Understand how work enters, moves, stalls, and finishes.</p>
+        </article>
+        <article class="step">
+          <p class="step-num">Step 2</p>
+          <h3>Design</h3>
+          <p>Define the future workflow, ownership, rules, service levels, and decision structure.</p>
+        </article>
+        <article class="step">
+          <p class="step-num">Step 3</p>
+          <h3>Build</h3>
+          <p>Create the operating manual, workflows, templates, checklists, and governance assets.</p>
+        </article>
+        <article class="step">
+          <p class="step-num">Step 4</p>
+          <h3>Activate</h3>
+          <p>Train the team and test the system through real projects.</p>
+        </article>
+        <article class="step">
+          <p class="step-num">Step 5</p>
+          <h3>Optimize</h3>
+          <p>Measure adoption, resolve friction, and improve the operating model.</p>
+        </article>
+      </div>
     </div>
-    <div>
-      <p class="eyebrow">Not a fit</p>
-      <ul class="fit">
-        <li>You need the content designed or written. We run the system; we do not make the work.</li>
-        <li>You want a big agency with lots of people</li>
-        <li>You want cheap hourly help</li>
-        <li>You are not willing to change how work comes in</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </section>
+  <svg class="wave" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0 L0 28 C 250 6, 474 70, 720 32 C 984 0, 1210 52, 1440 24 L1440 0 Z" fill="#12283a"></path>
+  </svg>
 
-<section class="sec faq">
-  <div class="wrap">
-    <p class="eyebrow">Fair questions</p>
-    <h2>The things you are actually wondering.</h2>
-    <div><h3>Why is there no sales call?</h3><p>Because your time is worth something and so is ours, and a free consultation is usually a sales pitch with better manners. The Diagnosis is a fixed thing at a fixed price. The Build gets quoted in writing, so the first conversation we have is one where we are already working for you.</p></div>
-    <div><h3>What happens after I buy the Diagnosis?</h3><p>The survey appears the moment you pay: ten questions and three screenshots, including your project board exactly as it looks right now. Do not tidy it first; the mess is the data. Within three business days of your answers, you get the written diagnosis, the recommended system, and a fixed Build quote.</p></div>
-    <div><h3>Do we have to switch tools?</h3><p>No. We build in whatever you already use: Notion, Asana, Monday, Workfront, a shared drive. New software is usually how these projects die.</p></div>
-    <div><h3>Who does the work?</h3><p>A deliberately small team. Someone senior runs your engagement from start to finish, and specialists come in for specific builds when needed. Nothing gets handed to a junior coordinator.</p></div>
-    <div><h3>What happens when you leave?</h3><p>The system keeps running. Everything is documented in plain English, your team is trained on it, and it lives in your accounts. If it only worked while we were in the room, we would have sold you a dependency instead of a system.</p></div>
-    <div><h3>Can you stay on long-term?</h3><p>After a Build, yes, month to month. But the system is designed so you will not need us, and we would rather say that up front.</p></div>
-  </div>
-</section>
-
-<section class="dark closev" id="close">
-  <video class="vbg" autoplay muted loop playsinline preload="metadata" poster="lighthouse-poster.jpg" aria-hidden="true" tabindex="-1">
-    <source src="lighthouse-hero.webm" type="video/webm">
-    <source src="lighthouse-hero.mp4" type="video/mp4">
-  </video>
-  <div class="wrap" style="grid-template-columns:1fr;text-align:center;padding-top:72px;padding-bottom:72px">
-    <div style="max-width:56ch;margin:0 auto">
-      <h2 style="max-width:none">In rough water, a ship steers by a fixed point. Something steady, that says: this is the way through.</h2>
-      <p style="max-width:44ch;margin:0 auto 1.6rem">That is what gets built here. A system that holds under load and runs without anyone standing watch.</p>
-      <a href="https://buy.stripe.com/dRm8wO9qb5Ck3dB6PEeQM08" class="btn" style="background:var(--teal)">Get a Diagnosis <small>$900</small></a>
-      <p style="font-size:.78rem;color:rgba(255,255,255,.5);margin:18px 0 0">The lighthouse in the name is not decorative. It is the fixed point.</p>
+  <section class="section" id="services">
+    <div class="wrap services-wrap">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2>Start with the problem. Build the system it requires.</h2>
+        <p class="intro">Each engagement is structured around the operating problem, the volume of work, the current tool environment, and the amount of implementation support the organization needs.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service-card panel">
+          <h3>Creative Operations Diagnosis</h3>
+          <p>A fixed-fee assessment that shows where creative delivery is breaking, why it is happening, and what operating model is required to address it.</p>
+          <div class="meta">
+            <span>Approximately 10 business days</span>
+            <span>$7,500 fixed fee</span>
+          </div>
+          <ul>
+            <li>Leadership intake and stakeholder interviews</li>
+            <li>Current-state workflow map</li>
+            <li>Intake, tool, and communication audit</li>
+            <li>Bottleneck and operational-risk analysis</li>
+            <li>Prioritized findings brief</li>
+            <li>Future-state workflow recommendation</li>
+            <li>Executive readout and implementation roadmap</li>
+            <li>Defined scope for a Producer OS Build, when appropriate</li>
+          </ul>
+          <a class="btn btn-primary" href="#start-diagnosis">View Starting Options</a>
+          <p class="service-note">Pay in full, make the first payment, begin procurement, or meet with a senior Soren Rho lead to confirm fit.</p>
+        </article>
+        <article class="service-card panel">
+          <h3>Producer OS Build</h3>
+          <p>A customized operating system that defines how work enters, who owns each decision, how projects move, and what happens when delivery goes off track.</p>
+          <p class="service-sequence">Usually commissioned after the Creative Operations Diagnosis establishes the future-state requirements and implementation scope.</p>
+          <div class="meta">
+            <span>Approximately 6-10 weeks</span>
+            <span>Starting at $25,000</span>
+          </div>
+          <ul>
+            <li>Future-state workflow</li>
+            <li>Intake and readiness standards</li>
+            <li>Roles and decision rights</li>
+            <li>Project templates</li>
+            <li>SLAs and review gates</li>
+            <li>Feedback and approval procedures</li>
+            <li>Handoff and escalation standards</li>
+            <li>Reporting requirements</li>
+            <li>Customized operations manual</li>
+            <li>Implementation roadmap</li>
+          </ul>
+          <a class="btn btn-secondary" href="mailto:hello@sorenrho.com?subject=Producer%20OS%20Build">Discuss a Producer OS Build</a>
+        </article>
+        <article class="service-card panel">
+          <h3>Activation and Optimization</h3>
+          <p>Implementation support that puts the new operating model into daily use through configuration, training, pilot support, and adoption tracking.</p>
+          <p class="service-sequence">Available as an implementation phase following a Producer OS Build.</p>
+          <div class="meta">
+            <span>Scoped to the organization</span>
+          </div>
+          <ul>
+            <li>Pilot-project support</li>
+            <li>Team training</li>
+            <li>Tool-template configuration</li>
+            <li>Leadership enablement</li>
+            <li>Adoption tracking</li>
+            <li>Workflow refinement</li>
+            <li>AI-workflow expansion</li>
+            <li>Ongoing governance</li>
+          </ul>
+          <a class="btn btn-secondary" href="mailto:hello@sorenrho.com?subject=Activation%20and%20Optimization">Discuss Implementation</a>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section proof-band" id="producer-os">
+    <div class="wrap">
+      <header class="proof-head">
+        <p class="eyebrow">Inside the Producer OS</p>
+        <h2>One operating model connecting the entire creative-delivery lifecycle.</h2>
+        <p class="intro">High-volume creative work breaks when each team, project, and stakeholder follows a different process. The Producer OS creates one shared path from request through completion.</p>
+      </header>
+      <div class="proof-portfolio">
+        <span class="proof-label">Six Connected Operating Layers</span>
+        <p>Soren Rho designs the system around the full path from intake to governance, so teams are not relying on scattered judgment, inconsistent handoffs, or a different process for every request.</p>
+      </div>
+      <div class="proof-support-grid">
+        <article class="proof-support-card">
+          <h3>1. Intake and readiness</h3>
+          <p>Work begins only when the request, assets, timing, and decision-makers are ready.</p>
+          <ul>
+            <li>Required request information</li>
+            <li>Readiness criteria</li>
+            <li>Acceptance or return rules</li>
+          </ul>
+        </article>
+        <article class="proof-support-card">
+          <h3>2. Ownership and decision rights</h3>
+          <p>Every stage has a clear owner, reviewer, approver, and escalation path.</p>
+          <ul>
+            <li>Roles and responsibilities</li>
+            <li>Decision authority</li>
+            <li>Escalation routes</li>
+          </ul>
+        </article>
+        <article class="proof-support-card">
+          <h3>3. Project lifecycle and service levels</h3>
+          <p>Different types of work follow defined stages and realistic timelines.</p>
+          <ul>
+            <li>Project categories</li>
+            <li>Lifecycle stages</li>
+            <li>Service-level expectations</li>
+          </ul>
+        </article>
+        <article class="proof-support-card">
+          <h3>4. Resource and capacity management</h3>
+          <p>Assignments reflect workload, required expertise, timing, and delivery risk.</p>
+          <ul>
+            <li>Assignment criteria</li>
+            <li>Capacity visibility</li>
+            <li>Vendor involvement</li>
+          </ul>
+        </article>
+        <article class="proof-support-card">
+          <h3>5. Review, approval, and handoff</h3>
+          <p>Feedback, decisions, and final delivery happen through controlled gates.</p>
+          <ul>
+            <li>Review rounds</li>
+            <li>Approval requirements</li>
+            <li>Quality-control checklists</li>
+          </ul>
+        </article>
+        <article class="proof-support-card">
+          <h3>6. Governance and improvement</h3>
+          <p>Leadership gains visibility into where work is moving, where it is stalling, and what needs to change.</p>
+          <ul>
+            <li>Status and risk reporting</li>
+            <li>Operational metrics</li>
+            <li>Process-improvement ownership</li>
+          </ul>
+        </article>
+      </div>
+      <div class="proof-system">
+        <h3>What the organization receives</h3>
+        <p>Depending on scope, a Producer OS can include the workflow architecture, operating rules, decision structures, and implementation materials required to run the system with confidence.</p>
+      </div>
+      <div class="proof-deliverables" aria-label="Producer OS deliverables">
+        <div class="proof-deliverable">Current-state and future-state workflow maps</div>
+        <div class="proof-deliverable">Intake forms, readiness rules, and project-type service levels</div>
+        <div class="proof-deliverable">Roles, decision-rights, and escalation matrices</div>
+        <div class="proof-deliverable">Resource-assignment procedures and review frameworks</div>
+        <div class="proof-deliverable">Handoff, quality-control, and version-governance checklists</div>
+        <div class="proof-deliverable">Reporting standards, training materials, and an operations manual</div>
+      </div>
+      <p class="proof-connection">The result is not a collection of disconnected SOPs. It is one operating model teams can run, teach, measure, and improve.</p>
+    </div>
+  </section>
+
+  <section class="section" id="sample-transformation">
+    <div class="wrap">
+      <p class="eyebrow">Sample Transformation</p>
+      <h2>From reactive delivery to a controlled operating model.</h2>
+      <p class="intro">The shift is rarely about a single tool. It is about replacing improvisation with a repeatable path from request to completion.</p>
+      <div class="flow-grid">
+        <article class="flow-box panel before">
+          <h3>Before</h3>
+          <ul class="flow-steps">
+            <li><span>01</span>Work enters through Slack, email, meetings, and side conversations</li>
+            <li><span>02</span>Missing information</li>
+            <li><span>03</span>Unclear priority</li>
+            <li><span>04</span>Reactive assignment</li>
+            <li><span>05</span>Scattered feedback</li>
+            <li><span>06</span>Late approval</li>
+            <li><span>07</span>Rushed handoff</li>
+            <li><span>08</span>Missed launch</li>
+          </ul>
+        </article>
+        <article class="flow-box panel after">
+          <h3>After</h3>
+          <ul class="flow-steps">
+            <li><span>01</span>Structured request</li>
+            <li><span>02</span>Readiness gate</li>
+            <li><span>03</span>Prioritization</li>
+            <li><span>04</span>Defined owner</li>
+            <li><span>05</span>Standard timeline</li>
+            <li><span>06</span>Controlled review</li>
+            <li><span>07</span>Recorded approval</li>
+            <li><span>08</span>Quality-assured handoff</li>
+            <li><span>09</span>Measured completion</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <p class="eyebrow">How Soren Rho Works</p>
+      <h2>Senior-led expertise, organized around the engagement.</h2>
+      <div class="about-grid">
+        <article class="about-card panel">
+          <p>Soren Rho is a specialist creative-operations firm. Each engagement is structured around the organization’s workflows, tools, stakeholders, project types, and implementation requirements.</p>
+          <p>A senior engagement lead remains accountable for the operating model from diagnosis through implementation. Additional workflow, platform, documentation, training, or production specialists are added when the scope requires them.</p>
+          <p>Clients work directly with the people responsible for the thinking and delivery. There are no unnecessary consulting layers, oversized teams, or handoffs to junior staff unfamiliar with the operating problem.</p>
+          <p>Soren Rho does not become another permanent operational dependency. The engagement builds the structure, tools, and internal capability required for the organization to run the system itself.</p>
+        </article>
+        <aside class="about-side panel">
+          <h3>The delivery model</h3>
+          <ul>
+            <li>Senior accountability from diagnosis through implementation</li>
+            <li>A right-sized team assembled around the scope</li>
+            <li>Specialists assigned to defined areas of work</li>
+            <li>Direct access to the people designing the operating model</li>
+            <li>Clear ownership, deliverables, and decision paths</li>
+            <li>A system designed for the client to own after implementation</li>
+          </ul>
+        </aside>
+      </div>
+      <p class="about-credential">Soren Rho’s methodology was developed from enterprise creative, marketing, production, and technology environments spanning retail media, global technology, advertising, education, and digital platforms.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Fit</p>
+      <h2>Best suited to teams with recurring operational complexity.</h2>
+      <div class="fit-grid">
+        <article class="fit-box panel">
+          <h3>Best suited for</h3>
+          <ul>
+            <li>Internal creative, content, communications, or marketing teams</li>
+            <li>Agencies with recurring, multi-stakeholder delivery</li>
+            <li>Organizations managing recurring multi-stakeholder work, often 10 or more projects per month or a smaller number of high-risk initiatives</li>
+            <li>Teams experiencing approval, intake, ownership, or visibility problems</li>
+            <li>Organizations implementing or underusing Workfront, AEM, Asana, Monday, Jira, or similar systems</li>
+            <li>Teams preparing for increased AI-assisted production</li>
+          </ul>
+        </article>
+        <article class="fit-box panel">
+          <h3>Not designed for</h3>
+          <ul>
+            <li>Organizations seeking low-cost hourly project coordination</li>
+            <li>Solo creators looking for a template</li>
+            <li>Companies that only need content designed or written</li>
+            <li>Teams unwilling to change how work enters or moves through the organization</li>
+            <li>Businesses without leadership sponsorship for operational change</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">FAQ</p>
+      <h2>Direct answers for teams evaluating the work.</h2>
+      <div class="faq-grid">
+        <article class="faq-item panel">
+          <h3>Can we pay immediately?</h3>
+          <p>Yes. Organizations can pay the $7,500 Diagnosis fee in full through Stripe or begin with a $2,500 initial payment credited toward the full fee. Corporate buyers may request an invoice, ACH payment, purchase-order processing, or vendor onboarding.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>What happens during the 10-business-day Diagnosis?</h3>
+          <p>Soren Rho reviews the existing workflow, interviews the agreed stakeholders, examines the tools and operating materials, maps the current state, identifies the most consequential bottlenecks, and presents prioritized recommendations and a future-state direction. The schedule begins after payment, onboarding completion, and access to the agreed stakeholders and materials.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>Who needs to participate?</h3>
+          <p>The engagement typically requires one executive or department leader, the person responsible for day-to-day delivery, and a representative group of stakeholders involved in intake, production, review, approval, or handoff. The exact interview group is confirmed during onboarding.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>What does the initial payment cover?</h3>
+          <p>The $2,500 initial payment is credited in full toward the $7,500 Creative Operations Diagnosis and begins onboarding. The remaining $5,000 is due before stakeholder interviews begin. Requested timing is recorded at checkout, and the engagement schedule is confirmed after onboarding materials are reviewed.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>Do we have to change project-management tools?</h3>
+          <p>No. Soren Rho designs the operating model first and then determines how it should live within the tools the organization already uses. New technology is recommended only when the current environment cannot support the required process.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>Is the deliverable just a handbook?</h3>
+          <p>No. The handbook is one component. An engagement may also include workflow maps, intake forms, project templates, decision matrices, SLAs, approval procedures, escalation paths, training materials, reporting requirements, and implementation support.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>Can you configure Workfront, AEM, or other platforms?</h3>
+          <p>Soren Rho can define the workflow, governance, requirements, templates, and configuration recommendations. Specialized platform configuration may be completed directly, collaboratively with the client’s administrators, or through an implementation partner depending on scope.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>How does an engagement begin?</h3>
+          <p>Most organizations begin with a Creative Operations Diagnosis. The diagnosis establishes the current state, identifies the most expensive sources of friction, and defines the appropriate implementation scope.</p>
+        </article>
+        <article class="faq-item panel">
+          <h3>Is this only for creative teams?</h3>
+          <p>The initial specialty is creative, marketing, content, communications, and production operations. The methodology can also support adjacent teams with recurring, multi-stakeholder delivery.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section commitment-section" id="start-diagnosis">
+    <div class="wrap">
+      <div class="commitment-head">
+        <p class="eyebrow">Start a Diagnosis</p>
+        <h2>Choose how your organization would like to begin.</h2>
+        <p class="intro">The Creative Operations Diagnosis is a 10-business-day engagement with a fixed fee of $7,500. Pay in full, make the first payment, begin procurement, or meet with a senior Soren Rho lead to confirm fit.</p>
+      </div>
+      <div class="commitment-grid">
+        <article class="commitment-card panel recommended">
+          <h3>Begin the Diagnosis</h3>
+          <p class="commitment-price">$7,500 paid in full</p>
+          <p>Complete payment and move directly into onboarding. This is the simplest path for organizations ready to begin without additional billing or procurement steps.</p>
+          <ul>
+            <li>Complete Diagnosis fee paid</li>
+            <li>Receipt and paid invoice issued by Stripe</li>
+            <li>Immediate access to onboarding</li>
+            <li>Access to available kickoff windows</li>
+            <li>No remaining Diagnosis balance</li>
+          </ul>
+          <p class="checkout-note">Secure checkout and invoicing are provided by Stripe.</p>
+          <a class="btn btn-primary" href="https://book.stripe.com/6oUaEW0TFe8Q3dB4HweQM09" rel="noopener" aria-label="Pay in full and begin the Creative Operations Diagnosis with Stripe-hosted checkout">Pay in Full and Begin</a>
+          <p class="commitment-note">Engagement timing is confirmed after onboarding materials are received and reviewed. Purchasing records the requested start period but does not guarantee a specific date until confirmed by Soren Rho.</p>
+        </article>
+        <article class="commitment-card panel">
+          <h3>Begin with the Initial Payment</h3>
+          <p class="commitment-price">$2,500 today</p>
+          <p>Begin onboarding while your organization completes the remaining payment or internal approval process. The $2,500 payment is credited in full toward the $7,500 Diagnosis.</p>
+          <ul>
+            <li>$2,500 paid today</li>
+            <li>$5,000 remaining</li>
+            <li>Immediate access to onboarding</li>
+            <li>Requested timing recorded at checkout</li>
+            <li>Remaining balance due before stakeholder interviews</li>
+          </ul>
+          <p class="checkout-note">Secure checkout and invoicing are provided by Stripe.</p>
+          <a class="btn btn-secondary" href="https://book.stripe.com/7sYdR859V7KseWj8XMeQM0a" rel="noopener" aria-label="Begin the Creative Operations Diagnosis with a 2500 dollar initial payment in Stripe-hosted checkout">Begin with $2,500</a>
+          <p class="commitment-note">This is the first payment toward the complete Creative Operations Diagnosis, not a separate or reduced-scope service.</p>
+          <p class="commitment-support">Engagement timing is confirmed after onboarding materials are received and reviewed. Purchasing records the requested start period but does not guarantee a specific date until confirmed by Soren Rho.</p>
+        </article>
+        <article class="commitment-card panel">
+          <h3>Begin Procurement</h3>
+          <p class="commitment-price">Invoice, ACH, or purchase order</p>
+          <p>Choose this path when your organization requires an invoice, accounts-payable processing, vendor registration, a purchase order, or legal review before payment.</p>
+          <a class="btn btn-secondary" href="procurement-request.html">Start Procurement</a>
+          <p class="commitment-support">Soren Rho can provide an invoice, W-9, standard service scope, and available vendor documentation.</p>
+        </article>
+        <article class="commitment-card panel">
+          <h3>Confirm Fit First</h3>
+          <p class="commitment-price">20-minute conversation</p>
+          <p>Meet with a senior Soren Rho lead to confirm that your operational challenge is within scope, the Creative Operations Diagnosis is the right starting point, and the engagement can work within your timeline and purchasing process.</p>
+          <a class="btn btn-secondary" href="fit-call-request.html">Request a Fit Call</a>
+          <p class="commitment-support">This focused conversation is designed to confirm fit and next steps. Detailed operational recommendations begin with the paid Diagnosis.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section final-cta">
+    <div class="wrap cta-grid">
+      <div>
+        <p class="eyebrow">Start Here</p>
+        <h2>Your next launch should not depend on someone remembering what happens next.</h2>
+        <p class="intro">Start with a Creative Operations Diagnosis. Soren Rho will map how work currently moves, identify where delivery is breaking, and define the operating model required to fix it.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#start-diagnosis">Choose How to Begin</a>
+        </div>
+      </div>
+      <aside class="cta-box panel">
+        <h3>Contact</h3>
+        <p>Questions about fit or procurement? Contact <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a>.</p>
+        <p>Clear process, direct communication, and senior-led engagement from the first conversation.</p>
+      </aside>
+    </div>
+  </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <p><strong style="color:var(--navy)">Soren Rho</strong> is a content operations studio. We build the intake, approval, tracking, and launch systems that make content ship on time, and we hand them over when we are done.</p>
-    <p>Questions: <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a></p>
-    <p><a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
-    <p>&copy; 2026 Pixique LLC d/b/a Soren Rho. Photo by <a href="https://unsplash.com/@joshuawann" rel="noopener">Joshua Wann</a> on Unsplash.</p>
+    <p>Soren Rho builds customized creative operations systems for organizations whose work has outgrown their processes.</p>
+    <p><a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a></p>
+    <p><a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+    <p>&copy; 2026 Pixique LLC d/b/a Soren Rho</p>
   </div>
 </footer>
 </body>

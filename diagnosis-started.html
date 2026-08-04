@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagnosis Confirmed | Soren Rho</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#12283a;
+  --navy-deep:#0d1d2b;
+  --teal:#2a5a66;
+  --teal-soft:#9fd3db;
+  --ink:#20272e;
+  --soft:#5a6670;
+  --line:#ddd5c4;
+  --paper:#f5f1e8;
+  --panel:#fffdf8;
+  --white:#ffffff;
+  --maxw:1040px;
+  --radius:24px;
+  --shadow:0 18px 54px rgba(18,40,58,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(42,90,102,.10), transparent 24%),
+    linear-gradient(rgba(18,40,58,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18,40,58,.025) 1px, transparent 1px);
+  background-size:auto, 48px 48px, 48px 48px;
+  opacity:.4;
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{color:var(--navy)}
+h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.025em}
+h1,h2{font-family:'Newsreader',serif}
+p{margin:0 0 1rem}
+ol{margin:0;padding-left:20px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.header{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(245,241,232,.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(18,40,58,.10);
+}
+.header .wrap{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px 24px;
+  padding-top:16px;
+  padding-bottom:16px;
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:var(--navy);
+  font-family:'Newsreader',serif;
+  font-size:1.24rem;
+  font-weight:600;
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:var(--navy);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(108deg, rgba(13,29,43,.94) 0%, rgba(13,29,43,.76) 50%, rgba(13,29,43,.40) 100%),
+    url("lighthouse-poster.jpg") center/cover;
+}
+.hero .wrap{
+  position:relative;
+  z-index:1;
+  padding-top:68px;
+  padding-bottom:76px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 16px;
+  color:var(--teal-soft);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.eyebrow::before{
+  content:"";
+  width:28px;
+  height:1px;
+  background:currentColor;
+}
+.hero h1{
+  color:#fff;
+  font-size:clamp(2.5rem,6vw,4.6rem);
+  line-height:.96;
+  max-width:12ch;
+  margin-bottom:20px;
+}
+.hero p{
+  max-width:42rem;
+  color:rgba(255,255,255,.82);
+  font-size:1.08rem;
+}
+.lighthouse-mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:24px;
+}
+.lighthouse-mark svg{width:34px;height:48px}
+.section{
+  position:relative;
+  z-index:1;
+  padding:72px 0;
+}
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);
+  gap:24px;
+}
+.card{
+  background:var(--panel);
+  border:1px solid rgba(18,40,58,.10);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+.card h2{
+  font-size:1.8rem;
+  margin-bottom:14px;
+}
+.steps{
+  display:grid;
+  gap:16px;
+  margin-top:22px;
+}
+.step{
+  padding:18px 0;
+  border-top:1px solid rgba(18,40,58,.10);
+}
+.step:first-child{border-top:0;padding-top:0}
+.step h3{
+  font-size:1.08rem;
+  margin-bottom:6px;
+}
+.step p{color:var(--soft);margin:0}
+.balance{
+  display:none;
+  margin-bottom:20px;
+  padding:20px 22px;
+  border-radius:20px;
+  background:rgba(42,90,102,.08);
+}
+.balance.visible{display:block}
+.balance strong{
+  display:block;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.balance-list{
+  display:grid;
+  gap:8px;
+}
+.balance-row{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  color:var(--soft);
+}
+.balance-row b{color:var(--navy)}
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:24px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 22px;
+  border-radius:999px;
+  border:1px solid transparent;
+  background:var(--navy);
+  color:#fff;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.btn:hover{background:var(--teal);color:#fff}
+.support{
+  margin-top:18px;
+  color:var(--soft);
+  font-size:.93rem;
+}
+footer{
+  border-top:1px solid rgba(18,40,58,.10);
+  padding:34px 0 52px;
+}
+footer p{
+  margin:0 0 10px;
+  color:var(--soft);
+  font-size:.9rem;
+}
+@media (max-width:760px){
+  .section{padding:56px 0}
+  .grid{grid-template-columns:1fr}
+  .card{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important}
+}
+a:focus-visible,.btn:focus-visible{
+  outline:3px solid var(--teal);
+  outline-offset:3px;
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Soren Rho home">
+      <svg width="20" height="30" viewBox="0 0 28 40" fill="none" aria-hidden="true">
+        <path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#12283a" stroke-width="1.4"/>
+        <line x1="11" y1="20" x2="17" y2="20" stroke="#12283a" stroke-width="1.4"/>
+        <rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/>
+        <path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/>
+        <line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/>
+        <line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+        <line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+      </svg>
+      Soren Rho
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow" id="status-eyebrow">Diagnosis Confirmed</p>
+      <h1 id="status-headline">Your Creative Operations Diagnosis is officially underway.</h1>
+      <p id="status-body">Your payment has been received, and your engagement is now moving into onboarding. Complete the operational intake so Soren Rho can prepare for the first working session.</p>
+      <div class="lighthouse-mark" aria-hidden="true">
+        <svg viewBox="0 0 28 40" fill="none">
+          <path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+          <line x1="10.2" y1="28" x2="17.8" y2="28" stroke="#ffffff" stroke-width="1.4"/>
+          <line x1="11" y1="20" x2="17" y2="20" stroke="#ffffff" stroke-width="1.4"/>
+          <rect x="10.5" y="5" width="7" height="7" stroke="#ffffff" stroke-width="2"/>
+          <path d="M9.5 5 L14 1 L18.5 5 Z" fill="#ffffff"/>
+          <line x1="6" y1="38" x2="22" y2="38" stroke="#ffffff" stroke-width="2"/>
+          <line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#9fd3db" stroke-width="1.3"/>
+          <line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#9fd3db" stroke-width="1.3"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid">
+      <article class="card">
+        <div class="balance" id="balance-panel" aria-live="polite">
+          <strong>Diagnosis payment status</strong>
+          <div class="balance-list">
+            <div class="balance-row"><span>Diagnosis total</span><b>$7,500</b></div>
+            <div class="balance-row"><span>Initial payment received</span><b>$2,500</b></div>
+            <div class="balance-row"><span>Remaining balance</span><b>$5,000</b></div>
+          </div>
+        </div>
+        <h2>Next steps</h2>
+        <div class="steps">
+          <div class="step">
+            <h3>1. Complete the operational intake</h3>
+            <p>Provide the organizational context, current workflow, project volume, tools, stakeholders, and primary delivery problems.</p>
+          </div>
+          <div class="step">
+            <h3>2. Gather current-state materials</h3>
+            <p>Prepare any existing briefs, project boards, intake forms, process documents, reports, screenshots, templates, and approval procedures.</p>
+          </div>
+          <div class="step">
+            <h3>3. Select the kickoff window</h3>
+            <p>Once the intake is complete, you will receive scheduling instructions for the leadership kickoff and stakeholder interviews.</p>
+          </div>
+        </div>
+        <div class="btn-row">
+          <a class="btn" id="intake-link" href="mailto:hello@sorenrho.com?subject=Soren%20Rho%20Diagnosis%20Onboarding&amp;body=Organization%3A%0APayment%20path%3A%20Paid%20in%20full%0APreferred%20kickoff%20window%3A">Complete the Operational Intake</a>
+        </div>
+        <p class="support" id="status-support">A Stripe receipt and invoice have been sent to the email address used at checkout.</p>
+      </article>
+      <aside class="card">
+        <h2>Contact</h2>
+        <p><a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a></p>
+        <p>This onboarding step is designed to move directly into productive discovery, not to restart the sales process.</p>
+        <p id="payment-note" class="support" hidden>Soren Rho will send the remaining-balance invoice and confirm the final kickoff date after reviewing your onboarding information.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Soren Rho builds customized creative operations systems for organizations whose work has outgrown their processes.</p>
+    <p><a href="index.html">Home</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+    <p>&copy; 2026 Pixique LLC d/b/a Soren Rho</p>
+  </div>
+</footer>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const paymentPath = params.get("path");
+const isInitialPayment = paymentPath === "reservation" || paymentPath === "initial-payment";
+
+if (isInitialPayment) {
+  document.getElementById("status-eyebrow").textContent = "Initial Payment Received";
+  document.getElementById("status-headline").textContent = "Your Creative Operations Diagnosis is underway.";
+  document.getElementById("status-body").textContent = "Your $2,500 initial payment has been received and credited toward the $7,500 Creative Operations Diagnosis. The remaining $5,000 is due before stakeholder interviews begin.";
+  document.getElementById("intake-link").href = "mailto:hello@sorenrho.com?subject=Soren%20Rho%20Diagnosis%20Onboarding&body=Organization%3A%0APayment%20path%3A%20Initial%20payment%0APreferred%20kickoff%20window%3A";
+  document.getElementById("balance-panel").classList.add("visible");
+  document.getElementById("payment-note").hidden = false;
+}
+</script>
+</body>
+</html>

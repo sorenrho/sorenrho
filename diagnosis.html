@@ -3,84 +3,328 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Diagnosis survey | Soren Rho</title>
+<title>Creative Operations Diagnosis | Soren Rho</title>
+<meta name="description" content="Choose the right starting path for a Creative Operations Diagnosis, including paying in full, reserving a start window, procurement support, or a fit conversation.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
 <style>
-:root{--ink:#20272e;--soft:#5a6670;--line:#e2dccd;--navy:#12283a;--teal:#2a5a66;--teal-dk:#1f454f}
+:root{
+  --navy:#12283a;
+  --teal:#2a5a66;
+  --ink:#20272e;
+  --soft:#5a6670;
+  --line:#ddd5c4;
+  --paper:#f5f1e8;
+  --panel:#fffdf9;
+  --white:#ffffff;
+  --maxw:980px;
+  --radius:22px;
+  --shadow:0 20px 60px rgba(18,40,58,.10);
+}
 *{box-sizing:border-box}
-body{margin:0;background:#F5F1E8;color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:17px;line-height:1.7}
-.wrap{max-width:720px;margin:0 auto;padding:0 24px}
-a{color:var(--teal)}a:hover{color:var(--teal-dk)}
-header{border-bottom:1px solid var(--line);background:rgba(245,241,232,.92)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-family:'Newsreader',serif;font-size:1.2rem;color:var(--navy);font-weight:500;text-decoration:none}
-h1{font-family:'Newsreader',serif;font-weight:400;color:var(--navy);font-size:2.2rem;letter-spacing:-.02em;margin:52px 0 6px}
-.sub{color:var(--soft);font-size:1.05rem;margin:0 0 36px}
-h2{color:var(--navy);font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin:36px 0 10px}
-p{margin:0 0 1.1rem}
-ol,ul{padding-left:22px;margin:0 0 1.1rem}
-li{margin:0 0 10px;color:var(--ink)}
-li b{color:var(--navy)}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:26px 28px;margin:26px 0}
-.card p:last-child{margin-bottom:0}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;text-decoration:none;
-  font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;border-radius:4px;transition:background .2s}
-.btn:hover{background:var(--teal-dk);color:#fff}
-.note{font-size:.85rem;color:var(--soft)}
-footer{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:50px}
-footer p{font-size:.82rem;color:var(--soft);margin:0 0 8px}
-footer a{color:var(--soft);border-bottom:1px solid var(--line);text-decoration:none}
-a:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:17px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{color:var(--navy)}
+h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.025em}
+h1,h2{font-family:'Newsreader',serif}
+p{margin:0 0 1rem}
+ul{margin:0;padding:0;list-style:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(245,241,232,.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(18,40,58,.10);
+}
+.header .wrap{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-top:16px;
+  padding-bottom:16px;
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:var(--navy);
+  font-family:'Newsreader',serif;
+  font-size:1.24rem;
+  font-weight:600;
+}
+.brand svg{flex:0 0 auto}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:0 22px;
+  border-radius:999px;
+  background:var(--navy);
+  color:#fff;
+  font-size:.84rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.btn:hover{background:var(--teal);color:#fff}
+.btn-secondary{
+  background:transparent;
+  color:var(--navy);
+  border:1px solid rgba(18,40,58,.14);
+}
+.btn-secondary:hover{background:rgba(255,255,255,.78);color:var(--navy)}
+.hero{
+  padding:72px 0 40px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0 0 16px;
+  color:var(--teal);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.eyebrow::before{
+  content:"";
+  width:30px;
+  height:1px;
+  background:currentColor;
+}
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4.4rem);
+  line-height:.98;
+  max-width:11ch;
+  margin-bottom:20px;
+}
+.hero p{
+  max-width:42rem;
+  color:var(--soft);
+  font-size:1.06rem;
+}
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);
+  gap:24px;
+  margin:34px 0 72px;
+}
+.commitment-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  margin:0 0 72px;
+}
+.card{
+  background:var(--panel);
+  border:1px solid rgba(18,40,58,.10);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+.card.recommended{
+  background:linear-gradient(180deg, rgba(42,90,102,.08), rgba(255,253,249,1));
+  border-color:rgba(42,90,102,.18);
+}
+.card h2{
+  font-size:1.8rem;
+  margin-bottom:14px;
+}
+.card h3{
+  font-size:1.2rem;
+  margin-bottom:8px;
+  color:var(--navy);
+}
+.price{
+  color:var(--navy);
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:14px;
+}
+.list{
+  display:grid;
+  gap:12px;
+}
+.list li{
+  padding-left:18px;
+  position:relative;
+  color:var(--soft);
+}
+.list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.72em;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--teal);
+  transform:translateY(-50%);
+}
+.meta{
+  display:grid;
+  gap:12px;
+  margin:18px 0 24px;
+}
+.meta div{
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(42,90,102,.08);
+}
+.meta strong{
+  display:block;
+  color:var(--navy);
+  margin-bottom:4px;
+}
+.process{
+  margin-top:22px;
+  padding-top:22px;
+  border-top:1px solid rgba(18,40,58,.10);
+}
+.process ol{
+  margin:0;
+  padding-left:20px;
+}
+.process li{
+  margin:0 0 12px;
+  color:var(--soft);
+}
+.note{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(18,40,58,.10);
+  color:var(--soft);
+  font-size:.9rem;
+}
+footer{
+  border-top:1px solid rgba(18,40,58,.10);
+  padding:32px 0 48px;
+}
+footer p{
+  margin:0 0 10px;
+  color:var(--soft);
+  font-size:.9rem;
+}
+@media (max-width:760px){
+  .hero{padding:56px 0 28px}
+  .grid,.commitment-grid{grid-template-columns:1fr;margin-bottom:56px}
+  .card{padding:22px}
+}
+a:focus-visible,.btn:focus-visible{
+  outline:3px solid var(--teal);
+  outline-offset:3px;
+}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a href="index.html" class="logo">Soren Rho</a><span class="note">Payment received</span></div></header>
+<header class="header">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Soren Rho home">
+      <svg width="20" height="30" viewBox="0 0 28 40" fill="none" aria-hidden="true">
+        <path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/>
+        <path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/>
+        <line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/>
+        <line x1="10.5" y1="8.5" x2="4" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+        <line x1="17.5" y1="8.5" x2="24" y2="6.5" stroke="#2a5a66" stroke-width="1.3"/>
+      </svg>
+      Soren Rho
+    </a>
+    <a class="btn" href="index.html#start-diagnosis">Start a Diagnosis</a>
+  </div>
+</header>
+
 <main class="wrap">
-<h1>You are in. Here is the survey.</h1>
-<p class="sub">Ten questions, three screenshots. Answer roughly; rough is honest, and honest is what we can work with. Your written diagnosis, recommended system, and fixed Build quote arrive within three business days of your answers.</p>
+  <section class="hero">
+    <p class="eyebrow">Creative Operations Diagnosis</p>
+    <h1>Choose how your organization would like to begin.</h1>
+    <p>The Creative Operations Diagnosis is a 10-business-day engagement with a fixed fee of $7,500. Pay in full, make the first payment, begin procurement, or speak directly with Beatrice to confirm fit.</p>
+  </section>
 
-<div class="card">
-<p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSchpfCe7eWONnfyB93375-WLS0PoRwMOqY2l2_J4iXQW2PBCQ/viewform">Open the survey</a></p>
-<p class="note">The survey opens in Google Forms. Have your three screenshots ready before you start. The full questions are below so you can see what is coming.</p>
-</div>
+  <section class="grid">
+    <article class="card">
+      <h2>What the diagnosis includes</h2>
+      <ul class="list">
+        <li>Leadership intake and stakeholder interviews</li>
+        <li>Current-state workflow map</li>
+        <li>Intake, tool, and communication audit</li>
+        <li>Bottleneck and operational-risk analysis</li>
+        <li>Prioritized findings brief</li>
+        <li>Future-state workflow recommendation</li>
+        <li>Executive readout and implementation roadmap</li>
+        <li>Defined scope for a Producer OS Build, when appropriate</li>
+      </ul>
+      <div class="process">
+        <h3>How it begins</h3>
+        <ol>
+          <li>Choose the purchase path that matches your authority, budget, and internal approval process.</li>
+          <li>Once full payment or the initial payment is complete, onboarding begins immediately.</li>
+          <li>Corporate buyers can request invoicing, vendor onboarding, and procurement support through <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a>.</li>
+        </ol>
+      </div>
+    </article>
+    <aside class="card">
+      <h2>Engagement details</h2>
+      <div class="meta">
+        <div>
+          <strong>Timeline</strong>
+          Approximately 10 business days
+        </div>
+        <div>
+          <strong>Price</strong>
+          $7,500 fixed fee
+        </div>
+        <div>
+          <strong>Primary outcome</strong>
+          A clear current-state assessment and future-state operating model recommendation
+        </div>
+      </div>
+      <p>The diagnosis is designed for organizations that need operating clarity before committing to a broader Producer OS build or implementation phase.</p>
+      <p><a class="btn" href="index.html#start-diagnosis">View Starting Options</a></p>
+    </aside>
+  </section>
 
-<h2>The ten questions</h2>
-<ol>
-<li>How many people touch content before it ships? Name the roles, not the names.</li>
-<li>What ships in a typical month? (emails, pages, posts, campaigns, videos: rough counts)</li>
-<li>What tools does the work actually live in today? Not the ones you bought, the ones people open.</li>
-<li>How does new work arrive right now? Walk us through the last request you received, start to finish.</li>
-<li>Who has to say yes before something ships, and where do they say it?</li>
-<li>What shipped late most recently? What was the actual holdup, best guess?</li>
-<li>Where do finished files live, and how long does it take to find one from three months ago?</li>
-<li>What does urgent do to your process? Skip steps? Which ones?</li>
-<li>If one part of this fixed itself overnight, which part would you pick?</li>
-<li>Anything you already tried that did not stick? What killed it?</li>
-</ol>
-
-<h2>The three screenshots. This is where the truth lives.</h2>
-<ul>
-<li><b>A.</b> Your project board, tracker, or list as it looks right now. Do not tidy it first. The mess is the data.</li>
-<li><b>B.</b> One real brief or request, forwarded or screenshotted, exactly as it arrived.</li>
-<li><b>C.</b> The folder where finished work lives.</li>
-</ul>
-
-<h2>What you get back, within three business days</h2>
-<ul>
-<li>A written diagnosis: the two or three places your workflow actually breaks, mapped from what you sent, not from a generic checklist.</li>
-<li>The recommended system: which parts of our standard build fix which of your breaks, in what order.</li>
-<li>A fixed quote for the 30-Day Build. Your $900 credits toward it in full if you proceed within 60 days.</li>
-<li>No call at any point, unless you want one.</li>
-</ul>
-
-<p class="note">Questions before you send? <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a>.</p>
+  <section class="commitment-grid" aria-label="Diagnosis commitment paths">
+    <article class="card recommended">
+      <h3>Begin the Diagnosis</h3>
+      <p class="price">$7,500 paid in full</p>
+      <p>Complete payment and move directly into onboarding. This is the simplest path for organizations ready to begin without additional billing or procurement steps.</p>
+      <p class="note" style="border-top:0;padding-top:0;margin-top:0">Secure checkout and invoicing are provided by Stripe.</p>
+      <p><a class="btn" href="https://book.stripe.com/6oUaEW0TFe8Q3dB4HweQM09" rel="noopener">Pay in Full and Begin</a></p>
+    </article>
+    <article class="card">
+      <h3>Begin with the Initial Payment</h3>
+      <p class="price">$2,500 today</p>
+      <p>Begin onboarding while your organization completes the remaining payment or internal approval process. The $2,500 payment is credited in full toward the $7,500 Diagnosis.</p>
+      <p class="note" style="border-top:0;padding-top:0;margin-top:0">Secure checkout and invoicing are provided by Stripe.</p>
+      <p><a class="btn btn-secondary" href="https://book.stripe.com/7sYdR859V7KseWj8XMeQM0a" rel="noopener">Begin with $2,500</a></p>
+      <p class="note">This is the first payment toward the complete Creative Operations Diagnosis, not a separate or reduced-scope service.</p>
+    </article>
+  </section>
 </main>
-<footer><div class="wrap">
-<p><a href="index.html">Home</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms of Service</a> &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy Policy</a></p>
-<p>&copy; 2026 Pixique LLC d/b/a Soren Rho.</p>
-</div></footer>
+
+<footer>
+  <div class="wrap">
+    <p>Soren Rho builds customized creative operations systems for organizations whose work has outgrown their processes.</p>
+    <p><a href="index.html">Home</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+    <p>&copy; 2026 Pixique LLC d/b/a Soren Rho</p>
+  </div>
+</footer>
 </body>
 </html>
