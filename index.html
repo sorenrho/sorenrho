@@ -497,9 +497,26 @@ section[id]{
   flex-direction:column;
   padding:28px;
 }
-.service-card:nth-child(2){
+.service-card.start-here{
   background:linear-gradient(180deg, rgba(42,90,102,.07), rgba(255,253,248,1));
   border-color:rgba(42,90,102,.16);
+}
+.service-kicker{
+  display:inline-flex;
+  align-self:flex-start;
+  margin-bottom:14px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(18,40,58,.08);
+  color:var(--navy);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.service-card.start-here .service-kicker{
+  background:rgba(42,90,102,.14);
+  color:var(--teal);
 }
 .service-card h3{font-size:1.2rem;margin-bottom:10px}
 .service-card p{color:var(--soft)}
@@ -1174,10 +1191,11 @@ button:focus-visible,
       <div>
         <p class="eyebrow">Services</p>
         <h2>Start with the problem. Build the system it requires.</h2>
-        <p class="intro">Each engagement is structured around the operating problem, the volume of work, the current tool environment, and the amount of implementation support the organization needs.</p>
+        <p class="intro">Most organizations begin with a Creative Operations Diagnosis. From there, Soren Rho can design the operating system and support its implementation.</p>
       </div>
       <div class="service-grid">
-        <article class="service-card panel">
+        <article class="service-card panel start-here">
+          <p class="service-kicker">Start Here</p>
           <h3>Creative Operations Diagnosis</h3>
           <p>A fixed-fee assessment that shows where creative delivery is breaking, why it is happening, and what operating model is required to address it.</p>
           <div class="meta">
@@ -1198,45 +1216,35 @@ button:focus-visible,
           <p class="service-note">Pay in full, make the first payment, begin procurement, or meet with a senior Soren Rho lead to confirm fit.</p>
         </article>
         <article class="service-card panel">
+          <p class="service-kicker">Next Step</p>
           <h3>Producer OS Build</h3>
           <p>A customized operating system that defines how work enters, who owns each decision, how projects move, and what happens when delivery goes off track.</p>
-          <p class="service-sequence">Usually commissioned after the Creative Operations Diagnosis establishes the future-state requirements and implementation scope.</p>
           <div class="meta">
             <span>Approximately 6-10 weeks</span>
             <span>Starting at $25,000</span>
           </div>
           <ul>
-            <li>Future-state workflow</li>
-            <li>Intake and readiness standards</li>
-            <li>Roles and decision rights</li>
-            <li>Project templates</li>
-            <li>SLAs and review gates</li>
-            <li>Feedback and approval procedures</li>
-            <li>Handoff and escalation standards</li>
-            <li>Reporting requirements</li>
-            <li>Customized operations manual</li>
-            <li>Implementation roadmap</li>
+            <li>Future-state workflows and service levels</li>
+            <li>Roles, decision rights, and approval rules</li>
+            <li>Templates, governance standards, and an operations manual</li>
           </ul>
-          <a class="btn btn-secondary" href="service-inquiry.html?service=producer-os-build">Discuss a Producer OS Build</a>
+          <p class="service-sequence">Usually scoped after the Creative Operations Diagnosis establishes what the organization needs.</p>
+          <a class="btn btn-secondary" href="fit-call-request.html">Book a 20-Minute Fit Call</a>
         </article>
         <article class="service-card panel">
+          <p class="service-kicker">Next Step</p>
           <h3>Activation and Optimization</h3>
-          <p>Implementation support that puts the new operating model into daily use through configuration, training, pilot support, and adoption tracking.</p>
-          <p class="service-sequence">Available as an implementation phase following a Producer OS Build.</p>
+          <p>Implementation support that puts the Producer OS into daily use across the team, tools, and active work.</p>
           <div class="meta">
-            <span>Scoped to the organization</span>
+            <span>Scope and timing customized to the organization</span>
           </div>
           <ul>
-            <li>Pilot-project support</li>
-            <li>Team training</li>
-            <li>Tool-template configuration</li>
-            <li>Leadership enablement</li>
-            <li>Adoption tracking</li>
-            <li>Workflow refinement</li>
-            <li>AI-workflow expansion</li>
-            <li>Ongoing governance</li>
+            <li>Tool configuration and pilot-project support</li>
+            <li>Team training and leadership enablement</li>
+            <li>Adoption tracking and workflow refinement</li>
           </ul>
-          <a class="btn btn-secondary" href="service-inquiry.html?service=activation-optimization">Discuss Implementation</a>
+          <p class="service-sequence">Available after a Producer OS Build or for organizations that already have a defined operating model ready to implement.</p>
+          <a class="btn btn-secondary" href="fit-call-request.html">Book a 20-Minute Fit Call</a>
         </article>
       </div>
     </div>

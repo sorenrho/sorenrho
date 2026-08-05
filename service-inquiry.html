@@ -3,132 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Service Inquiry | Soren Rho</title>
-<meta name="robots" content="noindex">
+<title>Redirecting to Fit Call Booking | Soren Rho</title>
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://sorenrho.com/fit-call-request.html">
+<meta http-equiv="refresh" content="0; url=fit-call-request.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
 <style>
-:root{--navy:#12283a;--teal:#2a5a66;--ink:#20272e;--soft:#5a6670;--line:#ddd5c4;--paper:#f5f1e8;--panel:#fffdf8;--maxw:860px;--radius:22px;--shadow:0 18px 54px rgba(18,40,58,.10)}
-*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:var(--teal);text-decoration:none} a:hover{color:var(--navy)}
-h1,h2,h3{margin:0;color:var(--navy);letter-spacing:-.025em} h1,h2{font-family:'Newsreader',serif}
-p{margin:0 0 1rem}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.header{position:sticky;top:0;z-index:20;background:rgba(245,241,232,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,40,58,.10)}
-.header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px}
-.brand{display:inline-flex;align-items:center;gap:12px;color:var(--navy);font-family:'Newsreader',serif;font-size:1.24rem;font-weight:600}
-.hero{padding:64px 0 32px}.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
-.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
-.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:.98;max-width:14ch;margin-bottom:18px}
-.hero p{max-width:44rem;color:var(--soft)}
-.card{background:var(--panel);border:1px solid rgba(18,40,58,.10);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-bottom:56px}
-label{display:block;font-weight:600;color:var(--navy);margin:18px 0 8px}
-input,textarea,select{width:100%;padding:14px 16px;border:1px solid rgba(18,40,58,.16);border-radius:14px;background:#fff;color:var(--ink);font:inherit}
-textarea{min-height:120px;resize:vertical}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;border:1px solid transparent;background:var(--navy);color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
-.btn:hover{background:var(--teal);color:#fff}
-.support{margin-top:16px;color:var(--soft);font-size:.92rem}
-.confirmation{display:none;margin-top:20px;padding:18px 20px;border-radius:16px;background:rgba(42,90,102,.08);color:var(--navy)}
-.confirmation.visible{display:block}
-footer{border-top:1px solid rgba(18,40,58,.10);padding:32px 0 48px} footer p{margin:0 0 10px;color:var(--soft);font-size:.9rem}
-a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+body{
+  margin:0;
+  padding:48px 24px;
+  background:#f5f1e8;
+  color:#20272e;
+  font:17px/1.7 Inter, system-ui, -apple-system, sans-serif;
+}
+.wrap{
+  max-width:720px;
+  margin:0 auto;
+}
+h1{
+  margin:0 0 12px;
+  color:#12283a;
+  font:600 2.2rem/1.05 Newsreader, Georgia, serif;
+}
+a{
+  color:#2a5a66;
+}
 </style>
 </head>
 <body>
-<header class="header"><div class="wrap"><a href="index.html" class="brand" aria-label="Soren Rho home"><svg width="20" height="30" viewBox="0 0 28 40" fill="none" aria-hidden="true"><path d="M9 38 L12 12 L16 12 L19 38 Z" stroke="#12283a" stroke-width="2" stroke-linejoin="round"/><rect x="10.5" y="5" width="7" height="7" stroke="#12283a" stroke-width="2"/><path d="M9.5 5 L14 1 L18.5 5 Z" fill="#12283a"/><line x1="6" y1="38" x2="22" y2="38" stroke="#12283a" stroke-width="2"/></svg>Soren Rho</a></div></header>
-<main class="wrap">
-  <section class="hero">
-    <p class="eyebrow" id="service-eyebrow">Service Inquiry</p>
-    <h1 id="service-headline">Discuss the right operating-system engagement.</h1>
-    <p id="service-body">Use this form to discuss scope, timing, and whether Soren Rho should structure the work as a Producer OS Build or an Activation and Optimization engagement.</p>
-  </section>
-  <section class="card">
-    <form id="service-inquiry-form">
-      <input type="hidden" name="form_type" value="Service Inquiry">
-      <input type="hidden" name="_subject" id="subject-field" value="Soren Rho Service Inquiry">
-      <input type="hidden" name="service_interest" id="service-interest" value="General service inquiry">
-      <label for="organization">Organization</label>
-      <input id="organization" name="organization" autocomplete="organization" required>
-      <label for="contact_name">Name</label>
-      <input id="contact_name" name="contact_name" autocomplete="name" required>
-      <label for="business_email">Business email</label>
-      <input id="business_email" name="business_email" type="email" autocomplete="email" required>
-      <label for="role">Role</label>
-      <input id="role" name="role" required>
-      <label for="timeline">Desired timeline</label>
-      <input id="timeline" name="timeline">
-      <label for="project_volume">Approximate project volume or delivery complexity</label>
-      <input id="project_volume" name="project_volume">
-      <label for="current_challenge">What is breaking right now?</label>
-      <textarea id="current_challenge" name="current_challenge" required></textarea>
-      <div style="margin-top:24px">
-        <button class="btn" id="service-submit" type="submit">Submit Inquiry</button>
-      </div>
-      <p class="support">This form submits directly to Soren Rho. Please do not include confidential client data, credentials, or regulated information. See the <a href="privacy.html">Privacy Policy</a>.</p>
-      <div class="confirmation" id="service-confirmation" aria-live="polite"></div>
-    </form>
-  </section>
-</main>
-<footer><div class="wrap"><p>Soren Rho builds customized creative operations systems for organizations whose work has outgrown their processes.</p><p><a href="index.html">Home</a> &middot; <a href="terms.html">Terms of Service</a> &middot; <a href="privacy.html">Privacy Policy</a></p><p>&copy; 2026 Pixique LLC d/b/a Soren Rho</p></div></footer>
-<script>
-const params = new URLSearchParams(window.location.search);
-const service = params.get('service');
-const config = {
-  'producer-os-build': {
-    eyebrow: 'Producer OS Build',
-    headline: 'Discuss a Producer OS Build.',
-    body: 'Use this form to discuss scope, operating-model requirements, internal constraints, and implementation timing for a Producer OS Build.',
-    subject: 'Soren Rho Producer OS Build Inquiry',
-    interest: 'Producer OS Build'
-  },
-  'activation-optimization': {
-    eyebrow: 'Activation and Optimization',
-    headline: 'Discuss implementation support.',
-    body: 'Use this form to discuss configuration, training, pilot support, adoption tracking, and the implementation work required after an operating model is designed.',
-    subject: 'Soren Rho Activation and Optimization Inquiry',
-    interest: 'Activation and Optimization'
-  }
-};
-if (config[service]) {
-  document.getElementById('service-eyebrow').textContent = config[service].eyebrow;
-  document.getElementById('service-headline').textContent = config[service].headline;
-  document.getElementById('service-body').textContent = config[service].body;
-  document.getElementById('subject-field').value = config[service].subject;
-  document.getElementById('service-interest').value = config[service].interest;
-}
-
-document.getElementById('service-inquiry-form').addEventListener('submit', function (event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const submit = document.getElementById('service-submit');
-  const confirmation = document.getElementById('service-confirmation');
-  submit.disabled = true;
-  submit.textContent = 'Submitting...';
-  confirmation.classList.remove('visible');
-  confirmation.textContent = '';
-
-  fetch('https://formspree.io/f/xeerdzzr', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json'
-    },
-    body: new FormData(form)
-  }).then(async (response) => {
-    if (!response.ok) {
-      throw new Error('Submission failed');
-    }
-    form.reset();
-    confirmation.textContent = 'Inquiry received. Soren Rho will review the request and follow up by email.';
-    confirmation.classList.add('visible');
-  }).catch(() => {
-    confirmation.innerHTML = 'The form did not submit successfully. Please try again or email <a href="mailto:hello@sorenrho.com">hello@sorenrho.com</a>.';
-    confirmation.classList.add('visible');
-  }).finally(() => {
-    submit.disabled = false;
-    submit.textContent = 'Submit Inquiry';
-  });
-});
-</script>
+  <main class="wrap">
+    <h1>Redirecting to fit call booking.</h1>
+    <p>If you are not redirected automatically, <a href="fit-call-request.html">Continue to book a 20-minute fit call.</a></p>
+  </main>
 </body>
 </html>
